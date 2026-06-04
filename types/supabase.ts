@@ -12,6 +12,31 @@ export type Database = {
   __InternalSupabase: {
     PostgrestVersion: "14.5"
   }
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
       exam_blueprint_section_rules: {
@@ -2108,7 +2133,6 @@ export type Database = {
           district_name: string | null
           full_name: string | null
           gender: string | null
-          gmail: string
           id: string
           note: string | null
           phone: string | null
@@ -2123,7 +2147,6 @@ export type Database = {
           district_name?: string | null
           full_name?: string | null
           gender?: string | null
-          gmail: string
           id: string
           note?: string | null
           phone?: string | null
@@ -2138,7 +2161,6 @@ export type Database = {
           district_name?: string | null
           full_name?: string | null
           gender?: string | null
-          gmail?: string
           id?: string
           note?: string | null
           phone?: string | null
@@ -2914,6 +2936,9 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
   public: {
     Enums: {
       blueprint_status: ["draft", "published", "archived"],
