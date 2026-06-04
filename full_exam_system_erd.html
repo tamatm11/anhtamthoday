@@ -1,0 +1,144 @@
+<style>
+#erd3 svg.erDiagram .divider path { stroke-opacity: 0.4; }
+#erd3 svg.erDiagram .row-rect-odd path,
+#erd3 svg.erDiagram .row-rect-odd rect,
+#erd3 svg.erDiagram .row-rect-even path,
+#erd3 svg.erDiagram .row-rect-even rect { stroke: none !important; }
+</style>
+<div id="erd3" style="padding: 1rem 0;"></div>
+<script type="module">
+import mermaid from 'https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs';
+const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+await document.fonts.ready;
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: '"Anthropic Sans", sans-serif',
+  themeVariables: {
+    darkMode: dark,
+    fontSize: '13px',
+    fontFamily: '"Anthropic Sans", sans-serif',
+    lineColor: dark ? '#9c9a92' : '#73726c',
+    textColor: dark ? '#c2c0b6' : '#3d3d3a',
+  },
+});
+const { svg } = await mermaid.render('erd3-svg', `erDiagram
+  KNOWLEDGE_FIELDS {
+    int id PK
+    string name "đạo hàm tích phân hình học..."
+    string subject "Toán Anh Sinh..."
+    int parent_id FK "phân cấp tuỳ chọn"
+  }
+  QUESTIONS {
+    string id PK "TOAN-DH-VD-0042"
+    text content
+    int difficulty "1=NB 2=TH 3=VD 4=VDC"
+    int knowledge_field_id FK
+    string image_url
+    string type "MC SA TF"
+  }
+  MC_OPTIONS {
+    int id PK
+    string question_id FK
+    text content
+    string image_url
+    boolean is_correct
+  }
+  TF_SUB_QUESTIONS {
+    int id PK
+    string question_id FK
+    text content
+    boolean correct_answer
+    int seq "thứ tự gốc"
+  }
+  EXAM_ROOMS {
+    uuid id PK
+    string name
+    string subject
+    int duration_minutes
+    jsonb format_config "cấu trúc đề theo môn"
+    string status "draft published archived"
+    int price_vnd
+  }
+  EXAM_ROOM_QUESTIONS {
+    uuid exam_room_id FK
+    string question_id FK
+    int seq
+  }
+  KEY_BATCHES {
+    uuid id PK
+    uuid exam_room_id FK
+    int quantity
+    string note
+  }
+  KEYS {
+    uuid id PK
+    string code UK "TOAN25-K4X7M2NP"
+    uuid exam_room_id FK
+    uuid batch_id FK
+    int student_id FK "NULL nếu chưa cấp"
+    int total_attempts "mặc định 3"
+    int used_attempts "tăng mỗi lần vào thi"
+    string status "unused active exhausted expired revoked"
+    timestamptz expires_at
+    int price_paid
+    string payment_ref
+  }
+  STUDENTS {
+    int id PK
+    string name
+    string gmail UK
+    uuid current_key_id FK "nullable"
+  }
+  EXAM_SESSIONS {
+    uuid id PK
+    uuid key_id FK
+    int student_id FK
+    uuid exam_room_id FK
+    int attempt_number "1 2 3"
+    jsonb shuffle_config "thứ tự câu + đáp án sau xáo trộn"
+    timestamptz started_at
+    timestamptz submitted_at
+    numeric score
+    string status "in_progress submitted abandoned"
+  }
+  SESSION_ANSWERS {
+    uuid session_id FK
+    string question_id FK
+    int selected_option_id FK "nullable chỉ cho MC"
+    string text_answer "cho SA"
+    jsonb tf_answers "cho TF: subq_id => true/false"
+    boolean is_correct
+  }
+
+  KNOWLEDGE_FIELDS ||--o{ QUESTIONS : "phân loại"
+  QUESTIONS ||--o{ MC_OPTIONS : "có đáp án"
+  QUESTIONS ||--o{ TF_SUB_QUESTIONS : "có câu con"
+  EXAM_ROOMS ||--o{ EXAM_ROOM_QUESTIONS : "chứa"
+  QUESTIONS ||--o{ EXAM_ROOM_QUESTIONS : "thuộc"
+  EXAM_ROOMS ||--o{ KEY_BATCHES : "phát sinh"
+  KEY_BATCHES ||--o{ KEYS : "bao gồm"
+  STUDENTS ||--o{ KEYS : "sở hữu"
+  KEYS ||--o{ EXAM_SESSIONS : "kích hoạt"
+  STUDENTS ||--o{ EXAM_SESSIONS : "thực hiện"
+  EXAM_ROOMS ||--o{ EXAM_SESSIONS : "diễn ra"
+  EXAM_SESSIONS ||--o{ SESSION_ANSWERS : "ghi lại"
+  QUESTIONS ||--o{ SESSION_ANSWERS : "được trả lời"
+  MC_OPTIONS ||--o{ SESSION_ANSWERS : "được chọn"
+`);
+document.getElementById('erd3').innerHTML = svg;
+document.querySelectorAll('#erd3 svg.erDiagram .node').forEach(node => {
+  const fp = node.querySelector('path[d]');
+  if (!fp) return;
+  const nums = fp.getAttribute('d').match(/-?[\d.]+/g)?.map(Number);
+  if (!nums || nums.length < 8) return;
+  const xs=[nums[0],nums[2],nums[4],nums[6]], ys=[nums[1],nums[3],nums[5],nums[7]];
+  const x=Math.min(...xs),y=Math.min(...ys),w=Math.max(...xs)-x,h=Math.max(...ys)-y;
+  const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  rect.setAttribute('x',x); rect.setAttribute('y',y);
+  rect.setAttribute('width',w); rect.setAttribute('height',h); rect.setAttribute('rx','8');
+  ['fill','stroke','stroke-width','class','style'].forEach(a=>{if(fp.hasAttribute(a))rect.setAttribute(a,fp.getAttribute(a));});
+  fp.replaceWith(rect);
+});
+document.querySelectorAll('#erd3 svg.erDiagram .row-rect-odd path, #erd3 svg.erDiagram .row-rect-even path').forEach(p=>p.setAttribute('stroke','none'));
+</script>

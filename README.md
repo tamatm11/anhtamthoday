@@ -2,6 +2,24 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+## Supabase setup
+
+Create `.env.local` in the project root:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+```
+
+Legacy projects can use `NEXT_PUBLIC_SUPABASE_ANON_KEY` instead of
+`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
+
+Apply the local schema before testing auth/data flows:
+
+```bash
+npx supabase db reset
+```
+
 First, run the development server:
 
 ```bash

@@ -1,58 +1,52 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { User, Lock, Eye, EyeOff } from 'lucide-react';
+import { User, Lock, Mail, Eye, EyeOff } from 'lucide-react';
 import styles from '@/styles/auth.module.css';
-import { useExamStore } from '@/store/useExamStore';
 import { createClient } from '@/lib/supabase/client';
 import { hasSupabaseEnv } from '@/lib/supabase/env';
-import { loadCandidateProfile } from '@/lib/supabase/user-profile';
+import { ensureStudentProfile, loadCandidateProfile } from '@/lib/supabase/user-profile';
 import { translateAuthError } from '@/lib/supabase/auth-errors';
+import { useExamStore } from '@/store/useExamStore';
 
-export default function LoginPage() {
+export default function RegisterPage() {
+  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const login = useExamStore((state) => state.login);
 
-  useEffect(() => {
-    if (!hasSupabaseEnv()) return;
-
-    let isMounted = true;
-    const supabase = createClient();
-
-    supabase.auth.getUser().then(async ({ data }) => {
-      if (!isMounted || !data.user) return;
-
-      const profile = await loadCandidateProfile(supabase, data.user);
-      login(profile.code, {
-        name: profile.name,
-        school: profile.school,
-        dob: profile.dob,
-        gender: profile.gender,
-        province: profile.province,
-        district: profile.district,
-        phone: profile.phone,
-      });
-      router.push('/subjects');
-    });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [login, router]);
-
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
+    setMessage('');
 
     if (!hasSupabaseEnv()) {
-      setError('Chua cau hinh Supabase. Hay them .env.local truoc khi dang nhap.');
+      setError('Chưa cấu hình Supabase. Hãy thêm .env.local trước khi đăng ký.');
+      return;
+    }
+
+    const trimmedName = fullName.trim();
+    const trimmedEmail = email.trim();
+
+    if (!trimmedName) {
+      setError('Vui lòng nhập họ và tên.');
+      return;
+    }
+
+    if (!trimmedEmail) {
+      setError('Vui lòng nhập địa chỉ email.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Mật khẩu phải có ít nhất 6 ký tự.');
       return;
     }
 
@@ -60,9 +54,13 @@ export default function LoginPage() {
 
     try {
       const supabase = createClient();
-      const { data, error: authError } = await supabase.auth.signInWithPassword({
-        email,
+      const { data, error: authError } = await supabase.auth.signUp({
+        email: trimmedEmail,
         password,
+        options: {
+          data: { full_name: trimmedName },
+          emailRedirectTo: `${window.location.origin}/auth/confirm`,
+        },
       });
 
       if (authError) {
@@ -70,7 +68,8 @@ export default function LoginPage() {
         return;
       }
 
-      if (data.user) {
+      if (data.user && data.session) {
+        await ensureStudentProfile(supabase, data.user, trimmedName);
         const profile = await loadCandidateProfile(supabase, data.user);
         login(profile.code, {
           name: profile.name,
@@ -81,9 +80,18 @@ export default function LoginPage() {
           district: profile.district,
           phone: profile.phone,
         });
+        router.push('/subjects');
+        return;
       }
 
-      router.push('/subjects');
+      setMessage('Đăng ký thành công! Hãy kiểm tra email để xác nhận tài khoản.');
+      window.setTimeout(() => router.push('/'), 1500);
+    } catch (registerError) {
+      const nextError =
+        registerError instanceof Error
+          ? translateAuthError(registerError.message)
+          : 'Không thể tạo tài khoản. Vui lòng thử lại.';
+      setError(nextError);
     } finally {
       setLoading(false);
     }
@@ -107,23 +115,39 @@ export default function LoginPage() {
       </div>
 
       <div className={styles.card}>
-        <h1 className={styles.title}>Đăng nhập</h1>
+        <h1 className={styles.title}>Đăng ký</h1>
         <p className={styles.subtitle}>
-          Bạn chưa có tài khoản? <Link href="/register" className={styles.linkRed}>Đăng ký ngay</Link>
+          Bạn đã có tài khoản? <Link href="/" className={styles.linkRed}>Đăng nhập ngay</Link>
         </p>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>Họ và tên <span className={styles.required}>*</span></label>
+            <div className={styles.inputWrapper}>
+              <User className={styles.inputIcon} />
+              <input
+                type="text"
+                required
+                className={styles.input}
+                placeholder="Nguyễn Văn A"
+                autoComplete="name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+              />
+            </div>
+          </div>
+
           <div className={styles.formGroup}>
             <label className={styles.label}>Email <span className={styles.required}>*</span></label>
             <div className={styles.inputWrapper}>
-              <User className={styles.inputIcon} />
-              <input 
-                type="email" 
-                required 
-                className={styles.input} 
-                value={email}
+              <Mail className={styles.inputIcon} />
+              <input
+                type="email"
+                required
+                className={styles.input}
                 placeholder="nhap-email@example.com"
                 autoComplete="email"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -133,13 +157,13 @@ export default function LoginPage() {
             <label className={styles.label}>Mật khẩu <span className={styles.required}>*</span></label>
             <div className={styles.inputWrapper}>
               <Lock className={styles.inputIcon} />
-              <input 
-                type={showPassword ? "text" : "password"} 
-                required 
-                className={styles.input} 
+              <input
+                type={showPassword ? 'text' : 'password'}
+                required
+                className={styles.input}
+                placeholder="Tạo mật khẩu"
+                autoComplete="new-password"
                 value={password}
-                placeholder="Nhập mật khẩu"
-                autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button 
@@ -154,15 +178,12 @@ export default function LoginPage() {
           </div>
 
           {error && <p className={styles.errorText}>{error}</p>}
+          {message && <p className={styles.errorText} style={{ color: '#047857' }}>{message}</p>}
 
           <button type="submit" className={styles.submitBtn} disabled={loading}>
-            Đăng nhập
+            Đăng ký
           </button>
         </form>
-
-        <div className={styles.footerLinks}>
-          <Link href="#" className={styles.forgotLink}>Quên mật khẩu?</Link>
-        </div>
       </div>
     </div>
   );

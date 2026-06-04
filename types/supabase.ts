@@ -1,0 +1,2929 @@
+﻿export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
+
+export type Database = {
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "14.5"
+  }
+  public: {
+    Tables: {
+      exam_blueprint_section_rules: {
+        Row: {
+          created_at: string
+          difficulty_distribution: Json
+          id: string
+          knowledge_distribution: Json
+          question_filters: Json
+          section_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          difficulty_distribution?: Json
+          id?: string
+          knowledge_distribution?: Json
+          question_filters?: Json
+          section_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          difficulty_distribution?: Json
+          id?: string
+          knowledge_distribution?: Json
+          question_filters?: Json
+          section_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_blueprint_section_rules_section_id_fkey"
+            columns: ["section_id"]
+            isOneToOne: true
+            referencedRelation: "exam_blueprint_sections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exam_blueprint_section_score_steps: {
+        Row: {
+          correct_item_count: number
+          points: number
+          section_id: string
+        }
+        Insert: {
+          correct_item_count: number
+          points: number
+          section_id: string
+        }
+        Update: {
+          correct_item_count?: number
+          points?: number
+          section_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_blueprint_section_score_steps_section_id_fkey"
+            columns: ["section_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprint_sections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exam_blueprint_sections: {
+        Row: {
+          blueprint_id: string
+          choice_rule: Json
+          created_at: string
+          displayed_question_count: number
+          grading_mode: string
+          id: string
+          instructions: string | null
+          items_per_question: number
+          max_points_per_question: number
+          question_type: Database["public"]["Enums"]["question_type"]
+          required_question_count: number
+          section_code: string
+          seq: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          blueprint_id: string
+          choice_rule?: Json
+          created_at?: string
+          displayed_question_count: number
+          grading_mode: string
+          id?: string
+          instructions?: string | null
+          items_per_question?: number
+          max_points_per_question: number
+          question_type: Database["public"]["Enums"]["question_type"]
+          required_question_count: number
+          section_code: string
+          seq: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          blueprint_id?: string
+          choice_rule?: Json
+          created_at?: string
+          displayed_question_count?: number
+          grading_mode?: string
+          id?: string
+          instructions?: string | null
+          items_per_question?: number
+          max_points_per_question?: number
+          question_type?: Database["public"]["Enums"]["question_type"]
+          required_question_count?: number
+          section_code?: string
+          seq?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_blueprint_sections_blueprint_id_fkey"
+            columns: ["blueprint_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprint_score_summary"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_blueprint_sections_blueprint_id_fkey"
+            columns: ["blueprint_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprints"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exam_blueprints: {
+        Row: {
+          code: string
+          created_at: string
+          created_by: string | null
+          duration_minutes: number
+          exam_year: number
+          form_label: string
+          id: string
+          locked: boolean
+          name: string
+          program_version: string
+          source_ref: string | null
+          status: Database["public"]["Enums"]["blueprint_status"]
+          subject_code: string
+          total_score: number
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          created_by?: string | null
+          duration_minutes: number
+          exam_year: number
+          form_label: string
+          id?: string
+          locked?: boolean
+          name: string
+          program_version?: string
+          source_ref?: string | null
+          status?: Database["public"]["Enums"]["blueprint_status"]
+          subject_code: string
+          total_score?: number
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          created_by?: string | null
+          duration_minutes?: number
+          exam_year?: number
+          form_label?: string
+          id?: string
+          locked?: boolean
+          name?: string
+          program_version?: string
+          source_ref?: string | null
+          status?: Database["public"]["Enums"]["blueprint_status"]
+          subject_code?: string
+          total_score?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_blueprints_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_blueprints_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "exam_blueprints_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "v_question_bank_stats"
+            referencedColumns: ["subject_code"]
+          },
+        ]
+      }
+      exam_keys: {
+        Row: {
+          activated_at: string | null
+          assigned_to: string | null
+          batch_id: string | null
+          code: string
+          created_at: string
+          deleted_at: string | null
+          exam_room_id: string | null
+          expires_at: string | null
+          id: string
+          paper_id: string | null
+          payment_ref: string | null
+          price_paid: number
+          status: Database["public"]["Enums"]["exam_key_status"]
+          total_attempts: number
+          updated_at: string
+          used_attempts: number
+        }
+        Insert: {
+          activated_at?: string | null
+          assigned_to?: string | null
+          batch_id?: string | null
+          code: string
+          created_at?: string
+          deleted_at?: string | null
+          exam_room_id?: string | null
+          expires_at?: string | null
+          id?: string
+          paper_id?: string | null
+          payment_ref?: string | null
+          price_paid?: number
+          status?: Database["public"]["Enums"]["exam_key_status"]
+          total_attempts?: number
+          updated_at?: string
+          used_attempts?: number
+        }
+        Update: {
+          activated_at?: string | null
+          assigned_to?: string | null
+          batch_id?: string | null
+          code?: string
+          created_at?: string
+          deleted_at?: string | null
+          exam_room_id?: string | null
+          expires_at?: string | null
+          id?: string
+          paper_id?: string | null
+          payment_ref?: string | null
+          price_paid?: number
+          status?: Database["public"]["Enums"]["exam_key_status"]
+          total_attempts?: number
+          updated_at?: string
+          used_attempts?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_keys_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "student_key_summary"
+            referencedColumns: ["student_id"]
+          },
+          {
+            foreignKeyName: "exam_keys_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_batch_id_fkey"
+            columns: ["batch_id"]
+            isOneToOne: false
+            referencedRelation: "key_batches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_room_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "exam_rooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_rooms_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_paper_id_fkey"
+            columns: ["paper_id"]
+            isOneToOne: false
+            referencedRelation: "exam_room_papers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exam_room_generation_rules: {
+        Row: {
+          blueprint_section_id: string
+          created_at: string
+          difficulty_distribution: Json
+          exam_room_id: string
+          id: string
+          knowledge_distribution: Json
+          question_filters: Json
+          selection_mode: string
+          updated_at: string
+        }
+        Insert: {
+          blueprint_section_id: string
+          created_at?: string
+          difficulty_distribution?: Json
+          exam_room_id: string
+          id?: string
+          knowledge_distribution?: Json
+          question_filters?: Json
+          selection_mode?: string
+          updated_at?: string
+        }
+        Update: {
+          blueprint_section_id?: string
+          created_at?: string
+          difficulty_distribution?: Json
+          exam_room_id?: string
+          id?: string
+          knowledge_distribution?: Json
+          question_filters?: Json
+          selection_mode?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_room_generation_rules_blueprint_section_id_fkey"
+            columns: ["blueprint_section_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprint_sections"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_generation_rules_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_room_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_generation_rules_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "exam_rooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_generation_rules_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_rooms_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exam_room_papers: {
+        Row: {
+          blueprint_id: string
+          created_at: string
+          display_order: number
+          exam_room_id: string
+          id: string
+          is_default: boolean
+          label: string | null
+          paper_code: string
+          updated_at: string
+        }
+        Insert: {
+          blueprint_id: string
+          created_at?: string
+          display_order?: number
+          exam_room_id: string
+          id?: string
+          is_default?: boolean
+          label?: string | null
+          paper_code: string
+          updated_at?: string
+        }
+        Update: {
+          blueprint_id?: string
+          created_at?: string
+          display_order?: number
+          exam_room_id?: string
+          id?: string
+          is_default?: boolean
+          label?: string | null
+          paper_code?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_room_papers_blueprint_id_fkey"
+            columns: ["blueprint_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprint_score_summary"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_papers_blueprint_id_fkey"
+            columns: ["blueprint_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprints"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_papers_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_room_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_papers_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "exam_rooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_papers_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_rooms_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exam_room_questions: {
+        Row: {
+          blueprint_section_id: string
+          branch_code: string | null
+          created_at: string
+          exam_room_id: string
+          is_required: boolean
+          points_override: number | null
+          question_id: string
+          seq: number
+        }
+        Insert: {
+          blueprint_section_id: string
+          branch_code?: string | null
+          created_at?: string
+          exam_room_id: string
+          is_required?: boolean
+          points_override?: number | null
+          question_id: string
+          seq: number
+        }
+        Update: {
+          blueprint_section_id?: string
+          branch_code?: string | null
+          created_at?: string
+          exam_room_id?: string
+          is_required?: boolean
+          points_override?: number | null
+          question_id?: string
+          seq?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_room_questions_blueprint_section_id_fkey"
+            columns: ["blueprint_section_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprint_sections"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_questions_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_room_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_questions_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "exam_rooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_questions_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_rooms_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_questions_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_room_questions_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exam_rooms: {
+        Row: {
+          blueprint_id: string
+          blueprint_snapshot: Json
+          code: string
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          duration_minutes: number
+          ends_at: string | null
+          id: string
+          name: string
+          price_vnd: number
+          published_at: string | null
+          settings: Json
+          starts_at: string | null
+          status: Database["public"]["Enums"]["exam_room_status"]
+          subject_code: string
+          total_attempts_default: number
+          updated_at: string
+        }
+        Insert: {
+          blueprint_id: string
+          blueprint_snapshot?: Json
+          code: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          duration_minutes: number
+          ends_at?: string | null
+          id?: string
+          name: string
+          price_vnd?: number
+          published_at?: string | null
+          settings?: Json
+          starts_at?: string | null
+          status?: Database["public"]["Enums"]["exam_room_status"]
+          subject_code: string
+          total_attempts_default?: number
+          updated_at?: string
+        }
+        Update: {
+          blueprint_id?: string
+          blueprint_snapshot?: Json
+          code?: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          duration_minutes?: number
+          ends_at?: string | null
+          id?: string
+          name?: string
+          price_vnd?: number
+          published_at?: string | null
+          settings?: Json
+          starts_at?: string | null
+          status?: Database["public"]["Enums"]["exam_room_status"]
+          subject_code?: string
+          total_attempts_default?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_rooms_blueprint_id_fkey"
+            columns: ["blueprint_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprint_score_summary"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_rooms_blueprint_id_fkey"
+            columns: ["blueprint_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprints"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_rooms_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exam_session_questions: {
+        Row: {
+          blueprint_section_id: string
+          created_at: string
+          display_no: string | null
+          id: string
+          max_points: number
+          option_order: string[]
+          question_id: string
+          question_seq: number
+          session_id: string
+        }
+        Insert: {
+          blueprint_section_id: string
+          created_at?: string
+          display_no?: string | null
+          id?: string
+          max_points: number
+          option_order?: string[]
+          question_id: string
+          question_seq: number
+          session_id: string
+        }
+        Update: {
+          blueprint_section_id?: string
+          created_at?: string
+          display_no?: string | null
+          id?: string
+          max_points?: number
+          option_order?: string[]
+          question_id?: string
+          question_seq?: number
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_session_questions_blueprint_section_id_fkey"
+            columns: ["blueprint_section_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprint_sections"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_session_questions_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_session_questions_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_session_questions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "exam_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_session_questions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_session_result"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      exam_sessions: {
+        Row: {
+          attempt_number: number
+          client_info: Json
+          created_at: string
+          due_at: string | null
+          exam_room_id: string
+          id: string
+          key_id: string
+          max_score: number
+          paper_id: string | null
+          score: number | null
+          shuffle_config: Json
+          started_at: string
+          status: Database["public"]["Enums"]["exam_session_status"]
+          student_id: string
+          submitted_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          attempt_number: number
+          client_info?: Json
+          created_at?: string
+          due_at?: string | null
+          exam_room_id: string
+          id?: string
+          key_id: string
+          max_score?: number
+          paper_id?: string | null
+          score?: number | null
+          shuffle_config?: Json
+          started_at?: string
+          status?: Database["public"]["Enums"]["exam_session_status"]
+          student_id: string
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          attempt_number?: number
+          client_info?: Json
+          created_at?: string
+          due_at?: string | null
+          exam_room_id?: string
+          id?: string
+          key_id?: string
+          max_score?: number
+          paper_id?: string | null
+          score?: number | null
+          shuffle_config?: Json
+          started_at?: string
+          status?: Database["public"]["Enums"]["exam_session_status"]
+          student_id?: string
+          submitted_at?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_sessions_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_room_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "exam_rooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_rooms_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_key_id_fkey"
+            columns: ["key_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_key_overview"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_key_id_fkey"
+            columns: ["key_id"]
+            isOneToOne: false
+            referencedRelation: "exam_keys"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_paper_id_fkey"
+            columns: ["paper_id"]
+            isOneToOne: false
+            referencedRelation: "exam_room_papers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "student_key_summary"
+            referencedColumns: ["student_id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      key_batches: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          exam_room_id: string | null
+          expires_at: string | null
+          id: string
+          note: string | null
+          quantity: number
+          total_attempts: number
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          exam_room_id?: string | null
+          expires_at?: string | null
+          id?: string
+          note?: string | null
+          quantity: number
+          total_attempts?: number
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          exam_room_id?: string | null
+          expires_at?: string | null
+          id?: string
+          note?: string | null
+          quantity?: number
+          total_attempts?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "key_batches_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "key_batches_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_room_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "key_batches_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "exam_rooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "key_batches_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_rooms_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      knowledge_fields: {
+        Row: {
+          created_at: string
+          display_order: number
+          grade: number | null
+          id: number
+          metadata: Json
+          name: string
+          parent_id: number | null
+          path: unknown
+          slug: string
+          subject_code: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          grade?: number | null
+          id?: never
+          metadata?: Json
+          name: string
+          parent_id?: number | null
+          path?: unknown
+          slug: string
+          subject_code: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          grade?: number | null
+          id?: never
+          metadata?: Json
+          name?: string
+          parent_id?: number | null
+          path?: unknown
+          slug?: string
+          subject_code?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "knowledge_fields_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_fields"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "knowledge_fields_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "knowledge_fields_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "v_question_bank_stats"
+            referencedColumns: ["subject_code"]
+          },
+        ]
+      }
+      payments: {
+        Row: {
+          amount_vnd: number
+          created_at: string | null
+          exam_key_id: string | null
+          gateway: string | null
+          gateway_ref: string | null
+          id: string
+          paid_at: string | null
+          status: string | null
+          student_id: string | null
+        }
+        Insert: {
+          amount_vnd: number
+          created_at?: string | null
+          exam_key_id?: string | null
+          gateway?: string | null
+          gateway_ref?: string | null
+          id?: string
+          paid_at?: string | null
+          status?: string | null
+          student_id?: string | null
+        }
+        Update: {
+          amount_vnd?: number
+          created_at?: string | null
+          exam_key_id?: string | null
+          gateway?: string | null
+          gateway_ref?: string | null
+          id?: string
+          paid_at?: string | null
+          status?: string | null
+          student_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_exam_key_id_fkey"
+            columns: ["exam_key_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_key_overview"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payments_exam_key_id_fkey"
+            columns: ["exam_key_id"]
+            isOneToOne: false
+            referencedRelation: "exam_keys"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "payments_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "student_key_summary"
+            referencedColumns: ["student_id"]
+          },
+          {
+            foreignKeyName: "payments_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string | null
+          email: string
+          full_name: string | null
+          id: string
+          role: Database["public"]["Enums"]["user_role"]
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          email: string
+          full_name?: string | null
+          id: string
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string | null
+          email?: string
+          full_name?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["user_role"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      question_assets: {
+        Row: {
+          alt_text: string | null
+          created_at: string
+          display_order: number
+          id: string
+          kind: string
+          question_id: string
+          r2_asset_id: string | null
+          url: string
+        }
+        Insert: {
+          alt_text?: string | null
+          created_at?: string
+          display_order?: number
+          id?: string
+          kind: string
+          question_id: string
+          r2_asset_id?: string | null
+          url: string
+        }
+        Update: {
+          alt_text?: string | null
+          created_at?: string
+          display_order?: number
+          id?: string
+          kind?: string
+          question_id?: string
+          r2_asset_id?: string | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_assets_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_assets_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_assets_r2_asset_id_fkey"
+            columns: ["r2_asset_id"]
+            isOneToOne: false
+            referencedRelation: "r2_assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_audit_log: {
+        Row: {
+          action: string | null
+          changed_at: string | null
+          changed_by: string | null
+          id: number
+          new_data: Json | null
+          old_data: Json | null
+          question_id: string
+        }
+        Insert: {
+          action?: string | null
+          changed_at?: string | null
+          changed_by?: string | null
+          id?: never
+          new_data?: Json | null
+          old_data?: Json | null
+          question_id: string
+        }
+        Update: {
+          action?: string | null
+          changed_at?: string | null
+          changed_by?: string | null
+          id?: never
+          new_data?: Json | null
+          old_data?: Json | null
+          question_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_audit_log_changed_by_fkey"
+            columns: ["changed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_audit_log_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_audit_log_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_correct_options: {
+        Row: {
+          created_at: string
+          option_id: string
+          question_id: string
+        }
+        Insert: {
+          created_at?: string
+          option_id: string
+          question_id: string
+        }
+        Update: {
+          created_at?: string
+          option_id?: string
+          question_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_correct_options_option_id_fk"
+            columns: ["option_id"]
+            isOneToOne: false
+            referencedRelation: "question_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_correct_options_question_id_fk"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_correct_options_question_id_fk"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_correct_options_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_correct_options_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_correct_options_question_id_option_id_fkey"
+            columns: ["question_id", "option_id"]
+            isOneToOne: true
+            referencedRelation: "question_options"
+            referencedColumns: ["question_id", "id"]
+          },
+        ]
+      }
+      question_essay_rubric_items: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          max_points: number
+          question_id: string
+          seq: number
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          max_points: number
+          question_id: string
+          seq: number
+          title: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          max_points?: number
+          question_id?: string
+          seq?: number
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_essay_rubric_items_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_essay_rubric_items_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_group_assets: {
+        Row: {
+          alt_text: string | null
+          created_at: string
+          display_order: number
+          group_id: string
+          id: string
+          kind: string
+          r2_asset_id: string | null
+          url: string
+        }
+        Insert: {
+          alt_text?: string | null
+          created_at?: string
+          display_order?: number
+          group_id: string
+          id?: string
+          kind?: string
+          r2_asset_id?: string | null
+          url: string
+        }
+        Update: {
+          alt_text?: string | null
+          created_at?: string
+          display_order?: number
+          group_id?: string
+          id?: string
+          kind?: string
+          r2_asset_id?: string | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_group_assets_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "question_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_group_assets_r2_asset_id_fkey"
+            columns: ["r2_asset_id"]
+            isOneToOne: false
+            referencedRelation: "r2_assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_groups: {
+        Row: {
+          asset_url: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          metadata: Json
+          r2_asset_id: string | null
+          stimulus: string | null
+          subject_code: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          asset_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          metadata?: Json
+          r2_asset_id?: string | null
+          stimulus?: string | null
+          subject_code: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          asset_url?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          metadata?: Json
+          r2_asset_id?: string | null
+          stimulus?: string | null
+          subject_code?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_groups_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_groups_r2_asset_id_fkey"
+            columns: ["r2_asset_id"]
+            isOneToOne: false
+            referencedRelation: "r2_assets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_groups_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "question_groups_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "v_question_bank_stats"
+            referencedColumns: ["subject_code"]
+          },
+        ]
+      }
+      question_import_jobs: {
+        Row: {
+          auto_approve: boolean
+          created_at: string
+          default_difficulty: number | null
+          default_status: Database["public"]["Enums"]["question_status"] | null
+          error_count: number
+          file_name: string
+          file_url: string | null
+          finished_at: string | null
+          format: string
+          id: string
+          imported_by: string | null
+          mapping_config: Json
+          r2_asset_id: string | null
+          skip_count: number
+          started_at: string | null
+          status: Database["public"]["Enums"]["import_job_status"]
+          subject_code: string
+          success_count: number
+          summary_log: Json
+          total_rows: number | null
+        }
+        Insert: {
+          auto_approve?: boolean
+          created_at?: string
+          default_difficulty?: number | null
+          default_status?: Database["public"]["Enums"]["question_status"] | null
+          error_count?: number
+          file_name: string
+          file_url?: string | null
+          finished_at?: string | null
+          format?: string
+          id?: string
+          imported_by?: string | null
+          mapping_config?: Json
+          r2_asset_id?: string | null
+          skip_count?: number
+          started_at?: string | null
+          status?: Database["public"]["Enums"]["import_job_status"]
+          subject_code: string
+          success_count?: number
+          summary_log?: Json
+          total_rows?: number | null
+        }
+        Update: {
+          auto_approve?: boolean
+          created_at?: string
+          default_difficulty?: number | null
+          default_status?: Database["public"]["Enums"]["question_status"] | null
+          error_count?: number
+          file_name?: string
+          file_url?: string | null
+          finished_at?: string | null
+          format?: string
+          id?: string
+          imported_by?: string | null
+          mapping_config?: Json
+          r2_asset_id?: string | null
+          skip_count?: number
+          started_at?: string | null
+          status?: Database["public"]["Enums"]["import_job_status"]
+          subject_code?: string
+          success_count?: number
+          summary_log?: Json
+          total_rows?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_import_jobs_imported_by_fkey"
+            columns: ["imported_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_import_jobs_r2_asset_id_fkey"
+            columns: ["r2_asset_id"]
+            isOneToOne: false
+            referencedRelation: "r2_assets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_import_jobs_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "question_import_jobs_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "v_question_bank_stats"
+            referencedColumns: ["subject_code"]
+          },
+        ]
+      }
+      question_import_rows: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          id: string
+          job_id: string
+          question_id: string | null
+          raw_data: Json
+          row_number: number
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          job_id: string
+          question_id?: string | null
+          raw_data?: Json
+          row_number: number
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          job_id?: string
+          question_id?: string | null
+          raw_data?: Json
+          row_number?: number
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_import_rows_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "question_import_jobs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_import_rows_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_import_rows_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_options: {
+        Row: {
+          content: string
+          created_at: string
+          explanation: string | null
+          id: string
+          image_url: string | null
+          label: string
+          question_id: string
+          seq: number
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          image_url?: string | null
+          label: string
+          question_id: string
+          seq: number
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          image_url?: string | null
+          label?: string
+          question_id?: string
+          seq?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_options_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_options_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_short_answer_keys: {
+        Row: {
+          answer_type: string
+          case_sensitive: boolean
+          created_at: string
+          display_value: string | null
+          fuzzy_threshold: number | null
+          id: string
+          is_primary: boolean
+          match_mode: string
+          normalized_text: string | null
+          note: string | null
+          numeric_value: number | null
+          question_id: string
+          regex_pattern: string | null
+          tolerance: number | null
+          unaccent_normalize: boolean
+        }
+        Insert: {
+          answer_type?: string
+          case_sensitive?: boolean
+          created_at?: string
+          display_value?: string | null
+          fuzzy_threshold?: number | null
+          id?: string
+          is_primary?: boolean
+          match_mode?: string
+          normalized_text?: string | null
+          note?: string | null
+          numeric_value?: number | null
+          question_id: string
+          regex_pattern?: string | null
+          tolerance?: number | null
+          unaccent_normalize?: boolean
+        }
+        Update: {
+          answer_type?: string
+          case_sensitive?: boolean
+          created_at?: string
+          display_value?: string | null
+          fuzzy_threshold?: number | null
+          id?: string
+          is_primary?: boolean
+          match_mode?: string
+          normalized_text?: string | null
+          note?: string | null
+          numeric_value?: number | null
+          question_id?: string
+          regex_pattern?: string | null
+          tolerance?: number | null
+          unaccent_normalize?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_short_answer_keys_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_short_answer_keys_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_tags: {
+        Row: {
+          question_id: string
+          tag: string
+          tag_id: number | null
+        }
+        Insert: {
+          question_id: string
+          tag: string
+          tag_id?: number | null
+        }
+        Update: {
+          question_id?: string
+          tag?: string
+          tag_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_tags_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_tags_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_tags_tag_id_fkey"
+            columns: ["tag_id"]
+            isOneToOne: false
+            referencedRelation: "tags"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_tf_score_steps: {
+        Row: {
+          correct_item_count: number
+          points: number
+          question_id: string
+        }
+        Insert: {
+          correct_item_count: number
+          points: number
+          question_id: string
+        }
+        Update: {
+          correct_item_count?: number
+          points?: number
+          question_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_tf_score_steps_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_tf_score_steps_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      question_true_false_answer_keys: {
+        Row: {
+          correct_value: boolean
+          created_at: string
+          item_id: string
+          question_id: string
+        }
+        Insert: {
+          correct_value: boolean
+          created_at?: string
+          item_id: string
+          question_id: string
+        }
+        Update: {
+          correct_value?: boolean
+          created_at?: string
+          item_id?: string
+          question_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_true_false_answer_keys_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_true_false_answer_keys_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_true_false_answer_keys_question_id_item_id_fkey"
+            columns: ["question_id", "item_id"]
+            isOneToOne: true
+            referencedRelation: "question_true_false_items"
+            referencedColumns: ["question_id", "id"]
+          },
+        ]
+      }
+      question_true_false_items: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          label: string | null
+          question_id: string
+          seq: number
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          label?: string | null
+          question_id: string
+          seq: number
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          label?: string | null
+          question_id?: string
+          seq?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "question_true_false_items_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "question_true_false_items_question_id_fkey"
+            columns: ["question_id"]
+            isOneToOne: false
+            referencedRelation: "v_question_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      questions: {
+        Row: {
+          code: string
+          content: string
+          created_at: string
+          created_by: string | null
+          deleted_at: string | null
+          difficulty: number
+          explanation: string | null
+          group_id: string | null
+          id: string
+          image_url: string | null
+          knowledge_field_id: number | null
+          mc_select_count: number
+          metadata: Json
+          reviewed_at: string | null
+          reviewed_by: string | null
+          search_vector: unknown
+          source_label: string | null
+          status: Database["public"]["Enums"]["question_status"]
+          subject_code: string
+          subject_track_code: string | null
+          subtype: string | null
+          type: Database["public"]["Enums"]["question_type"]
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          content: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          difficulty: number
+          explanation?: string | null
+          group_id?: string | null
+          id?: string
+          image_url?: string | null
+          knowledge_field_id?: number | null
+          mc_select_count?: number
+          metadata?: Json
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          search_vector?: unknown
+          source_label?: string | null
+          status?: Database["public"]["Enums"]["question_status"]
+          subject_code: string
+          subject_track_code?: string | null
+          subtype?: string | null
+          type: Database["public"]["Enums"]["question_type"]
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          deleted_at?: string | null
+          difficulty?: number
+          explanation?: string | null
+          group_id?: string | null
+          id?: string
+          image_url?: string | null
+          knowledge_field_id?: number | null
+          mc_select_count?: number
+          metadata?: Json
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          search_vector?: unknown
+          source_label?: string | null
+          status?: Database["public"]["Enums"]["question_status"]
+          subject_code?: string
+          subject_track_code?: string | null
+          subtype?: string | null
+          type?: Database["public"]["Enums"]["question_type"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "questions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "questions_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "question_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "questions_knowledge_field_id_fkey"
+            columns: ["knowledge_field_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_fields"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "questions_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "questions_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "questions_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "v_question_bank_stats"
+            referencedColumns: ["subject_code"]
+          },
+          {
+            foreignKeyName: "questions_subject_code_subject_track_code_fkey"
+            columns: ["subject_code", "subject_track_code"]
+            isOneToOne: false
+            referencedRelation: "subject_tracks"
+            referencedColumns: ["subject_code", "code"]
+          },
+        ]
+      }
+      r2_assets: {
+        Row: {
+          alt_text: string | null
+          bucket: string
+          checksum_md5: string | null
+          content_type: string
+          created_at: string
+          file_name: string
+          height_px: number | null
+          id: string
+          linked_to_id: string | null
+          linked_to_type: string | null
+          object_key: string
+          public_url: string
+          size_bytes: number | null
+          uploaded_by: string | null
+          width_px: number | null
+        }
+        Insert: {
+          alt_text?: string | null
+          bucket: string
+          checksum_md5?: string | null
+          content_type: string
+          created_at?: string
+          file_name: string
+          height_px?: number | null
+          id?: string
+          linked_to_id?: string | null
+          linked_to_type?: string | null
+          object_key: string
+          public_url: string
+          size_bytes?: number | null
+          uploaded_by?: string | null
+          width_px?: number | null
+        }
+        Update: {
+          alt_text?: string | null
+          bucket?: string
+          checksum_md5?: string | null
+          content_type?: string
+          created_at?: string
+          file_name?: string
+          height_px?: number | null
+          id?: string
+          linked_to_id?: string | null
+          linked_to_type?: string | null
+          object_key?: string
+          public_url?: string
+          size_bytes?: number | null
+          uploaded_by?: string | null
+          width_px?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "r2_assets_uploaded_by_fkey"
+            columns: ["uploaded_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      session_answers: {
+        Row: {
+          answer_json: Json
+          correct_item_count: number | null
+          created_at: string
+          earned_points: number | null
+          grader: Json
+          id: string
+          is_correct: boolean | null
+          session_question_id: string
+          student_id: string
+          submitted_at: string
+          updated_at: string
+        }
+        Insert: {
+          answer_json?: Json
+          correct_item_count?: number | null
+          created_at?: string
+          earned_points?: number | null
+          grader?: Json
+          id?: string
+          is_correct?: boolean | null
+          session_question_id: string
+          student_id: string
+          submitted_at?: string
+          updated_at?: string
+        }
+        Update: {
+          answer_json?: Json
+          correct_item_count?: number | null
+          created_at?: string
+          earned_points?: number | null
+          grader?: Json
+          id?: string
+          is_correct?: boolean | null
+          session_question_id?: string
+          student_id?: string
+          submitted_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "session_answers_session_question_id_fkey"
+            columns: ["session_question_id"]
+            isOneToOne: true
+            referencedRelation: "exam_session_questions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "session_answers_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "student_key_summary"
+            referencedColumns: ["student_id"]
+          },
+          {
+            foreignKeyName: "session_answers_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      session_tf_item_answers: {
+        Row: {
+          created_at: string
+          earned_points: number | null
+          id: string
+          is_correct: boolean | null
+          item_id: string
+          selected_value: boolean | null
+          session_question_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          earned_points?: number | null
+          id?: string
+          is_correct?: boolean | null
+          item_id: string
+          selected_value?: boolean | null
+          session_question_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          earned_points?: number | null
+          id?: string
+          is_correct?: boolean | null
+          item_id?: string
+          selected_value?: boolean | null
+          session_question_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "session_tf_item_answers_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: false
+            referencedRelation: "question_true_false_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "session_tf_item_answers_session_question_id_fkey"
+            columns: ["session_question_id"]
+            isOneToOne: false
+            referencedRelation: "exam_session_questions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      students: {
+        Row: {
+          created_at: string
+          current_key_id: string | null
+          date_of_birth: string | null
+          district_name: string | null
+          full_name: string | null
+          gender: string | null
+          gmail: string
+          id: string
+          note: string | null
+          phone: string | null
+          province_name: string | null
+          school_name: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_key_id?: string | null
+          date_of_birth?: string | null
+          district_name?: string | null
+          full_name?: string | null
+          gender?: string | null
+          gmail: string
+          id: string
+          note?: string | null
+          phone?: string | null
+          province_name?: string | null
+          school_name?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_key_id?: string | null
+          date_of_birth?: string | null
+          district_name?: string | null
+          full_name?: string | null
+          gender?: string | null
+          gmail?: string
+          id?: string
+          note?: string | null
+          phone?: string | null
+          province_name?: string | null
+          school_name?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "students_current_key_id_fkey"
+            columns: ["current_key_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_key_overview"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "students_current_key_id_fkey"
+            columns: ["current_key_id"]
+            isOneToOne: false
+            referencedRelation: "exam_keys"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "students_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subject_tracks: {
+        Row: {
+          code: string
+          is_active: boolean
+          name: string
+          subject_code: string
+        }
+        Insert: {
+          code: string
+          is_active?: boolean
+          name: string
+          subject_code: string
+        }
+        Update: {
+          code?: string
+          is_active?: boolean
+          name?: string
+          subject_code?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subject_tracks_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "subject_tracks_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "v_question_bank_stats"
+            referencedColumns: ["subject_code"]
+          },
+        ]
+      }
+      subjects: {
+        Row: {
+          code: string
+          color_hex: string | null
+          cover_url: string | null
+          created_at: string
+          default_duration_minutes: number
+          exam_group: string
+          icon_url: string | null
+          is_active: boolean
+          is_compulsory: boolean
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          code: string
+          color_hex?: string | null
+          cover_url?: string | null
+          created_at?: string
+          default_duration_minutes: number
+          exam_group: string
+          icon_url?: string | null
+          is_active?: boolean
+          is_compulsory?: boolean
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          code?: string
+          color_hex?: string | null
+          cover_url?: string | null
+          created_at?: string
+          default_duration_minutes?: number
+          exam_group?: string
+          icon_url?: string | null
+          is_active?: boolean
+          is_compulsory?: boolean
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      tags: {
+        Row: {
+          color_hex: string | null
+          created_at: string
+          id: number
+          name: string
+        }
+        Insert: {
+          color_hex?: string | null
+          created_at?: string
+          id?: never
+          name: string
+        }
+        Update: {
+          color_hex?: string | null
+          created_at?: string
+          id?: never
+          name?: string
+        }
+        Relationships: []
+      }
+    }
+    Views: {
+      admin_exam_key_overview: {
+        Row: {
+          assigned_to: string | null
+          batch_expires_at: string | null
+          batch_id: string | null
+          batch_quantity: number | null
+          code: string | null
+          created_at: string | null
+          exam_room_id: string | null
+          exam_room_name: string | null
+          expires_at: string | null
+          id: string | null
+          remaining_attempts: number | null
+          status: Database["public"]["Enums"]["exam_key_status"] | null
+          student_name: string | null
+          subject_code: string | null
+          subject_name: string | null
+          total_attempts: number | null
+          used_attempts: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_keys_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "student_key_summary"
+            referencedColumns: ["student_id"]
+          },
+          {
+            foreignKeyName: "exam_keys_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_batch_id_fkey"
+            columns: ["batch_id"]
+            isOneToOne: false
+            referencedRelation: "key_batches"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_room_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "exam_rooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_rooms_full"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      admin_exam_room_options: {
+        Row: {
+          code: string | null
+          duration_minutes: number | null
+          ends_at: string | null
+          id: string | null
+          name: string | null
+          status: Database["public"]["Enums"]["exam_room_status"] | null
+          subject_code: string | null
+          subject_name: string | null
+          total_attempts_default: number | null
+        }
+        Relationships: []
+      }
+      exam_blueprint_score_summary: {
+        Row: {
+          code: string | null
+          configured_score: number | null
+          exam_year: number | null
+          id: string | null
+          is_score_valid: boolean | null
+          subject_code: string | null
+          total_score: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_blueprints_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "exam_blueprints_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "v_question_bank_stats"
+            referencedColumns: ["subject_code"]
+          },
+        ]
+      }
+      student_key_summary: {
+        Row: {
+          assigned_key_count: number | null
+          current_key_code: string | null
+          current_key_expires_at: string | null
+          current_key_has_been_used: boolean | null
+          current_key_id: string | null
+          current_key_status:
+            | Database["public"]["Enums"]["exam_key_status"]
+            | null
+          district_name: string | null
+          exam_room_code: string | null
+          exam_room_id: string | null
+          exam_room_name: string | null
+          exhausted_key_count: number | null
+          full_name: string | null
+          gmail: string | null
+          phone: string | null
+          province_name: string | null
+          remaining_attempts: number | null
+          school_name: string | null
+          student_id: string | null
+          subject_code: string | null
+          total_attempts: number | null
+          used_attempts: number | null
+          used_key_count: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_keys_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_room_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "exam_rooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_keys_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_rooms_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "students_current_key_id_fkey"
+            columns: ["current_key_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_key_overview"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "students_current_key_id_fkey"
+            columns: ["current_key_id"]
+            isOneToOne: false
+            referencedRelation: "exam_keys"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "students_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_exam_rooms_full: {
+        Row: {
+          blueprint_code: string | null
+          blueprint_id: string | null
+          blueprint_name: string | null
+          blueprint_snapshot: Json | null
+          code: string | null
+          created_at: string | null
+          created_by: string | null
+          duration_minutes: number | null
+          ends_at: string | null
+          id: string | null
+          name: string | null
+          price_vnd: number | null
+          published_at: string | null
+          settings: Json | null
+          starts_at: string | null
+          status: Database["public"]["Enums"]["exam_room_status"] | null
+          subject_code: string | null
+          subject_exam_group: string | null
+          subject_name: string | null
+          total_attempts_default: number | null
+          updated_at: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_blueprints_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "exam_blueprints_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "v_question_bank_stats"
+            referencedColumns: ["subject_code"]
+          },
+          {
+            foreignKeyName: "exam_rooms_blueprint_id_fkey"
+            columns: ["blueprint_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprint_score_summary"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_rooms_blueprint_id_fkey"
+            columns: ["blueprint_id"]
+            isOneToOne: false
+            referencedRelation: "exam_blueprints"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_rooms_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_exam_session_result: {
+        Row: {
+          attempt_number: number | null
+          created_at: string | null
+          exam_room_code: string | null
+          exam_room_id: string | null
+          exam_room_name: string | null
+          key_code: string | null
+          key_id: string | null
+          max_score: number | null
+          minutes_taken: number | null
+          province_name: string | null
+          school_name: string | null
+          score: number | null
+          score_10: number | null
+          session_id: string | null
+          started_at: string | null
+          status: Database["public"]["Enums"]["exam_session_status"] | null
+          student_id: string | null
+          student_name: string | null
+          subject_code: string | null
+          subject_name: string | null
+          submitted_at: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exam_sessions_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_room_options"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "exam_rooms"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_exam_room_id_fkey"
+            columns: ["exam_room_id"]
+            isOneToOne: false
+            referencedRelation: "v_exam_rooms_full"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_key_id_fkey"
+            columns: ["key_id"]
+            isOneToOne: false
+            referencedRelation: "admin_exam_key_overview"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_key_id_fkey"
+            columns: ["key_id"]
+            isOneToOne: false
+            referencedRelation: "exam_keys"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "student_key_summary"
+            referencedColumns: ["student_id"]
+          },
+          {
+            foreignKeyName: "exam_sessions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      v_question_bank_stats: {
+        Row: {
+          approved: number | null
+          archived: number | null
+          diff_nhan_biet: number | null
+          diff_thong_hieu: number | null
+          diff_van_dung: number | null
+          diff_van_dung_cao: number | null
+          draft: number | null
+          essay_count: number | null
+          mc_count: number | null
+          reviewing: number | null
+          sa_count: number | null
+          subject_code: string | null
+          subject_name: string | null
+          tf_count: number | null
+          total_questions: number | null
+        }
+        Relationships: []
+      }
+      v_question_full: {
+        Row: {
+          asset_count: number | null
+          code: string | null
+          content: string | null
+          correct_option_count: number | null
+          created_at: string | null
+          created_by: string | null
+          created_by_name: string | null
+          difficulty: number | null
+          explanation: string | null
+          group_asset_url: string | null
+          group_id: string | null
+          group_stimulus: string | null
+          id: string | null
+          image_url: string | null
+          knowledge_field_id: number | null
+          knowledge_field_name: string | null
+          metadata: Json | null
+          option_count: number | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          source_label: string | null
+          status: Database["public"]["Enums"]["question_status"] | null
+          subject_code: string | null
+          subject_name: string | null
+          subject_track_code: string | null
+          tags: string[] | null
+          tf_item_count: number | null
+          type: Database["public"]["Enums"]["question_type"] | null
+          updated_at: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "questions_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "questions_group_id_fkey"
+            columns: ["group_id"]
+            isOneToOne: false
+            referencedRelation: "question_groups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "questions_knowledge_field_id_fkey"
+            columns: ["knowledge_field_id"]
+            isOneToOne: false
+            referencedRelation: "knowledge_fields"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "questions_reviewed_by_fkey"
+            columns: ["reviewed_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "questions_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "questions_subject_code_fkey"
+            columns: ["subject_code"]
+            isOneToOne: false
+            referencedRelation: "v_question_bank_stats"
+            referencedColumns: ["subject_code"]
+          },
+          {
+            foreignKeyName: "questions_subject_code_subject_track_code_fkey"
+            columns: ["subject_code", "subject_track_code"]
+            isOneToOne: false
+            referencedRelation: "subject_tracks"
+            referencedColumns: ["subject_code", "code"]
+          },
+        ]
+      }
+    }
+    Functions: {
+      activate_exam_key: {
+        Args: { p_key_code: string; p_subject_code?: string }
+        Returns: Json
+      }
+      finish_import_job: { Args: { p_job_id: string }; Returns: undefined }
+      generate_exam_keys: {
+        Args: {
+          p_expires_at?: string
+          p_note?: string
+          p_quantity: number
+          p_total_attempts?: number
+        }
+        Returns: {
+          batch_id: string
+          code: string
+          created_at: string
+          exam_room_id: string
+          exam_room_name: string
+          expires_at: string
+          id: string
+          status: Database["public"]["Enums"]["exam_key_status"]
+          subject_code: string
+          total_attempts: number
+          used_attempts: number
+        }[]
+      }
+      get_my_profile: {
+        Args: never
+        Returns: {
+          avatar_url: string
+          email: string
+          full_name: string
+          id: string
+          role: string
+        }[]
+      }
+      join_exam: {
+        Args: { p_code: string; p_subject_code?: string }
+        Returns: string
+      }
+      json_matches_schema: {
+        Args: { instance: Json; schema: Json }
+        Returns: boolean
+      }
+      jsonb_matches_schema: {
+        Args: { instance: Json; schema: Json }
+        Returns: boolean
+      }
+      jsonschema_is_valid: { Args: { schema: Json }; Returns: boolean }
+      jsonschema_validation_errors: {
+        Args: { instance: Json; schema: Json }
+        Returns: string[]
+      }
+      search_questions: {
+        Args: {
+          p_difficulty?: number
+          p_limit?: number
+          p_offset?: number
+          p_query: string
+          p_status?: Database["public"]["Enums"]["question_status"]
+          p_subject_code?: string
+          p_type?: Database["public"]["Enums"]["question_type"]
+        }
+        Returns: {
+          code: string
+          content: string
+          created_at: string
+          difficulty: number
+          id: string
+          rank: number
+          source_label: string
+          status: Database["public"]["Enums"]["question_status"]
+          subject_code: string
+          type: Database["public"]["Enums"]["question_type"]
+        }[]
+      }
+      submit_exam_session: {
+        Args: { p_session_id: string }
+        Returns: undefined
+      }
+      text2ltree: { Args: { "": string }; Returns: unknown }
+    }
+    Enums: {
+      blueprint_status: "draft" | "published" | "archived"
+      exam_key_status: "unused" | "active" | "exhausted" | "expired" | "revoked"
+      exam_room_status: "draft" | "published" | "archived"
+      exam_session_status: "in_progress" | "submitted" | "abandoned" | "expired"
+      import_job_status:
+        | "pending"
+        | "processing"
+        | "done"
+        | "partial"
+        | "failed"
+      question_status: "draft" | "reviewing" | "approved" | "archived"
+      question_type: "multiple_choice" | "true_false" | "short_answer" | "essay"
+      user_role: "student" | "teacher" | "admin"
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
+}
+
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
+
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
+
+export type Tables<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+export type TablesInsert<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    : never = never,
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
+
+export const Constants = {
+  public: {
+    Enums: {
+      blueprint_status: ["draft", "published", "archived"],
+      exam_key_status: ["unused", "active", "exhausted", "expired", "revoked"],
+      exam_room_status: ["draft", "published", "archived"],
+      exam_session_status: ["in_progress", "submitted", "abandoned", "expired"],
+      import_job_status: ["pending", "processing", "done", "partial", "failed"],
+      question_status: ["draft", "reviewing", "approved", "archived"],
+      question_type: ["multiple_choice", "true_false", "short_answer", "essay"],
+      user_role: ["student", "teacher", "admin"],
+    },
+  },
+} as const

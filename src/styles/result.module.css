@@ -1,0 +1,148 @@
+.screen {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(214, 40, 46, .08) 0 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, .76), rgba(255, 246, 246, .96)),
+    var(--bg);
+  background-size: 30px 30px, auto, auto;
+}
+
+[data-theme="dark"] .screen {
+  background:
+    radial-gradient(circle at 50% 46%, rgba(148, 163, 184, .08) 0 1px, transparent 1px),
+    var(--bg);
+  background-size: 30px 30px, auto;
+}
+
+.pageTools {
+  position: absolute;
+  top: 20px;
+  right: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  margin: 54px 0 26px;
+  padding: 0 20px;
+  color: var(--text);
+  text-align: center;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 900;
+  line-height: 1.14;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 92px;
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.center {
+  display: grid;
+  place-items: start center;
+  padding: 18px 20px 44px;
+}
+
+.card {
+  width: min(620px, calc(100vw - 32px));
+  overflow: hidden;
+  border: 1px solid rgba(214, 40, 46, .24);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 24px 54px rgba(143, 20, 25, .14);
+}
+
+.card h2 {
+  margin: 0;
+  padding: 16px 22px;
+  background: var(--header-gradient);
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: 850;
+  text-align: center;
+}
+
+.body {
+  padding: 34px 46px 38px;
+  text-align: center;
+}
+
+.successMessage {
+  margin: 0 0 20px;
+  color: var(--text);
+  font-size: 19px;
+  font-weight: 850;
+}
+
+.scoreLine {
+  margin: 18px 0 22px;
+  color: var(--primary);
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.stats {
+  width: 100%;
+  margin: 0 auto 22px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.stats td {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.stats td:last-child {
+  color: var(--text);
+  text-align: right;
+  font-weight: 900;
+}
+
+.statCorrect { color: var(--success) !important; }
+.statWrong { color: var(--danger) !important; }
+.statEmpty { color: var(--muted) !important; }
+
+.progress {
+  height: 11px;
+  margin: 8px 0 28px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-soft);
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+@media (max-width: 640px) {
+  .pageTools {
+    position: static;
+    justify-content: flex-end;
+    padding: 18px 16px 0;
+  }
+
+  .title {
+    margin-top: 34px;
+  }
+
+  .body {
+    padding: 26px 22px 30px;
+  }
+}
