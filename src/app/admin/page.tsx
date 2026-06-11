@@ -9,7 +9,6 @@ import {
   KeyRound,
   Plus,
   RefreshCw,
-  Save,
   Search,
   ShieldCheck,
   Trash2,
@@ -194,6 +193,10 @@ function getAdminDataErrorMessage(error: unknown) {
     error && typeof error === 'object' && 'message' in error
       ? String((error as { message?: unknown }).message ?? '')
       : '';
+  const code =
+    error && typeof error === 'object' && 'code' in error
+      ? String((error as { code?: unknown }).code ?? '')
+      : '';
 
   if (
     message.includes('permission denied') ||
@@ -202,9 +205,13 @@ function getAdminDataErrorMessage(error: unknown) {
     return 'Tài khoản hiện tại cần role admin hoặc teacher trong Supabase để xem và chỉnh dữ liệu quản trị.';
   }
 
+  if (code === '23503' || message.includes('foreign key constraint')) {
+    return 'Không thể xóa vì dữ liệu này đang được sử dụng (ví dụ: đã có câu hỏi, phòng thi, v.v.). Vui lòng chuyển sang trạng thái "Nháp" thay vì xóa.';
+  }
+
   return message
-    ? `Không tải được dữ liệu từ Supabase: ${message}`
-    : 'Không tải được dữ liệu từ Supabase.';
+    ? `Lỗi thao tác dữ liệu: ${message}`
+    : 'Lỗi thao tác dữ liệu. Vui lòng thử lại.';
 }
 
 function firstRelation<T>(value: T | T[] | null | undefined) {
@@ -415,9 +422,22 @@ export default function AdminPage() {
     }
 
     try {
-      const { error } = await createClient().from('subjects').delete().eq('code', code);
+      const supabase = createClient();
+      const { error } = await supabase.from('subjects').delete().eq('code', code);
 
-      if (error) throw error;
+      if (error) {
+        if (error.code === '23503' || error.message.includes('foreign key constraint')) {
+          if (window.confirm(`Môn học ${code} đang được sử dụng (đã có câu hỏi/phòng thi) nên không thể xóa hoàn toàn.\n\nBạn có muốn chuyển môn học này sang trạng thái "Nháp" để ẩn đi không?`)) {
+            const { error: updateError } = await supabase.from('subjects').update({ is_active: false }).eq('code', code);
+            if (updateError) throw updateError;
+            await loadAdminCatalog();
+            return;
+          } else {
+            return;
+          }
+        }
+        throw error;
+      }
 
       await loadAdminCatalog();
     } catch (error) {
@@ -451,44 +471,6 @@ export default function AdminPage() {
         },
         { onConflict: 'code' },
       );
-
-      if (error) throw error;
-
-      event.currentTarget.reset();
-      await loadAdminCatalog();
-    } catch (error) {
-      setCatalogFeedback(getAdminDataErrorMessage(error));
-    }
-  };
-
-  const handleAddQuestion = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const title = String(form.get('questionTitle') ?? '').trim();
-    const answer = String(form.get('answer') ?? '').trim().toUpperCase();
-    const subjectCode = String(form.get('questionSubject') ?? subjects[0]?.code ?? '')
-      .trim()
-      .toUpperCase();
-    const difficulty = Number(form.get('difficulty') ?? 1);
-
-    if (!title || !subjectCode) return;
-
-    if (!hasConfiguredSupabase) {
-      setCatalogFeedback('Chưa cấu hình Supabase nên không thể lưu câu hỏi.');
-      return;
-    }
-
-    try {
-      const questionCode = `${subjectCode}_${Date.now()}`;
-      const { error } = await createClient().from('questions').insert({
-        code: questionCode,
-        subject_code: subjectCode,
-        type: 'multiple_choice',
-        difficulty,
-        content: title,
-        status: 'draft',
-        metadata: answer ? { draft_answer_label: answer } : {},
-      });
 
       if (error) throw error;
 
@@ -586,7 +568,7 @@ export default function AdminPage() {
           <span>Admin THPT</span>
         </div>
         <nav className={styles.nav}>
-          <a href="#compose"><FilePenLine size={18} /> Soạn đề</a>
+          <a href="/admin/authoring"><FilePenLine size={18} /> Soạn đề</a>
           <a href="#subjects"><BookOpenCheck size={18} /> Môn học</a>
           <a href="#keys"><KeyRound size={18} /> Quản lý key</a>
           <a href="#students"><Users size={18} /> Học viên</a>
@@ -640,44 +622,21 @@ export default function AdminPage() {
               </div>
               <span className={styles.status}>{isLoadingCatalog ? 'Đang tải' : 'Dữ liệu DB'}</span>
             </div>
-            <form className={styles.form} onSubmit={handleAddQuestion}>
-              <label>
-                Môn học
-                <select name="questionSubject" required disabled={subjects.length === 0}>
-                  {subjects.length === 0 ? (
-                    <option value="">Chưa có môn học trong DB</option>
-                  ) : null}
-                  {subjects.map((subject) => (
-                    <option key={subject.code} value={subject.code}>
-                      {subject.name}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Nội dung câu hỏi
-                <textarea name="questionTitle" rows={4} placeholder="Nhập nội dung câu hỏi..." required />
-              </label>
-              <div className={styles.inlineFields}>
-                <label>
-                  Mức độ
-                  <select name="difficulty" defaultValue="1">
-                    <option value="1">Nhận biết</option>
-                    <option value="2">Thông hiểu</option>
-                    <option value="3">Vận dụng</option>
-                    <option value="4">Vận dụng cao</option>
-                  </select>
-                </label>
-                <label>
-                  Đáp án nháp
-                  <input name="answer" maxLength={1} placeholder="A" />
-                </label>
-              </div>
-              <button className="btn" type="submit" disabled={!hasConfiguredSupabase || subjects.length === 0}>
-                <Save size={16} />
-                Lưu câu hỏi
+            <div className={styles.form}>
+              <p>
+                Workspace LaTeX mới hỗ trợ preview trực tiếp, autosave, xuất bản
+                atomic và ảnh Cloudflare R2 trong câu hỏi hoặc từng lựa chọn.
+              </p>
+              <button
+                className="btn"
+                type="button"
+                onClick={() => router.push('/admin/authoring')}
+                disabled={!hasConfiguredSupabase || subjects.length === 0}
+              >
+                <FilePenLine size={16} />
+                Mở trang soạn đề
               </button>
-            </form>
+            </div>
 
             {catalogFeedback ? <p className={styles.feedback}>{catalogFeedback}</p> : null}
 
@@ -731,15 +690,17 @@ export default function AdminPage() {
             </form>
             <div className={styles.subjectTable}>
               {subjects.length === 0 ? (
-                <div>
+                <div className={styles.subjectEmpty}>
                   <strong>{isLoadingCatalog ? 'Đang tải môn học...' : 'Chưa có môn học trong DB'}</strong>
                 </div>
               ) : null}
               {subjects.map((subject) => (
-                <div key={subject.code}>
-                  <strong>{subject.name}</strong>
-                  <span>{subject.code}</span>
-                  <span>{subject.duration} phút</span>
+                <div key={subject.code} className={styles.subjectRow}>
+                  <div className={styles.subjectMain}>
+                    <strong>{subject.name}</strong>
+                    <span className={styles.subjectCode}>{subject.code}</span>
+                  </div>
+                  <span className={styles.subjectDuration}>{subject.duration} phút</span>
                   <em>{subject.status}</em>
                   <button
                     type="button"
@@ -776,7 +737,9 @@ export default function AdminPage() {
           <form className={`${styles.form} ${styles.keyForm}`} onSubmit={handleCreateKeys}>
             <div className={styles.keyFormGrid}>
               <label>
-                Phòng thi <span style={{ color: 'var(--color-danger, red)' }}>*</span>
+                <span className={styles.labelText}>
+                  Phòng thi <span className={styles.requiredMark}>*</span>
+                </span>
                 <select
                   value={selectedRoomId}
                   onChange={(event) => setSelectedRoomId(event.target.value)}

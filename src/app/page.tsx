@@ -161,7 +161,37 @@ export default function LoginPage() {
         </form>
 
         <div className={styles.footerLinks}>
-          <Link href="#" className={styles.forgotLink}>Quên mật khẩu?</Link>
+          <button
+            type="button"
+            className={styles.forgotLink}
+            onClick={async () => {
+              if (!email) {
+                setError('Vui lòng nhập email trước khi bấm quên mật khẩu.');
+                return;
+              }
+              if (!hasSupabaseEnv()) {
+                setError('Chưa cấu hình Supabase.');
+                return;
+              }
+              setLoading(true);
+              try {
+                const supabase = createClient();
+                const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+                  redirectTo: `${window.location.origin}/auth/confirm`,
+                });
+                if (resetError) {
+                  setError(translateAuthError(resetError.message));
+                } else {
+                  setError('');
+                  alert('Đã gửi email đặt lại mật khẩu. Vui lòng kiểm tra hộp thư.');
+                }
+              } finally {
+                setLoading(false);
+              }
+            }}
+          >
+            Quên mật khẩu?
+          </button>
         </div>
       </div>
     </div>

@@ -156,6 +156,16 @@ export default function RoomKeyPage() {
         <div className={styles.logoSub}>KỲ THI TỐT NGHIỆP THPT QUỐC GIA</div>
       </div>
 
+      <div className={styles.orbStage} aria-hidden="true">
+        <span className={styles.orbitRing} />
+        <span className={styles.orbitRingAlt} />
+        <div className={styles.energyOrb}>
+          <span className={styles.orbGrid} />
+          <span className={styles.orbLightning} />
+          <span className={styles.orbCore} />
+        </div>
+      </div>
+
       <div className={styles.card}>
         <h1 className={styles.title}>Nhập Mã Phòng Thi</h1>
         <p className={styles.subtitle}>

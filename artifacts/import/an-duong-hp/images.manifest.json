@@ -1,0 +1,74 @@
+[
+  {
+    "key": "I-1",
+    "scope": "question",
+    "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_0/imgs/img_in_image_box_343_394_846_895.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A31Z%2F-1%2F%2Fe33b63bd44f80fd6276189f3ccee4f78ca05e16233274a004762a31dfe548e11",
+    "alt": "Hình minh hoạ",
+    "localFile": "raw\\01_a7c080c887.jpg",
+    "publicUrl": null
+  },
+  {
+    "key": "I-2",
+    "scope": "question",
+    "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_0/imgs/img_in_image_box_409_1036_959_1212.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A31Z%2F-1%2F%2F802a36444a4bf9f8c67cf0350cbf724fbe113ab2d688c027f5cc1788bc05c0c9",
+    "alt": "Hình minh hoạ",
+    "localFile": "raw\\03_a846cfb472.jpg",
+    "publicUrl": null
+  },
+  {
+    "key": "I-7",
+    "scope": "question",
+    "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_1/imgs/img_in_image_box_404_571_766_908.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A33Z%2F-1%2F%2F46fdd7435abc98689336df6059a5b52a7ccd64ca8a88ceb8296749ec7fbd7462",
+    "alt": "Hình minh hoạ",
+    "localFile": "raw\\07_e6942f4225.jpg",
+    "publicUrl": null
+  },
+  {
+    "key": "I-11",
+    "scope": "question",
+    "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_2/imgs/img_in_image_box_564_96_774_349.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A34Z%2F-1%2F%2F5d6ea6be3e87369c9aba5078df594ff0614dcab4660058c35f9fac4483d7a7ff",
+    "alt": "Hình minh hoạ",
+    "localFile": "raw\\10_2d2b8074c5.jpg",
+    "publicUrl": null
+  },
+  {
+    "key": "II-1",
+    "scope": "question",
+    "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_2/imgs/img_in_image_box_391_686_789_1013.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A34Z%2F-1%2F%2Fd5fccb7dc4c6a76f91939ec3659b2326cd6b29e7e95f3843f37365d8b7d1a6a0",
+    "alt": "Hình minh hoạ",
+    "localFile": "raw\\12_dd89678b7d.jpg",
+    "publicUrl": null
+  },
+  {
+    "key": "II-3",
+    "scope": "question",
+    "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_3/imgs/img_in_image_box_456_154_842_495.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A35Z%2F-1%2F%2F022065493f1a11212fdfabf4499120b894c99a2d7c28557ca6caf8f350b15644",
+    "alt": "Hình minh hoạ",
+    "localFile": "raw\\14_6313b75802.jpg",
+    "publicUrl": null
+  },
+  {
+    "key": "II-4",
+    "scope": "question",
+    "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_3/imgs/img_in_image_box_427_1065_765_1332.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A35Z%2F-1%2F%2F2ec116cb28088bd3ae5d79f2344a36a9b36e9ffb8ac88c4c2cb9ed1ca9c29a24",
+    "alt": "Hình minh hoạ",
+    "localFile": "raw\\16_ee6adab79a.jpg",
+    "publicUrl": null
+  },
+  {
+    "key": "III-3",
+    "scope": "question",
+    "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_4/imgs/img_in_image_box_455_612_844_919.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A37Z%2F-1%2F%2F4088a0ff077738da1e26fbd58f9b47f3c799e19672e40a9c68556070a21ee3f5",
+    "alt": "Hình minh hoạ",
+    "localFile": "raw\\21_e450647bab.jpg",
+    "publicUrl": null
+  },
+  {
+    "key": "III-5",
+    "scope": "question",
+    "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d3984c7c-575f-4bd8-a739-133fe0d19028/markdown_0/imgs/img_in_image_box_302_66_887_519.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A15%3A10Z%2F-1%2F%2Fa5112ee21f603ea088eff148e36276e597f215bbb62fe66336c3e0d2ce610272",
+    "alt": "Hình minh hoạ",
+    "localFile": "raw\\25_d1a223ac8a.jpg",
+    "publicUrl": null
+  }
+]

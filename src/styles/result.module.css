@@ -1,26 +1,29 @@
+/* ─── Layout ─────────────────────────────────────────── */
 .screen {
   position: relative;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: grid;
   grid-template-rows: auto 1fr;
   background:
-    radial-gradient(circle at 50% 46%, rgba(214, 40, 46, .08) 0 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255, 255, 255, .76), rgba(255, 246, 246, .96)),
+    repeating-linear-gradient(0deg, transparent 0 34px, color-mix(in srgb, var(--border) 28%, transparent) 34px 35px),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 72%, transparent), transparent 52%),
     var(--bg);
-  background-size: 30px 30px, auto, auto;
+  background-size: auto, auto, auto;
 }
 
 [data-theme="dark"] .screen {
   background:
-    radial-gradient(circle at 50% 46%, rgba(148, 163, 184, .08) 0 1px, transparent 1px),
+    repeating-linear-gradient(0deg, transparent 0 34px, color-mix(in srgb, var(--border) 24%, transparent) 34px 35px),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 46%, transparent), transparent 56%),
     var(--bg);
-  background-size: 30px 30px, auto;
+  background-size: auto, auto, auto;
 }
 
 .pageTools {
   position: absolute;
   top: 20px;
-  right: 38px;
+  right: max(var(--page-gutter), calc((100vw - var(--content-max)) / 2));
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -42,23 +45,32 @@
   width: 92px;
   height: 4px;
   margin: 14px auto 0;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--primary), color-mix(in srgb, var(--accent) 76%, #ffffff));
 }
 
 .center {
   display: grid;
   place-items: start center;
-  padding: 18px 20px 44px;
+  padding: 18px var(--page-gutter) 44px;
 }
 
+.mainLayout {
+  width: min(960px, calc(100vw - 32px));
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ─── Card base ──────────────────────────────────────── */
 .card {
-  width: min(620px, calc(100vw - 32px));
+  width: 100%;
   overflow: hidden;
-  border: 1px solid rgba(214, 40, 46, .24);
-  border-radius: 8px;
-  background: var(--surface);
-  box-shadow: 0 24px 54px rgba(143, 20, 25, .14);
+  border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
 }
 
 .card h2 {
@@ -76,6 +88,7 @@
   text-align: center;
 }
 
+/* ─── Loading / Error ────────────────────────────────── */
 .successMessage {
   margin: 0 0 20px;
   color: var(--text);
@@ -83,6 +96,442 @@
   font-weight: 850;
 }
 
+.errorText {
+  margin: 0 0 18px;
+  padding: 11px 12px;
+  border-left: 3px solid var(--danger);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+  color: var(--danger);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+/* ─── Score Hero Section ─────────────────────────────── */
+.scoreHero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 38px;
+  padding: 36px 30px 30px;
+  flex-wrap: wrap;
+}
+
+.donutWrap {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+}
+
+.donutWrap svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.donutTrack {
+  fill: none;
+  stroke: var(--surface-soft);
+  stroke-width: 14;
+}
+
+[data-theme="dark"] .donutTrack {
+  stroke: var(--surface-tint);
+}
+
+.donutValue {
+  fill: none;
+  stroke-width: 14;
+  stroke-linecap: round;
+  stroke: url(#scoreGradient);
+  transition: stroke-dashoffset 1.2s cubic-bezier(.22, .61, .36, 1);
+}
+
+.donutCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.donutScore {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--primary);
+  animation: scoreReveal .8s ease-out both;
+}
+
+@keyframes scoreReveal {
+  from {
+    opacity: 0;
+    transform: scale(.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.donutLabel {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .02em;
+}
+
+.heroDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.heroRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.heroRow strong {
+  color: var(--text);
+  font-weight: 900;
+}
+
+.heroDot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.heroDotCorrect { background: var(--success); }
+.heroDotWrong { background: var(--danger); }
+.heroDotEmpty { background: var(--border); }
+
+[data-theme="dark"] .heroDotEmpty { background: var(--muted); }
+
+/* ─── Time & meta bar ────────────────────────────────── */
+.metaBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding: 0 30px 28px;
+}
+
+.metaTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: var(--surface-soft);
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .metaTag {
+  background: var(--surface-tint);
+}
+
+.metaTag svg {
+  flex-shrink: 0;
+  color: var(--primary);
+}
+
+/* ─── Score breakdown by type ────────────────────────── */
+.breakdownGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  padding: 0 24px 28px;
+}
+
+.breakdownItem {
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+  text-align: left;
+  animation: fadeSlideIn .5s ease-out both;
+}
+
+[data-theme="dark"] .breakdownItem {
+  background: var(--surface-tint);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.breakdownItem:nth-child(2) { animation-delay: .08s; }
+.breakdownItem:nth-child(3) { animation-delay: .16s; }
+.breakdownItem:nth-child(4) { animation-delay: .24s; }
+
+.breakdownType {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.breakdownScore {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.breakdownScore span {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.breakdownBar {
+  height: 6px;
+  margin-top: 10px;
+  border-radius: 3px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .breakdownBar {
+  background: color-mix(in srgb, var(--border) 200%, transparent);
+}
+
+.breakdownBarFill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width .8s cubic-bezier(.22, .61, .36, 1);
+}
+
+.breakdownCount {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* ─── Answer review section ──────────────────────────── */
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.reviewTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.reviewFilter {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.filterBtn:hover {
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+  color: var(--text);
+}
+
+.filterBtnActive {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.filterBtnActive:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: #fff;
+}
+
+.reviewList {
+  padding: 18px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.reviewItem {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface);
+  animation: fadeSlideIn .4s ease-out both;
+}
+
+.reviewItemCorrect {
+  border-left: 4px solid var(--success);
+}
+
+.reviewItemWrong {
+  border-left: 4px solid var(--danger);
+}
+
+.reviewItemUnanswered {
+  border-left: 4px solid var(--border);
+}
+
+[data-theme="dark"] .reviewItemUnanswered {
+  border-left-color: var(--muted);
+}
+
+.reviewItemHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface-soft);
+  flex-wrap: wrap;
+}
+
+[data-theme="dark"] .reviewItemHead {
+  background: var(--surface-tint);
+}
+
+.reviewItemNo {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.reviewItemBadges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.badgeCorrect {
+  background: color-mix(in srgb, var(--success) 14%, transparent);
+  color: var(--success);
+}
+
+.badgeWrong {
+  background: color-mix(in srgb, var(--danger) 14%, transparent);
+  color: var(--danger);
+}
+
+.badgeUnanswered {
+  background: color-mix(in srgb, var(--muted) 14%, transparent);
+  color: var(--muted);
+}
+
+.badgePoints {
+  background: color-mix(in srgb, var(--primary) 14%, transparent);
+  color: var(--primary);
+}
+
+.reviewItemBody {
+  padding: 16px;
+}
+
+/* Answer comparison in review */
+.answerCompare {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.answerRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.answerRowStudent {
+  background: color-mix(in srgb, var(--surface-tint) 60%, transparent);
+  border: 1px solid var(--border);
+}
+
+.answerRowCorrect {
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--success) 24%, transparent);
+}
+
+.answerLabel {
+  flex-shrink: 0;
+  font-weight: 800;
+  color: var(--muted);
+  min-width: 80px;
+}
+
+.answerValue {
+  color: var(--text);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+/* ─── Bottom actions ─────────────────────────────────── */
+.actions {
+  display: flex;
+  justify-content: center;
+  padding: 0 0 10px;
+}
+
+/* ─── Legacy compatibility ───────────────────────────── */
 .scoreLine {
   margin: 18px 0 22px;
   color: var(--primary);
@@ -120,7 +569,7 @@
   margin: 8px 0 28px;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 6px;
   background: var(--surface-soft);
 }
 
@@ -128,9 +577,10 @@
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background: linear-gradient(90deg, var(--primary), color-mix(in srgb, var(--accent) 76%, #ffffff));
 }
 
+/* ─── Responsive ─────────────────────────────────────── */
 @media (max-width: 640px) {
   .pageTools {
     position: static;
@@ -144,5 +594,54 @@
 
   .body {
     padding: 26px 22px 30px;
+  }
+
+  .scoreHero {
+    flex-direction: column;
+    gap: 22px;
+    padding: 28px 18px 24px;
+  }
+
+  .donutWrap {
+    width: 152px;
+    height: 152px;
+  }
+
+  .donutScore {
+    font-size: 34px;
+  }
+
+  .heroDetails {
+    text-align: center;
+    align-items: center;
+  }
+
+  .breakdownGrid {
+    grid-template-columns: 1fr;
+    padding: 0 16px 22px;
+  }
+
+  .metaBar {
+    padding: 0 16px 22px;
+  }
+
+  .reviewHeader {
+    padding: 16px;
+  }
+
+  .reviewList {
+    padding: 14px 16px 24px;
+  }
+
+  .reviewItemHead {
+    padding: 10px 12px;
+  }
+
+  .reviewItemBody {
+    padding: 12px;
+  }
+
+  .answerLabel {
+    min-width: 68px;
   }
 }

@@ -1,0 +1,23 @@
+key,part,type,content_preview,difficulty
+I-1,I,multiple_choice,Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Tiệm cận ngang của đồ thị hàm số là đường thẳng có phương trình:,1
+I-2,I,multiple_choice,Cho hàm số y = f(x) có bảng biến thiên như sau Hàm số đã cho đồng biến trên khoảng nào dưới đây?,1
+I-3,I,multiple_choice,Cho cấp số cộng $ (u_n) $ có số hàng đầu $ u_1 = 3 $ và công sai $ d = -4 $. Số hàng thứ năm của cấp số công là,1
+I-4,I,multiple_choice,"Cho một chất điểm chuyển động có phương trình $s = 2t^2 + 3t$ (t tính bằng giây, s tính bằng mét). Vận tốc của chất điểm tại thời điểm $t_0 = 2$ (giây) bằng",2
+I-5,I,multiple_choice,Doanh thu bán hàng trong 20 ngày được lựa chọn ngẫu nhiên của một cửa hàng được ghi lại ở bảng sau (đơn vị: triệu đồng): <table border=1 style='margin: auto; w…,2
+I-6,I,multiple_choice,"Cho hình chóp S.ABCD có đày ABCD là hình chữ nhất với AD = a, cạnh bên SẠ vuông góc với đáy và SA = a√3. Số đo của góc nhị diện [S, DC, B] bằng:",3
+I-7,I,multiple_choice,"Cho hàm số y = f(x) có đồ thị như hình vẽ: Khi đó, $ \lim_{x \to +\infty} f(x) $ bằng:",1
+I-8,I,multiple_choice,Nghiệm của phương trình $ \sqrt{3} + 3 \tan x = 0 $ là:,2
+I-9,I,multiple_choice,Cho hình lập phương $ ABCD \cdot A'B'C'D' $. Mệnh đề nào sau đây sai?,2
+I-10,I,multiple_choice,"Trong không gian với hệ tọa độ Oxyz, cho hình bình hành ABCD có $ A(2;1,-3) $, $ B(0,-2;2,C(4,-3;0)) $. Toạ độ điểm D là",2
+I-11,I,multiple_choice,Tìm a đế hàm số $ \log_a x $ (0 < a $ \neq 1 $) có đồ thị là hình bên,2
+I-12,I,multiple_choice,Nghiệm của phương trình $ \log_{2} x = 3 $ là,1
+II-1,II,true_false,Cho hàm số y = f(x) = ax³ + bx² + cx + d có đồ thị như hình vẽ dưới đây:,3
+II-2,II,true_false,"Cho hình lăng trụ đứng ABC. A'B'C' có đáy ABC là tam giác vuông tại A. Gọi E, F lần lượt là trung điểm của AB và AA'. Cho biết AB = 2, BC = $ \sqrt{13} $, CC' …",3
+II-3,II,true_false,Hình về sau mô tả vị trí của máy bay vào thời điểm 9h30 phút. Biết các đơn vị trên hình tính theo đơn vị kim.,3
+II-4,II,true_false,"Một doanh nghiệp kinh doanh sản xuất đồng hồ có đồ thị hàm tổng chi phí theo số sản phẩm, là một phần của đồ thị hàm số $ f(x)=\frac{ax^2+bx+c}{x+e} $ như hình…",4
+III-1,III,short_answer,"Cho hình chóp S.ABCD có đấy ABCD là hình thoi cạnh a, ADC = 60°, SA ⊥ (ABCD), SA = $ \sqrt{3}a $ . G là trọng tam tam giác SAC. Khoảng cách từ G đến (SCD) bằng…",3
+III-2,III,short_answer,"Trọng lực $\overrightarrow{P}$ là lực hấp dẫn do Trái Đất tác dụng lên một vật được tính bởi công thức $\overrightarrow{P}=mg$, trong đó $m$ là khối lượng của …",1
+III-3,III,short_answer,"Để chặn đường hành lang hình chữ L, người ta dùng một que sào thắng dài đặt kín những điểm chặn với hành lang (như hình vẽ). Biết $ a = 24, b = 3 $. Hỏi cái sà…",4
+III-4,III,short_answer,"Trong cuộc gặp mặt dặn dò trước khi lên đường tham gia kì thi học sinh giỏi, có 10 bạn trong đội tuyển gồm 2 bạn đến từ lớp 12A, 3 bạn từ lớp 12B, 5 bạn còn lạ…",4
+III-5,III,short_answer,"Mảnh đất vườn của nhà anh Điệp có một phần ranh giới cũng là một phần đường cong (C): $ y=\frac{x+a}{x+b} $, bao quanh nó là sông nước. Với hệ trục tọa độ Oxy,…",4
+III-6,III,short_answer,Cho hàm số $y = \frac{2x + 3}{1 - x}$. Gọi đường thẳng tiệm cận đứng và tiệm cận ngang của đồ thị hàm số lần lượt có phương trình: $x = a$; $y = b$. Khi đó tổn…,1

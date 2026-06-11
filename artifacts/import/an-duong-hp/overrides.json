@@ -1,0 +1,51 @@
+{
+  "optionCorrect": {
+    "I-1": "C",
+    "I-2": "C",
+    "I-3": "B",
+    "I-4": "C",
+    "I-5": "C",
+    "I-6": "B",
+    "I-7": "D",
+    "I-8": "B",
+    "I-9": "B",
+    "I-10": "B",
+    "I-11": "B",
+    "I-12": "C"
+  },
+  "statements": {
+    "II-2": {
+      "a": false,
+      "b": false,
+      "c": true,
+      "d": true
+    }
+  },
+  "statementsContent": {
+    "II-4": [
+      {
+        "label": "a",
+        "content": "Hàm số đồng biến trên khoảng $(0;+\\infty)$.",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "content": "Đồ thị hàm số có đường tiệm cận đứng là $x = 1$.",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "content": "Hàm số có thể viết lại dưới dạng $f(x)=\\frac{1}{3}x+1+\\frac{d}{x+1}$, với $d \\in \\mathbb{R}$.",
+        "correct": true
+      },
+      {
+        "label": "d",
+        "content": "Theo khảo sát, tổng doanh thu được mô tả bằng hàm số $R(x) = x^{2} + 2x$ và lợi nhuận khi bán 200 sản phẩm là 5250 USD. Khi chi phí nhỏ nhất, số sản phẩm (làm tròn) là 25 sản phẩm.",
+        "correct": false
+      }
+    ]
+  },
+  "shortAnswer": {
+    "III-1": "30"
+  }
+}

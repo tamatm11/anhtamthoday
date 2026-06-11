@@ -1,0 +1,105 @@
+.container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .18);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  animation: toastIn .28s ease;
+}
+
+.toast.out {
+  animation: toastOut .28s ease forwards;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(12px) scale(.96); }
+}
+
+.icon {
+  flex: 0 0 auto;
+  display: flex;
+}
+
+.message {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.close {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  color: var(--muted);
+  transition: background .14s ease;
+}
+
+.close:hover {
+  background: var(--border);
+}
+
+/* Type-specific colors */
+.success {
+  border-left: 3px solid var(--success);
+}
+
+.success .icon {
+  color: var(--success);
+}
+
+.error {
+  border-left: 3px solid var(--danger);
+}
+
+.error .icon {
+  color: var(--danger);
+}
+
+.warning {
+  border-left: 3px solid var(--warning);
+}
+
+.warning .icon {
+  color: var(--warning);
+}
+
+.info {
+  border-left: 3px solid var(--primary);
+}
+
+.info .icon {
+  color: var(--primary);
+}
+
+@media (max-width: 640px) {
+  .container {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}

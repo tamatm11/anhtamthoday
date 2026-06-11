@@ -1,16 +1,16 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Flag, Maximize, Moon, Sun } from 'lucide-react';
+import { CheckCircle, Flag, Maximize, Moon, Sun, AlertTriangle, X, Eye } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import {
   fetchExamSessionData,
-  questionTypeLabel,
   saveSessionAnswer,
   type ExamSessionData,
   type ExamSessionQuestion,
 } from '@/lib/supabase/exam-data';
+import QuestionRenderer from '@/components/question/QuestionRenderer';
 import { useExamStore } from '@/store/useExamStore';
 import styles from '@/styles/exam.module.css';
 
@@ -77,6 +77,11 @@ export default function ExamPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
   const [saveError, setSaveError] = useState('');
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [showReviewPanel, setShowReviewPanel] = useState(false);
+  const [tabSwitchCount, setTabSwitchCount] = useState(0);
+  const [showTabWarning, setShowTabWarning] = useState(false);
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!hasHydrated) return;
@@ -193,11 +198,29 @@ export default function ExamPage() {
 
   const timeLeft = Math.max(durationSeconds - elapsedSeconds, 0);
   const room = examData?.room;
+  const timerWarning = timeLeft <= 60 ? 'critical' : timeLeft <= 300 ? 'warning' : 'normal';
 
-  const handleSubmit = async (force = false) => {
-    const confirmed =
-      force || window.confirm('Bạn có chắc chắn muốn nộp bài không?');
-    if (!confirmed) return;
+  const unansweredQuestions = useMemo(
+    () =>
+      questions.filter((question) => {
+        if (question.type === 'multiple_choice') return !choiceAnswers[question.id];
+        if (question.type === 'true_false')
+          return Object.keys(trueFalseAnswers[question.id] ?? {}).length === 0;
+        return !textAnswers[question.id]?.trim();
+      }),
+    [choiceAnswers, questions, textAnswers, trueFalseAnswers],
+  );
+
+  const markedQuestions = useMemo(
+    () => questions.filter((q) => marked.includes(q.number)),
+    [questions, marked],
+  );
+
+  const handleSubmit = useCallback(async (force = false) => {
+    if (!force) {
+      setShowReviewPanel(true);
+      return;
+    }
 
     // Gọi RPC để ghi trạng thái 'submitted' vào DB trước khi navigate
     if (currentSessionId) {
@@ -212,7 +235,12 @@ export default function ExamPage() {
 
     finishSession();
     router.push('/result');
-  };
+  }, [currentSessionId, finishSession, router, supabase]);
+
+  const handleConfirmSubmit = useCallback(async () => {
+    setShowReviewPanel(false);
+    await handleSubmit(true);
+  }, [handleSubmit]);
 
   useEffect(() => {
     if (timeLeft === 0 && !isLoading && examData) {
@@ -220,6 +248,67 @@ export default function ExamPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, isLoading, examData, currentSessionId, router, supabase]);
+
+  // Anti-cheat: detect tab switching
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden && examData && !isLoading) {
+        setTabSwitchCount((c) => c + 1);
+        setShowTabWarning(true);
+        setTimeout(() => setShowTabWarning(false), 4000);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [examData, isLoading]);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (showReviewPanel) return;
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT') return;
+
+      const q = questions[currentQuestion - 1];
+      switch (e.key.toLowerCase()) {
+        case 'n':
+        case 'arrowright':
+          e.preventDefault();
+          if (currentQuestion < totalQuestions) {
+            setCurrentQuestion(currentQuestion + 1);
+            scrollToQuestion(currentQuestion + 1);
+          }
+          break;
+        case 'p':
+        case 'arrowleft':
+          e.preventDefault();
+          if (currentQuestion > 1) {
+            setCurrentQuestion(currentQuestion - 1);
+            scrollToQuestion(currentQuestion - 1);
+          }
+          break;
+        case 'm':
+          e.preventDefault();
+          toggleMark(currentQuestion);
+          break;
+        case '1': case '2': case '3': case '4':
+          if (q?.type === 'multiple_choice') {
+            const optIndex = parseInt(e.key) - 1;
+            const opt = q.options[optIndex];
+            if (opt) {
+              e.preventDefault();
+              void persistChoice(q, opt.id, opt.label);
+            }
+          }
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentQuestion, questions, totalQuestions, showReviewPanel]);
 
   const scrollToQuestion = (questionNumber: number) => {
     const el = document.getElementById(`question-${questionNumber}`);
@@ -240,6 +329,14 @@ export default function ExamPage() {
     }
   };
 
+  const showSaveIndicator = useCallback((status: 'saving' | 'saved' | 'error') => {
+    setSaveStatus(status);
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    if (status === 'saved') {
+      saveTimerRef.current = setTimeout(() => setSaveStatus('idle'), 2000);
+    }
+  }, []);
+
   const persistChoice = async (
     question: ExamSessionQuestion,
     optionId: string,
@@ -248,6 +345,7 @@ export default function ExamPage() {
     setChoiceAnswers((current) => ({ ...current, [question.id]: optionId }));
     setCurrentQuestion(question.number);
     setSaveError('');
+    showSaveIndicator('saving');
 
     try {
       await saveSessionAnswer(supabase, {
@@ -259,10 +357,12 @@ export default function ExamPage() {
           label,
         },
       });
+      showSaveIndicator('saved');
     } catch (error) {
       const message =
         error instanceof Error ? error.message : 'Không thể lưu đáp án.';
       setSaveError(message);
+      showSaveIndicator('error');
     }
   };
 
@@ -282,6 +382,7 @@ export default function ExamPage() {
     }));
     setCurrentQuestion(question.number);
     setSaveError('');
+    showSaveIndicator('saving');
 
     try {
       await saveSessionAnswer(supabase, {
@@ -291,10 +392,12 @@ export default function ExamPage() {
           items: nextDraft,
         },
       });
+      showSaveIndicator('saved');
     } catch (error) {
       const message =
         error instanceof Error ? error.message : 'Không thể lưu đáp án.';
       setSaveError(message);
+      showSaveIndicator('error');
     }
   };
 
@@ -303,6 +406,7 @@ export default function ExamPage() {
     if (!value) return;
 
     setSaveError('');
+    showSaveIndicator('saving');
     try {
       await saveSessionAnswer(supabase, {
         sessionQuestionId: question.id,
@@ -312,10 +416,12 @@ export default function ExamPage() {
           value,
         },
       });
+      showSaveIndicator('saved');
     } catch (error) {
       const message =
         error instanceof Error ? error.message : 'Không thể lưu đáp án.';
       setSaveError(message);
+      showSaveIndicator('error');
     }
   };
 
@@ -338,12 +444,17 @@ export default function ExamPage() {
           </div>
         </div>
         <div className={styles.headerRight}>
-          <div className={styles.timer}>
+          <div className={`${styles.timer} ${timerWarning === 'critical' ? styles.timerCritical : timerWarning === 'warning' ? styles.timerWarning : ''}`}>
             <span>⏱</span> <span>{formatTime(timeLeft)}</span>
           </div>
           <div className={styles.connection}>
-            <span className={styles.connectionDot}></span>
-            <span>{saveError ? 'Lỗi lưu' : 'Đang kết nối'}</span>
+            <span className={`${styles.connectionDot} ${saveStatus === 'error' ? styles.connectionError : ''}`}></span>
+            <span>{
+              saveStatus === 'saving' ? 'Đang lưu...' :
+              saveStatus === 'saved' ? '✓ Đã lưu' :
+              saveStatus === 'error' ? 'Lỗi lưu' :
+              'Đang kết nối'
+            }</span>
           </div>
           <button
             className={styles.submitBtn}
@@ -354,6 +465,7 @@ export default function ExamPage() {
           </button>
           <button
             className={styles.headerIconBtn}
+            aria-label="Bật hoặc tắt toàn màn hình"
             onClick={() => {
               if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen?.();
@@ -366,6 +478,7 @@ export default function ExamPage() {
           </button>
           <button
             className="theme-toggle"
+            aria-label={theme === 'dark' ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối'}
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
           >
             <span className="icon">
@@ -410,13 +523,25 @@ export default function ExamPage() {
         </div>
         <div className={styles.toolbarGroup}>
           <span className={styles.answeredCount}>
-            Số câu đã trả lời: {answeredCount} / {totalQuestions}
+            Đã trả lời: {answeredCount} / {totalQuestions}
+            {markedQuestions.length > 0 && ` · ${markedQuestions.length} đánh dấu`}
           </span>
-          <button className="btn outline small" disabled>
-            Lưu tự động
+          <button
+            className="btn outline small"
+            onClick={() => setShowReviewPanel(true)}
+          >
+            <Eye size={14} /> Xem lại
           </button>
         </div>
       </div>
+
+      {/* Tab switch warning */}
+      {showTabWarning && (
+        <div className={styles.tabWarning}>
+          <AlertTriangle size={16} />
+          <span>Bạn đã rời khỏi tab thi! ({tabSwitchCount} lần)</span>
+        </div>
+      )}
 
       <div className={styles.content}>
         <article className={styles.passagePanel}>
@@ -465,110 +590,50 @@ export default function ExamPage() {
               >
                 <button
                   className={`${styles.flagBtn} ${isMarked ? styles.marked : ''}`}
+                  aria-label={isMarked ? 'Bỏ đánh dấu câu hỏi' : 'Đánh dấu câu hỏi'}
                   onClick={() => toggleMark(question.number)}
                 >
                   <Flag size={16} fill={isMarked ? 'currentColor' : 'none'} />
                 </button>
-                <p className={styles.questionTitle}>
-                  Câu {question.displayNo}. {question.content}
-                </p>
-                <p className={styles.questionType}>
-                  {questionTypeLabel(question.type)} · {question.maxPoints} điểm
-                </p>
-
-                {question.type === 'multiple_choice' ? (
-                  <div className={styles.answers}>
-                    {question.options.length === 0 ? (
-                      <div className={styles.emptyState}>
-                        Câu hỏi này chưa có đáp án lựa chọn trong DB.
-                      </div>
-                    ) : null}
-                    {question.options.map((option) => (
-                      <label key={option.id} className={styles.answerOption}>
-                        <input
-                          type="radio"
-                          name={`question-${question.id}`}
-                          value={option.id}
-                          checked={selected === option.id}
-                          onChange={() =>
-                            void persistChoice(question, option.id, option.label)
-                          }
-                        />
-                        <span>
-                          <strong>{option.label}.</strong> {option.content}
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                ) : null}
-
-                {question.type === 'true_false' ? (
-                  <div className={styles.trueFalseList}>
-                    {question.trueFalseItems.length === 0 ? (
-                      <div className={styles.emptyState}>
-                        Câu đúng/sai này chưa có mệnh đề trong DB.
-                      </div>
-                    ) : null}
-                    {question.trueFalseItems.map((item) => (
-                      <div key={item.id} className={styles.trueFalseItem}>
-                        <span>{item.content}</span>
-                        <label>
-                          <input
-                            type="radio"
-                            name={`tf-${question.id}-${item.id}`}
-                            checked={tfDraft[item.id] === 'true'}
-                            onChange={() =>
-                              void persistTrueFalse(question, item.id, 'true')
-                            }
-                          />
-                          Đúng
-                        </label>
-                        <label>
-                          <input
-                            type="radio"
-                            name={`tf-${question.id}-${item.id}`}
-                            checked={tfDraft[item.id] === 'false'}
-                            onChange={() =>
-                              void persistTrueFalse(question, item.id, 'false')
-                            }
-                          />
-                          Sai
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
-
-                {question.type === 'short_answer' ? (
-                  <input
-                    className={styles.textAnswer}
-                    value={textValue}
-                    onChange={(event) =>
-                      setTextAnswers((current) => ({
-                        ...current,
-                        [question.id]: event.target.value,
-                      }))
-                    }
-                    onBlur={() => void persistTextAnswer(question)}
-                    placeholder="Nhập câu trả lời ngắn"
-                  />
-                ) : null}
-
-                {question.type === 'essay' ? (
-                  <textarea
-                    className={styles.textAnswer}
-                    value={textValue}
-                    onChange={(event) =>
-                      setTextAnswers((current) => ({
-                        ...current,
-                        [question.id]: event.target.value,
-                      }))
-                    }
-                    onBlur={() => void persistTextAnswer(question)}
-                    placeholder="Nhập bài làm"
-                    rows={8}
-                  />
-                ) : null}
+                <QuestionRenderer
+                  question={{
+                    id: question.id,
+                    displayNo: question.displayNo,
+                    type: question.type,
+                    content: question.content,
+                    imageUrl: question.imageUrl,
+                    imageAltText: question.imageAltText,
+                    maxPoints: question.maxPoints,
+                    options: question.options.map((option) => ({
+                      id: option.id,
+                      label: option.label,
+                      content: option.content,
+                      imageUrl: option.imageUrl,
+                      imageAltText: option.imageAltText,
+                    })),
+                    trueFalseItems: question.trueFalseItems.map((item) => ({
+                      id: item.id,
+                      label: item.label,
+                      content: item.content,
+                    })),
+                  }}
+                  selectedOptionId={selected}
+                  trueFalseAnswers={tfDraft}
+                  textValue={textValue}
+                  onSelectOption={(optionId, label) =>
+                    void persistChoice(question, optionId, label)
+                  }
+                  onTrueFalseChange={(itemId, value) =>
+                    void persistTrueFalse(question, itemId, value)
+                  }
+                  onTextChange={(value) =>
+                    setTextAnswers((current) => ({
+                      ...current,
+                      [question.id]: value,
+                    }))
+                  }
+                  onTextBlur={() => void persistTextAnswer(question)}
+                />
               </article>
             );
           })}
@@ -616,6 +681,89 @@ export default function ExamPage() {
           </span>
         </div>
       </nav>
+
+      {/* Answer Review Panel */}
+      {showReviewPanel && (
+        <div className={styles.reviewOverlay} onClick={() => setShowReviewPanel(false)}>
+          <div className={styles.reviewPanel} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.reviewHeader}>
+              <h2>Xem lại bài làm</h2>
+              <button className={styles.reviewClose} onClick={() => setShowReviewPanel(false)}>
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className={styles.reviewStats}>
+              <div className={styles.reviewStat}>
+                <span className={styles.reviewStatNumber}>{answeredCount}</span>
+                <span className={styles.reviewStatLabel}>Đã trả lời</span>
+              </div>
+              <div className={styles.reviewStat}>
+                <span className={`${styles.reviewStatNumber} ${styles.statEmpty}`}>{unansweredQuestions.length}</span>
+                <span className={styles.reviewStatLabel}>Chưa trả lời</span>
+              </div>
+              <div className={styles.reviewStat}>
+                <span className={`${styles.reviewStatNumber} ${styles.statMarked}`}>{markedQuestions.length}</span>
+                <span className={styles.reviewStatLabel}>Đánh dấu</span>
+              </div>
+            </div>
+
+            {unansweredQuestions.length > 0 && (
+              <div className={styles.reviewSection}>
+                <h3>Câu chưa trả lời</h3>
+                <div className={styles.reviewQuestionList}>
+                  {unansweredQuestions.map((q) => (
+                    <button
+                      key={q.id}
+                      className={styles.reviewQuestionBtn}
+                      onClick={() => {
+                        setShowReviewPanel(false);
+                        setCurrentQuestion(q.number);
+                        scrollToQuestion(q.number);
+                      }}
+                    >
+                      Câu {q.displayNo}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {markedQuestions.length > 0 && (
+              <div className={styles.reviewSection}>
+                <h3>Câu đánh dấu xem lại</h3>
+                <div className={styles.reviewQuestionList}>
+                  {markedQuestions.map((q) => (
+                    <button
+                      key={q.id}
+                      className={`${styles.reviewQuestionBtn} ${styles.reviewMarked}`}
+                      onClick={() => {
+                        setShowReviewPanel(false);
+                        setCurrentQuestion(q.number);
+                        scrollToQuestion(q.number);
+                      }}
+                    >
+                      Câu {q.displayNo}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className={styles.reviewFooter}>
+              <p>Thời gian còn lại: <strong>{formatTime(timeLeft)}</strong></p>
+              <div className={styles.reviewActions}>
+                <button className="btn secondary" onClick={() => setShowReviewPanel(false)}>
+                  Quay lại làm bài
+                </button>
+                <button className="btn" onClick={() => void handleConfirmSubmit()}>
+                  <CheckCircle size={16} /> Xác nhận nộp bài
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,19 +1,24 @@
 .container {
-  min-height: 100vh;
+  min-height: 100dvh;
   padding: 34px 20px 44px;
+  position: relative;
+  overflow-x: hidden;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, .68), rgba(255, 246, 246, .96)),
-    radial-gradient(circle at 88% 8%, rgba(245, 158, 11, .1), transparent 24%),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 70%, transparent), transparent 48%),
+    repeating-linear-gradient(90deg, transparent 0 44px, color-mix(in srgb, var(--border) 30%, transparent) 44px 45px),
     var(--bg);
   color: var(--text);
 }
 
 [data-theme="dark"] .container {
-  background: var(--bg);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 44%, transparent), transparent 52%),
+    repeating-linear-gradient(90deg, transparent 0 44px, color-mix(in srgb, var(--border) 24%, transparent) 44px 45px),
+    var(--bg);
 }
 
 .header {
-  width: min(1040px, 100%);
+  width: min(var(--content-max), 100%);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,24 +40,26 @@
   width: 76px;
   height: 4px;
   margin-top: 12px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--primary), color-mix(in srgb, var(--accent) 76%, #ffffff));
 }
 
 .grid {
-  width: min(1040px, 100%);
+  width: min(var(--content-max), 100%);
   display: grid;
-  grid-template-columns: minmax(280px, .9fr) minmax(0, 1.6fr);
+  grid-template-columns: minmax(320px, .92fr) minmax(0, 1.48fr);
   gap: 22px;
   margin: 0 auto;
 }
 
 .card {
-  padding: 24px;
+  min-width: 0;
+  padding: 26px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface);
-  box-shadow: 0 16px 34px rgba(143, 20, 25, .1);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(16px);
 }
 
 .sectionTitle {
@@ -87,7 +94,7 @@
   height: 44px;
   padding: 0 12px;
   border: 1px solid var(--border);
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   background: var(--input);
   color: var(--text);
   font-size: 15px;
@@ -114,7 +121,7 @@
 .feedback {
   margin: 0 0 12px;
   padding: 11px 12px;
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
   font-weight: 800;
   line-height: 1.45;
@@ -157,8 +164,8 @@
   margin-bottom: 12px;
   padding: 13px 15px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface-soft);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface-soft) 84%, var(--surface));
 }
 
 .keyStat .code {
@@ -192,7 +199,7 @@
   border-spacing: 0;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
 
 .table th,
@@ -216,8 +223,8 @@
 .emptyState {
   padding: 24px;
   border: 1px dashed var(--border);
-  border-radius: 8px;
-  background: var(--surface-soft);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface-soft) 84%, var(--surface));
   color: var(--muted);
   text-align: center;
   font-size: 14px;
@@ -236,7 +243,7 @@
   font-weight: 750;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .header {
     align-items: flex-start;
     flex-direction: column;
@@ -254,6 +261,10 @@
 
   .card {
     padding: 20px;
+  }
+
+  .header :global(.btn) {
+    width: 100%;
   }
 
   .keyStat {

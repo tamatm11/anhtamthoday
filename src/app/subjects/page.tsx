@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { FileText, KeyRound, Moon, ShieldCheck, Sun } from 'lucide-react';
+import { FileText, KeyRound, LogOut, Moon, ShieldCheck, Sun } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { hasSupabaseEnv } from '@/lib/supabase/env';
 import {
@@ -50,6 +50,23 @@ export default function SubjectsPage() {
   const [rooms, setRooms] = useState<ExamRoomSummary[]>([]);
   const [isLoading, setIsLoading] = useState(hasConfiguredSupabase);
   const [loadError, setLoadError] = useState('');
+  const [userRole, setUserRole] = useState<string | null>(null);
+  const [loggingOut, setLoggingOut] = useState(false);
+  const logout = useExamStore((state) => state.logout);
+
+  const isStaff = userRole === 'admin' || userRole === 'teacher';
+
+  const handleLogout = useCallback(async () => {
+    setLoggingOut(true);
+    try {
+      const supabase = createClient();
+      await supabase.auth.signOut();
+      logout();
+      router.push('/');
+    } catch {
+      setLoggingOut(false);
+    }
+  }, [logout, router]);
 
   useEffect(() => {
     if (hasHydrated && (!isAuthenticated || !candidateInfo)) {
@@ -78,6 +95,13 @@ export default function SubjectsPage() {
     Promise.all([
       fetchSubjectsWithRoomCounts(supabase),
       fetchPublishedRooms(supabase),
+      // Fetch user role to determine admin visibility
+      supabase.rpc('get_my_profile').then(({ data }) => {
+        if (isMounted && data) {
+          const row = Array.isArray(data) ? data[0] : data;
+          setUserRole(row?.role ?? null);
+        }
+      }),
     ])
       .then(([subjectRows, roomRows]) => {
         if (!isMounted) return;
@@ -141,14 +165,16 @@ export default function SubjectsPage() {
           <div className={styles.avatar}>{candidateInfo.name.charAt(0)}</div>
           <span>Profile</span>
         </button>
-        <button
-          className={`btn outline small ${styles.profileButton}`}
-          type="button"
-          onClick={() => router.push('/admin')}
-        >
-          <ShieldCheck size={15} />
-          <span>Admin</span>
-        </button>
+        {isStaff && (
+          <button
+            className={`btn outline small ${styles.profileButton}`}
+            type="button"
+            onClick={() => router.push('/admin')}
+          >
+            <ShieldCheck size={15} />
+            <span>Admin</span>
+          </button>
+        )}
         <button
           className="theme-toggle"
           type="button"
@@ -158,6 +184,15 @@ export default function SubjectsPage() {
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </span>
           <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+        </button>
+        <button
+          className={`btn outline small ${styles.profileButton}`}
+          type="button"
+          onClick={handleLogout}
+          disabled={loggingOut}
+        >
+          <LogOut size={15} />
+          <span>{loggingOut ? 'Đang đăng xuất...' : 'Đăng xuất'}</span>
         </button>
       </div>
 

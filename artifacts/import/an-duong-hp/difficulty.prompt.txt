@@ -1,0 +1,8 @@
+Bạn là giáo viên Toán THPT. Dưới đây là bảng CSV các câu hỏi của một đề thi thử
+TN THPT 2026 (cột content_preview là trích nội dung). Hãy đánh giá MỨC ĐỘ từng câu
+theo thang 4 mức của Bộ GD&ĐT và ĐIỀN vào cột "difficulty" bằng SỐ:
+  1 = Nhận biết, 2 = Thông hiểu, 3 = Vận dụng, 4 = Vận dụng cao.
+Yêu cầu: giữ NGUYÊN các cột key,part,type,content_preview; chỉ sửa cột difficulty.
+Trả về đúng định dạng CSV (có dòng header), lưu thành difficulty.filled.csv.
+Gợi ý: Phần I (multiple_choice) thường 1–2; Phần II (true_false) 3; Phần III
+(short_answer) thường 3–4. Cột difficulty hiện có sẵn DRAFT, hãy điều chỉnh nếu cần.

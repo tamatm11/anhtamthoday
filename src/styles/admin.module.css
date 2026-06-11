@@ -1,11 +1,10 @@
 .screen {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: grid;
-  grid-template-columns: 250px minmax(0, 1fr);
+  grid-template-columns: 244px minmax(0, 1fr);
   background:
-    radial-gradient(circle at 18% 12%, rgba(214, 40, 46, .12), transparent 28%),
-    radial-gradient(circle at 92% 8%, rgba(245, 158, 11, .1), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, .68), rgba(255, 246, 246, .96)),
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 66%, transparent), transparent 48%),
+    repeating-linear-gradient(90deg, transparent 0 42px, color-mix(in srgb, var(--border) 28%, transparent) 42px 43px),
     var(--bg);
   color: var(--text);
 }
@@ -13,12 +12,12 @@
 .sidebar {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   padding: 22px 18px;
   border-right: 1px solid var(--border);
-  background: color-mix(in srgb, var(--surface) 86%, transparent);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
   backdrop-filter: blur(18px);
 }
 
@@ -36,10 +35,10 @@
   height: 38px;
   display: grid;
   place-items: center;
-  border-radius: 8px;
+  border-radius: 11px;
   background: var(--brand-gradient);
   color: #FFFFFF;
-  box-shadow: 0 14px 28px rgba(143, 20, 25, .18);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--primary) 20%, transparent);
 }
 
 .nav {
@@ -55,7 +54,7 @@
   align-items: center;
   gap: 10px;
   padding: 0 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   color: var(--muted);
   text-decoration: none;
   font-size: 14px;
@@ -81,6 +80,8 @@
 
 .main {
   min-width: 0;
+  width: min(var(--content-wide), 100%);
+  margin-inline: auto;
   padding: 28px clamp(22px, 4vw, 48px) 42px;
 }
 
@@ -110,21 +111,21 @@
 
 .metrics {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 18px;
+  grid-template-columns: repeat(4, minmax(170px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .metric {
-  min-height: 118px;
+  min-height: 112px;
   display: grid;
   align-content: center;
   gap: 8px;
   padding: 18px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
-  box-shadow: 0 16px 34px rgba(143, 20, 25, .08);
+  box-shadow: var(--shadow-soft);
 }
 
 .metric svg {
@@ -147,18 +148,20 @@
 
 .workGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(320px, .85fr);
-  gap: 18px;
+  grid-template-columns: repeat(2, minmax(360px, 1fr));
+  gap: 20px;
   align-items: start;
 }
 
 .panel {
   margin-bottom: 18px;
-  padding: 22px;
+  min-width: 0;
+  padding: 24px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--surface) 94%, transparent);
-  box-shadow: 0 18px 38px rgba(143, 20, 25, .1);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(16px);
 }
 
 .panelHeader {
@@ -183,8 +186,8 @@
   align-items: center;
   min-height: 28px;
   padding: 0 10px;
-  border-radius: 999px;
-  background: rgba(214, 40, 46, .1);
+  border-radius: var(--radius-sm);
+  background: var(--primary-soft);
   color: var(--primary);
   font-size: 12px;
   font-style: normal;
@@ -206,18 +209,28 @@
 
 .keyFormGrid {
   display: grid;
-  grid-template-columns: minmax(150px, .75fr) minmax(170px, .9fr) minmax(240px, 1.35fr);
-  gap: 12px;
+  grid-template-columns: minmax(280px, 1.45fr) minmax(150px, .72fr) minmax(190px, .9fr) minmax(220px, 1fr);
+  align-items: start;
+  gap: 14px;
+}
+
+.keyFormGrid label {
+  min-width: 0;
 }
 
 .keyFormActions {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
+  min-height: 42px;
+  margin-top: 2px;
 }
 
 .keyFormActions span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
   color: var(--muted);
   font-size: 13px;
   font-weight: 800;
@@ -228,8 +241,8 @@
   margin: 0;
   padding: 10px 12px;
   border-left: 3px solid var(--primary);
-  border-radius: 6px;
-  background: rgba(214, 40, 46, .08);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
   color: var(--text);
   font-size: 13px;
   font-weight: 800;
@@ -244,13 +257,25 @@
   font-weight: 850;
 }
 
+.labelText {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  min-height: 18px;
+}
+
+.requiredMark {
+  color: var(--danger);
+  font-weight: 900;
+}
+
 .form input,
 .form select,
 .form textarea,
 .search input {
   width: 100%;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background: var(--input);
   color: var(--text);
   font: inherit;
@@ -303,12 +328,12 @@
 
 .questionRow {
   display: grid;
-  grid-template-columns: 58px 1fr;
+  grid-template-columns: minmax(58px, 72px) minmax(0, 1fr);
   gap: 12px;
   padding: 13px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface-soft);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface-soft) 84%, var(--surface));
 }
 
 .questionRow > span {
@@ -338,37 +363,76 @@
   margin-top: 18px;
 }
 
-.subjectTable div {
+.subjectRow,
+.subjectEmpty {
   display: grid;
-  grid-template-columns: 1fr auto auto auto auto;
-  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) max-content max-content 32px;
+  column-gap: 12px;
+  row-gap: 8px;
   align-items: center;
+  min-height: 58px;
   padding: 12px 13px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--surface-soft);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface-soft) 84%, var(--surface));
   color: var(--muted);
   font-size: 13px;
 }
 
+.subjectEmpty {
+  grid-template-columns: 1fr;
+}
+
+.subjectMain {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
 .subjectTable strong {
+  min-width: 0;
   color: var(--text);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.subjectCode,
+.subjectDuration {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  white-space: nowrap;
 }
 
 .subjectTable em {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--success) 11%, transparent);
   color: var(--success);
   font-style: normal;
   font-weight: 900;
+  white-space: nowrap;
 }
 
 .deleteButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: transparent;
   color: var(--danger, #d6282e);
   cursor: pointer;
@@ -376,7 +440,7 @@
 }
 
 .deleteButton:hover:not(:disabled) {
-  background: rgba(214, 40, 46, .1);
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
 }
 
 .deleteButton:disabled {
@@ -387,7 +451,7 @@
 .tableWrap {
   overflow-x: auto;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
 
 .table {
@@ -437,8 +501,8 @@
   place-items: center;
   padding: 14px;
   border: 1px dashed var(--border);
-  border-radius: 8px;
-  background: var(--surface-soft);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface-soft) 84%, var(--surface));
 }
 
 .search {
@@ -487,11 +551,20 @@
     white-space: nowrap;
   }
 
-  .workGrid,
   .metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .workGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .keyFormGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1280px) and (min-width: 1121px) {
   .keyFormGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -520,8 +593,17 @@
     padding: 18px;
   }
 
-  .subjectTable div {
+  .subjectRow,
+  .subjectEmpty {
     grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .subjectCode,
+  .subjectDuration,
+  .subjectTable em,
+  .deleteButton {
+    justify-self: start;
   }
 
   .search {

@@ -178,7 +178,7 @@ export default function RegisterPage() {
           </div>
 
           {error && <p className={styles.errorText}>{error}</p>}
-          {message && <p className={styles.errorText} style={{ color: '#047857' }}>{message}</p>}
+          {message && <p className={`${styles.errorText} ${styles.successText}`}>{message}</p>}
 
           <button type="submit" className={styles.submitBtn} disabled={loading}>
             Đăng ký

@@ -33,12 +33,21 @@ type QuestionOptionRecord = {
   label: string;
   content: string;
   image_url: string | null;
+  image_alt_text: string | null;
 };
 
 type TrueFalseItemRecord = {
   id: string;
   seq: number;
+  label: string | null;
   content: string;
+};
+
+type QuestionAssetRecord = {
+  kind: string;
+  url: string;
+  alt_text: string | null;
+  display_order: number;
 };
 
 type QuestionRecord = {
@@ -49,6 +58,7 @@ type QuestionRecord = {
   image_url: string | null;
   question_options?: QuestionOptionRecord[] | null;
   question_true_false_items?: TrueFalseItemRecord[] | null;
+  question_assets?: QuestionAssetRecord[] | null;
 };
 
 type SessionQuestionRecord = {
@@ -117,11 +127,13 @@ export type ExamQuestionOption = {
   label: string;
   content: string;
   imageUrl: string | null;
+  imageAltText: string | null;
 };
 
 export type ExamTrueFalseItem = {
   id: string;
   seq: number;
+  label: string | null;
   content: string;
 };
 
@@ -135,6 +147,7 @@ export type ExamSessionQuestion = {
   type: ExamQuestionType;
   content: string;
   imageUrl: string | null;
+  imageAltText: string | null;
   options: ExamQuestionOption[];
   trueFalseItems: ExamTrueFalseItem[];
 };
@@ -191,6 +204,10 @@ function mapRoom(record: PublishedRoomRecord): ExamRoomSummary {
 function mapQuestion(record: SessionQuestionRecord): ExamSessionQuestion | null {
   const question = one(record.questions);
   if (!question) return null;
+  const primaryImage = [...(question.question_assets ?? [])]
+    .filter((asset) => asset.kind === 'image')
+    .sort((a, b) => a.display_order - b.display_order)
+    .find((asset) => !question.image_url || asset.url === question.image_url);
 
   return {
     id: record.id,
@@ -202,6 +219,7 @@ function mapQuestion(record: SessionQuestionRecord): ExamSessionQuestion | null 
     type: question.type,
     content: question.content,
     imageUrl: question.image_url,
+    imageAltText: primaryImage?.alt_text ?? null,
     options: [...(question.question_options ?? [])]
       .sort((a, b) => a.seq - b.seq)
       .map((option) => ({
@@ -210,12 +228,14 @@ function mapQuestion(record: SessionQuestionRecord): ExamSessionQuestion | null 
         label: option.label,
         content: option.content,
         imageUrl: option.image_url,
+        imageAltText: option.image_alt_text,
       })),
     trueFalseItems: [...(question.question_true_false_items ?? [])]
       .sort((a, b) => a.seq - b.seq)
       .map((item) => ({
         id: item.id,
         seq: item.seq,
+        label: item.label,
         content: item.content,
       })),
   };
@@ -429,16 +449,24 @@ export async function fetchExamSessionData(
           type,
           content,
           image_url,
+          question_assets (
+            kind,
+            url,
+            alt_text,
+            display_order
+          ),
           question_options (
             id,
             seq,
             label,
             content,
-            image_url
+            image_url,
+            image_alt_text
           ),
           question_true_false_items (
             id,
             seq,
+            label,
             content
           )
         )

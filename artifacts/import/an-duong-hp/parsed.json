@@ -1,0 +1,740 @@
+{
+  "title": "6. KSCL THPT An Dương - Hải Phòng [ Thi thử TN THPT 2026 môn Toán ].pdf_by_PaddleOCR-VL-1.6",
+  "questions": [
+    {
+      "key": "I-1",
+      "part": "I",
+      "indexInPart": 1,
+      "type": "multiple_choice",
+      "content": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Tiệm cận ngang của đồ thị hàm số là đường thẳng có phương trình:",
+      "images": [
+        {
+          "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_0/imgs/img_in_image_box_343_394_846_895.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A31Z%2F-1%2F%2Fe33b63bd44f80fd6276189f3ccee4f78ca05e16233274a004762a31dfe548e11",
+          "alt": "Hình minh hoạ",
+          "scope": "question"
+        }
+      ],
+      "options": [
+        {
+          "label": "A",
+          "content": "x = -1"
+        },
+        {
+          "label": "B",
+          "content": "x = 1"
+        },
+        {
+          "label": "C",
+          "content": "y = 2"
+        },
+        {
+          "label": "D",
+          "content": "y = -2"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Cho hàm số $y = f(x)$ có đồ thị như hình vẽ. Tiệm cận ngang của đồ thị hàm số là đường thẳng có phương trình:\nA. x = -1.\nB. x = 1.\nC. y = 2.\nD. y = -2.\nLời giải \nTiêm cận ngang của đồ thị hàm số là: $y=2$.",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "I-2",
+      "part": "I",
+      "indexInPart": 2,
+      "type": "multiple_choice",
+      "content": "Cho hàm số y = f(x) có bảng biến thiên như sau\nHàm số đã cho đồng biến trên khoảng nào dưới đây?",
+      "images": [
+        {
+          "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_0/imgs/img_in_image_box_409_1036_959_1212.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A31Z%2F-1%2F%2F802a36444a4bf9f8c67cf0350cbf724fbe113ab2d688c027f5cc1788bc05c0c9",
+          "alt": "Hình minh hoạ",
+          "scope": "question"
+        }
+      ],
+      "options": [
+        {
+          "label": "A",
+          "content": "$ (-1;1) $"
+        },
+        {
+          "label": "B",
+          "content": "$ (-1;+\\infty) $"
+        },
+        {
+          "label": "C",
+          "content": "$ (0;1) $"
+        },
+        {
+          "label": "D",
+          "content": "$ (-1;0) $"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Cho hàm số y = f(x) có bảng biến thiên như sau\nHàm số đã cho đồng biến trên khoảng nào dưới đây?\nA. (-1;1). B. (-1;+\\infty). C. (0;1). D. (-1;0).\nLời giải \nTừ bảng biến thiên ta thấy hàm số đã cho động biến trên khoảng (0;1).",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "I-3",
+      "part": "I",
+      "indexInPart": 3,
+      "type": "multiple_choice",
+      "content": "Cho cấp số cộng $ (u_n) $ có số hàng đầu $ u_1 = 3 $ và công sai $ d = -4 $. Số hàng thứ năm của cấp số công là",
+      "images": [],
+      "options": [
+        {
+          "label": "A",
+          "content": "-3072"
+        },
+        {
+          "label": "B",
+          "content": "-13"
+        },
+        {
+          "label": "C",
+          "content": "-17"
+        },
+        {
+          "label": "D",
+          "content": "768"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Cho cấp số cộng $ (u_n) $ có số hàng đầu $ u_1 = 3 $ và công sai $ d = -4 $. Số hàng thứ năm của cấp số công là\nA. -3072. B. -13. C. -17. D. 768.\nLời giải\nSố hàng thứ năm của cấp số công là $ u_{5} = u_{1} + 4d = 3 + 4(-4) = -13 $.",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "I-4",
+      "part": "I",
+      "indexInPart": 4,
+      "type": "multiple_choice",
+      "content": "Cho một chất điểm chuyển động có phương trình $s = 2t^2 + 3t$ (t tính bằng giây, s tính bằng mét). Vận tốc của chất điểm tại thời điểm $t_0 = 2$ (giây) bằng",
+      "images": [],
+      "options": [
+        {
+          "label": "A",
+          "content": "$19(m/s)$"
+        },
+        {
+          "label": "B",
+          "content": "$22(m/s)$"
+        },
+        {
+          "label": "C",
+          "content": "$11(m/s)$"
+        },
+        {
+          "label": "D",
+          "content": "$9(m/s)$"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Cho một chất điểm chuyển động có phương trình $s = 2t^2 + 3t$ (t tính bằng giây, s tính bằng mét). Vận tốc của chất điểm tại thời điểm $t_0 = 2$ (giây) bằng\nA. $19(m/s)$. B. $22(m/s)$. C. $11(m/s)$. D. $9(m/s)$.\nLời giải\nTa có $ v(t)=s'(t)=4t+3 $.\nVận tốc của chất điểm tại thời điểm $ t_{0}=2 $ bằng $ v(2)=4.2+3=11 $ (m/s).",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "I-5",
+      "part": "I",
+      "indexInPart": 5,
+      "type": "multiple_choice",
+      "content": "Doanh thu bán hàng trong 20 ngày được lựa chọn ngẫu nhiên của một cửa hàng được ghi lại ở bảng sau (đơn vị: triệu đồng):\n<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>Doanh thu</td><td style='text-align: center; word-wrap: break-word;'>[5;7)</td><td style='text-align: center; word-wrap: break-word;'>[7;9)</td><td style='text-align: center; word-wrap: break-word;'>[9;11)</td><td style='text-align: center; word-wrap: break-word;'>[11;13)</td><td style='text-align: center; word-wrap: break-word;'>[13;15)</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>Số ngày</td><td style='text-align: center; word-wrap: break-word;'>2</td><td style='text-align: center; word-wrap: break-word;'>7</td><td style='text-align: center; word-wrap: break-word;'>7</td><td style='text-align: center; word-wrap: break-word;'>3</td><td style='text-align: center; word-wrap: break-word;'>1</td></tr></table>\nSố trung bình của mẫu số liệu trên thuộc khoảng nào trong các khoảng dưới đây?",
+      "images": [],
+      "options": [
+        {
+          "label": "A",
+          "content": "[11;13)"
+        },
+        {
+          "label": "B",
+          "content": "[13;15)"
+        },
+        {
+          "label": "C",
+          "content": "[9;11)"
+        },
+        {
+          "label": "D",
+          "content": "[7;9)"
+        }
+      ],
+      "optionCorrect": "C",
+      "statements": [],
+      "answer": null,
+      "explanation": "Doanh thu bán hàng trong 20 ngày được lựa chọn ngẫu nhiên của một cửa hàng được ghi lại ở bảng sau (đơn vị: triệu đồng):\n<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>Doanh thu</td><td style='text-align: center; word-wrap: break-word;'>[5;7)</td><td style='text-align: center; word-wrap: break-word;'>[7;9)</td><td style='text-align: center; word-wrap: break-word;'>[9;11)</td><td style='text-align: center; word-wrap: break-word;'>[11;13)</td><td style='text-align: center; word-wrap: break-word;'>[13;15)</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>Số ngày</td><td style='text-align: center; word-wrap: break-word;'>2</td><td style='text-align: center; word-wrap: break-word;'>7</td><td style='text-align: center; word-wrap: break-word;'>7</td><td style='text-align: center; word-wrap: break-word;'>3</td><td style='text-align: center; word-wrap: break-word;'>1</td></tr></table>\nSố trung bình của mẫu số liệu trên thuộc khoảng nào trong các khoảng dưới đây?\nA. [11;13). B. [13;15). $ \\underline{\\text{C.}} $ [9;11). D. [7;9).\nTa có, số trung bình của mẫu số liệu ghép nhóm đã cho là :\n $ \\overline{x} = \\frac{6.2 + 8.7 + 10.7 + 12.3 + 14.1}{2 + 7 + 7 + 3 + 1} = 9, 4 \\in [9; 11) $.\nLời giải",
+      "difficulty": null,
+      "flags": []
+    },
+    {
+      "key": "I-6",
+      "part": "I",
+      "indexInPart": 6,
+      "type": "multiple_choice",
+      "content": "Cho hình chóp S.ABCD có đày ABCD là hình chữ nhất với AD = a, cạnh bên SẠ vuông góc với đáy và SA = a√3. Số đo của góc nhị diện [S, DC, B] bằng:",
+      "images": [],
+      "options": [
+        {
+          "label": "A",
+          "content": "$ 90^{\\circ} $"
+        },
+        {
+          "label": "B",
+          "content": "$ 60^{\\circ} $"
+        },
+        {
+          "label": "C",
+          "content": "$ 30^{\\circ} $"
+        },
+        {
+          "label": "D",
+          "content": "$ 45^{\\circ} $"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Cho hình chóp S.ABCD có đày ABCD là hình chữ nhất với AD = a, cạnh bên SA vuông góc với đáy và SA = a $ \\sqrt{3} $. Số đo của góc nhị diện [S, DC, B] bằng:\nA. $ 90^{\\circ} $. B. $ 60^{\\circ} $. C. $ 30^{\\circ} $. D. $ 45^{\\circ} $.\nTa có $S\\in(SDC)$, $B\\in(ABCD)$, $(SCD)\\cap(ABCD)=CD$.\nCD ⊥ AD (giả thiết) suy ra CD ⊥ SD (Định lí ba đường vương góc).\nMặt khác, AD ⊥ CD (giả thiết).\nSuy ra $ [S, DC, B] = SDA $.\nXét tam giác vuông SAD có: $ \\tan SDA = \\frac{SA}{AD} = \\frac{a\\sqrt{3}}{a} = \\sqrt{3} $.\nVây SDA=60^{\\circ}.",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "I-7",
+      "part": "I",
+      "indexInPart": 7,
+      "type": "multiple_choice",
+      "content": "Cho hàm số y = f(x) có đồ thị như hình vẽ:\nKhi đó, $ \\lim_{x \\to +\\infty} f(x) $ bằng:",
+      "images": [
+        {
+          "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_1/imgs/img_in_image_box_404_571_766_908.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A33Z%2F-1%2F%2F46fdd7435abc98689336df6059a5b52a7ccd64ca8a88ceb8296749ec7fbd7462",
+          "alt": "Hình minh hoạ",
+          "scope": "question"
+        }
+      ],
+      "options": [
+        {
+          "label": "A",
+          "content": "-\\infty"
+        },
+        {
+          "label": "B",
+          "content": "+\\infty"
+        },
+        {
+          "label": "C",
+          "content": "1"
+        },
+        {
+          "label": "D",
+          "content": "-1"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Cho hàm số y = f(x) có đồ thị như hình vẽ:\nKhi đó, $ \\lim_{x \\to +\\infty} f(x) $ bằng:\nA. -\\infty. B. +\\infty. C. 1. D. -1.\nLời giải\nDựa vào hình ảnh đồ thị hàm số, ta có $ \\lim_{x \\to +\\infty} f(x) = -1 $.",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "I-8",
+      "part": "I",
+      "indexInPart": 8,
+      "type": "multiple_choice",
+      "content": "Nghiệm của phương trình $ \\sqrt{3} + 3 \\tan x = 0 $ là:",
+      "images": [],
+      "options": [
+        {
+          "label": "A",
+          "content": "$ x = \\frac{\\pi}{2} + k\\pi $ ( $ k \\in \\mathbb{Z} $)"
+        },
+        {
+          "label": "B",
+          "content": "$ x = -\\frac{\\pi}{6} + k\\pi $ ( $ k \\in \\mathbb{Z} $)"
+        },
+        {
+          "label": "C",
+          "content": "$ x = \\frac{\\pi}{3} + k\\pi $ ( $ k \\in \\mathbb{Z} $)"
+        },
+        {
+          "label": "D",
+          "content": "$ x = \\frac{\\pi}{2} + k2\\pi $ ( $ k \\in \\mathbb{Z} $)"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Nghiệm của phương trình $ \\sqrt{3} + 3 \\tan x = 0 $ là:\nA. $ x = \\frac{\\pi}{2} + k\\pi (k \\in \\mathbb{Z}) $.\nB. $ x = -\\frac{\\pi}{6} + k\\pi (k \\in \\mathbb{Z}) $.\nC. $ x = \\frac{\\pi}{3} + k\\pi (k \\in \\mathbb{Z}) $.\nD. $ x = \\frac{\\pi}{2} + k2\\pi (k \\in \\mathbb{Z}) $.\nLời giải\nTa có: $ \\sqrt{3} + 3 \\tan x = 0 \\Leftrightarrow \\tan x = -\\frac{\\sqrt{3}}{3} $\n $ \\Leftrightarrow \\tan x = \\tan\\left(-\\frac{\\pi}{6}\\right) $\n $ \\Leftrightarrow x = -\\frac{\\pi}{6} + k\\pi (k \\in \\mathbb{Z}) $.",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "I-9",
+      "part": "I",
+      "indexInPart": 9,
+      "type": "multiple_choice",
+      "content": "Cho hình lập phương $ ABCD \\cdot A'B'C'D' $. Mệnh đề nào sau đây sai?",
+      "images": [],
+      "options": [
+        {
+          "label": "A",
+          "content": "$ \\overrightarrow{AC} = \\overrightarrow{AB} + \\overrightarrow{AD} $"
+        },
+        {
+          "label": "B",
+          "content": "$ \\overrightarrow{AB} = \\overrightarrow{CD} $"
+        },
+        {
+          "label": "C",
+          "content": "$ \\left|\\overrightarrow{AB}\\right| = \\left|\\overrightarrow{CD}\\right| $"
+        },
+        {
+          "label": "D",
+          "content": "$ \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'} $"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Cho hình lập phương ABCD.A'B'C'D'. Mệnh đề nào sau đây sai?\nA. $ \\overrightarrow{AC} = \\overrightarrow{AB} + \\overrightarrow{AD} $. B. $ \\overrightarrow{AB} = \\overrightarrow{CD} $. C. $ \\left| \\overrightarrow{AB} \\right| = \\left| \\overrightarrow{CD} \\right| $. D. $ \\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{AA'} = \\overrightarrow{AC'} $.\nLời giải\nMệnh đề sai là: $ \\overrightarrow{AB} = \\overrightarrow{CD} $, $ \\overrightarrow{AB} $ và $ \\overrightarrow{CD} $ là hai vector đối nhau.",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "I-10",
+      "part": "I",
+      "indexInPart": 10,
+      "type": "multiple_choice",
+      "content": "Trong không gian với hệ tọa độ Oxyz, cho hình bình hành ABCD có $ A(2;1,-3) $, $ B(0,-2;2,C(4,-3;0)) $. Toạ độ điểm D là",
+      "images": [],
+      "options": [
+        {
+          "label": "A",
+          "content": "$ (2;0,-5) $"
+        },
+        {
+          "label": "B",
+          "content": "$ (6;0,-5) $"
+        },
+        {
+          "label": "C",
+          "content": "$ (2;0;5) $"
+        },
+        {
+          "label": "D",
+          "content": "$ (6;0;5) $"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Trong không gian với hệ tọa độ Oxyz, cho hình bình hành ABCD có $ A(2;1;-3) $, $ B(0,-2;2) $, $ C(4;-3;0) $. Toạ độ điểm D là\nA. (2;0,-5). B. (6;0,-5). C. (2;0;5). D. (6;0;5).\nLời giải\nGọi $D(x;y;z)$, vì $ABCD$ là hình bình hành nên ta có $\\overrightarrow{BA}=\\overrightarrow{CD}$, tức là\n$\\begin{cases}x-4=2\\\\y+3=3\\\\z=-5\\end{cases}$, suy ra $\\begin{cases}x=6\\\\y=0\\\\z=-5\\end{cases}$.\nVậy $D(6;0;-5)$.",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "I-11",
+      "part": "I",
+      "indexInPart": 11,
+      "type": "multiple_choice",
+      "content": "Tìm a đế hàm số $ \\log_a x $ (0 < a $ \\neq 1 $) có đồ thị là hình bên",
+      "images": [
+        {
+          "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_2/imgs/img_in_image_box_564_96_774_349.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A34Z%2F-1%2F%2F5d6ea6be3e87369c9aba5078df594ff0614dcab4660058c35f9fac4483d7a7ff",
+          "alt": "Hình minh hoạ",
+          "scope": "question"
+        }
+      ],
+      "options": [
+        {
+          "label": "A",
+          "content": "$ a=2 $"
+        },
+        {
+          "label": "B",
+          "content": "$ a=\\sqrt{2} $"
+        },
+        {
+          "label": "C",
+          "content": "$ a=-\\frac{1}{2} $"
+        },
+        {
+          "label": "D",
+          "content": "$ a=\\frac{1}{2} $"
+        }
+      ],
+      "optionCorrect": "B",
+      "statements": [],
+      "answer": null,
+      "explanation": "Tìm a đế hàm số $ \\log_a x $ (0 < a $ \\neq $ 1) có đồ thị là hình bên\nA. $ a = 2 $. $ \\underline{\\text{B.}} $ $ a = \\sqrt{2} $. C. $ a = -\\frac{1}{2} $. D. $ a = \\frac{1}{2} $.\nLời giải\nĐồ thị hàm số đi qua điểm (2;2)⇒logₐ 2=2⇒a²=2⇒a=√2.",
+      "difficulty": null,
+      "flags": []
+    },
+    {
+      "key": "I-12",
+      "part": "I",
+      "indexInPart": 12,
+      "type": "multiple_choice",
+      "content": "Nghiệm của phương trình $ \\log_{2} x = 3 $ là",
+      "images": [],
+      "options": [
+        {
+          "label": "A",
+          "content": "x = 2"
+        },
+        {
+          "label": "B",
+          "content": "x = 9"
+        },
+        {
+          "label": "C",
+          "content": "x = 8"
+        },
+        {
+          "label": "D",
+          "content": "x = 3"
+        }
+      ],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Nghiệm của phương trình $ \\log_{2} x = 3 $ là\nA. x = 2. B. x = 9. C. x = 8. D. x = 3.\nTa có $ \\log_{2} x = 3 $ suy ra $ x = 2^{3} = 8 $.",
+      "difficulty": null,
+      "flags": [
+        "MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "II-1",
+      "part": "II",
+      "indexInPart": 1,
+      "type": "true_false",
+      "content": "Cho hàm số y = f(x) = ax³ + bx² + cx + d có đồ thị như hình vẽ dưới đây:",
+      "images": [
+        {
+          "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_2/imgs/img_in_image_box_391_686_789_1013.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A34Z%2F-1%2F%2Fd5fccb7dc4c6a76f91939ec3659b2326cd6b29e7e95f3843f37365d8b7d1a6a0",
+          "alt": "Hình minh hoạ",
+          "scope": "question"
+        }
+      ],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [
+        {
+          "label": "a",
+          "content": "$ 2a + 3b + c = 9 $.",
+          "correct": false
+        },
+        {
+          "label": "b",
+          "content": "Hàm số đạt cực tiêu tại x = 1.",
+          "correct": false
+        },
+        {
+          "label": "c",
+          "content": "Tổng giá trị lớn nhất, giá trị nhỏ nhất của hàm số trên đoạn $ [-1;0] $ bằng 3.",
+          "correct": true
+        },
+        {
+          "label": "d",
+          "content": "Hàm số đồng biến trên khoảng (-∞; -1).",
+          "correct": false
+        }
+      ],
+      "answer": null,
+      "explanation": "Cho hàm số y = f(x) = ax³ + bx² + cx + d có đồ thị như hình vẽ dưới đây:\na) $ 2a + 3b + c = 9 $.\nHàm số đạt cực tiêu tại x = 1.\nc) Tổng giá trị lớn nhất, giá trị nhỏ nhất của hàm số trên đoạn $ [-1;0] $ bằng 3.\nd) Hàm số đồng biến trên khoảng (-∞; -1).\nĐồ thị hàm số đi qua các điểm (-2;1), (-1;2) và (0;1) và có điểm cực tiểu (0;1) nên ta có hệ phương trình:\n $ \\begin{cases}\n-8a + 4b - 2c + d = 1 \\\\\n-a + b - c + d = 2 \\\\\nc = 0 \\\\\nd = 1\n\\end{cases} \\Leftrightarrow \\begin{cases}\na = 1 \\\\\nb = 2 \\\\\nc = 0 \\\\\nd = 1\n\\end{cases} $. Khi đó hàm số có dạng $ y = x^3 + 2x^2 + 1 $.\na) Sai. $ 2a + 3b + c = 8 $.\nb) Sai. Hàm số đạt cực tiểu tại x = 0\nc) Đúng. Trên đoạn [−1;0], giá trị lớn nhất bằng 2, giá trị nhỏ nhất bằng 1. Suy ra tổng giá trị lớn nhất, giá trị nhỏ nhất trên đoạn [−1;0] bằng 3.\nd) Sai.",
+      "difficulty": null,
+      "flags": []
+    },
+    {
+      "key": "II-2",
+      "part": "II",
+      "indexInPart": 2,
+      "type": "true_false",
+      "content": "Cho hình lăng trụ đứng ABC. A'B'C' có đáy ABC là tam giác vuông tại A. Gọi E, F lần lượt là trung điểm của AB và AA'. Cho biết AB = 2, BC = $ \\sqrt{13} $, CC' = 4.",
+      "images": [],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [
+        {
+          "label": "a",
+          "content": "Thế tích khối lăng trụ ABC. A'B'C' bằng 8.",
+          "correct": null
+        },
+        {
+          "label": "b",
+          "content": "Khoảng cách giữa hai đường thẳng A'C và FE bằng $ \\frac{6}{7} $",
+          "correct": null
+        },
+        {
+          "label": "c",
+          "content": "Đường thẳng AB vương góc với đường thẳng AC'",
+          "correct": null
+        },
+        {
+          "label": "d",
+          "content": "Côn sân của góc giữa đường thẳng A'C và mặt phẳng đáy (ABC) bằng $ \\frac{3}{5} $.",
+          "correct": null
+        }
+      ],
+      "answer": null,
+      "explanation": "Cho hình lăng trụ đứng ABC. A'B'C' có đáy ABC là tam giác vuông tại A. Gọi E, F lần lượt là trung điểm của AB và AA'. Cho biết AB = 2, BC = $ \\sqrt{13} $, CC' = 4.\na) Thế tích khối lăng trụ ABC. A'B'C' bằng 8.\nKhoảng cách giữa hai đường thẳng A'C và FE bằng $ \\frac{6}{7} $\nĐường thẳng AB vương góc với đường thẳng AC'\nd) Côn của góc giữa đường thẳng A'C và mặt phẳng đáy (ABC) bằng $ \\frac{3}{5} $.\n<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>2</td><td style='text-align: center; word-wrap: break-word;'>Giải chi tiết( giải thích)</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>a) S</td><td style='text-align: center; word-wrap: break-word;'></td></tr><tr><td style='text-align: center; word-wrap: break-word;'>Tam giác ABC vuông tại $ A \\Rightarrow AC = \\sqrt{BC^{2} - AB^{2}} = \\sqrt{13 - 4} = 3 $.\\n $ \\Rightarrow V_{ABC,A'B'C'} = \\frac{1}{2} AB AC A'A' = \\frac{1}{2} \\cdot 2.3.4 = 12 $.</td><td style='text-align: center; word-wrap: break-word;'></td></tr><tr><td style='text-align: center; word-wrap: break-word;'>Kẻ AH $ \\perp $ BC, AK $ \\perp $ A'H.\\n $ \\begin{cases} BC \\perp AH \\\\ BC \\perp A'A \\end{cases} $ $ \\Rightarrow BC \\perp (A'AH) \\Rightarrow BC \\perp AK $.\\n $ AK \\perp A'H $\\n $ AK \\perp BC $\\n $ \\Rightarrow AK \\perp (A'BC) $.</td><td style='text-align: center; word-wrap: break-word;'></td></tr><tr><td style='text-align: center; word-wrap: break-word;'>b) S\\n $ d(A'C, FE) = d(FE, (A'BC)) = d(E, (A'BC)) = \\frac{1}{2} d(A, (A'BC)) = \\frac{1}{2} AK $.</td><td style='text-align: center; word-wrap: break-word;'></td></tr><tr><td style='text-align: center; word-wrap: break-word;'>$ \\frac{1}{AK^{2}} = \\frac{1}{AC^{2}} + \\frac{1}{AB^{2}} + \\frac{1}{A'A^{2}} = \\frac{1}{9} + \\frac{1}{4} + \\frac{1}{16} = \\frac{61}{144} \\Rightarrow AK = \\frac{12}{\\sqrt{61}} $.</td><td style='text-align: center; word-wrap: break-word;'></td></tr><tr><td style='text-align: center; word-wrap: break-word;'>$ \\Rightarrow d(A'C, FE) = \\frac{6}{\\sqrt{61}} $.</td><td style='text-align: center; word-wrap: break-word;'></td></tr><tr><td style='text-align: center; word-wrap: break-word;'>c) D\\n $ \\begin{cases} AB \\perp AC \\\\ AB \\perp A'A \\end{cases} $ $ \\Rightarrow AB \\perp (A'ACC') \\Rightarrow AB \\perp AC' $.</td><td style='text-align: center; word-wrap: break-word;'></td></tr><tr><td style='text-align: center; word-wrap: break-word;'>d) ∁D</td><td style='text-align: center; word-wrap: break-word;'>Ta có $ A'A \\perp (ABC) \\Rightarrow AC $ là hình chiếu vuông góc của $ A'C $ trên mặt phẳng (ABC). \\n $ \\Rightarrow $ Góc giữa đường thẳng $ A'C $ và mặt phẳng đáy (ABC) là $ A'CA $. \\n $ \\Rightarrow $ $ \\cos A'CA = \\frac{AC}{A'C} = \\frac{3}{\\sqrt{9+16}} = \\frac{3}{5} $.</td></tr></table>",
+      "difficulty": null,
+      "flags": [
+        "TF_a_NEEDS_REVIEW",
+        "TF_b_NEEDS_REVIEW",
+        "TF_c_NEEDS_REVIEW",
+        "TF_d_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "II-3",
+      "part": "II",
+      "indexInPart": 3,
+      "type": "true_false",
+      "content": "Hình về sau mô tả vị trí của máy bay vào thời điểm 9h30 phút. Biết các đơn vị trên hình tính theo đơn vị kim.",
+      "images": [
+        {
+          "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_3/imgs/img_in_image_box_456_154_842_495.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A35Z%2F-1%2F%2F022065493f1a11212fdfabf4499120b894c99a2d7c28557ca6caf8f350b15644",
+          "alt": "Hình minh hoạ",
+          "scope": "question"
+        }
+      ],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [
+        {
+          "label": "a",
+          "content": "Phi công để máy bay ở chế độ tự động với vận tốc theo hướng động là 750km/h, độ cao không đổi. Biết rằng gió thổi theo hướng động với vận tốc 10m/s. Giả sử vận tốc và hướng gió không đổi thì lúc 10h30phút máy bay ở tọa độ (150;1086;9).",
+          "correct": true
+        },
+        {
+          "label": "b",
+          "content": "Tọa độ của máy bay vào lúc 9h30 phút là: (300;150;9).",
+          "correct": false
+        },
+        {
+          "label": "c",
+          "content": "Vào thời điểm 9h30 phút máy bay ở độ cao 9km.",
+          "correct": true
+        },
+        {
+          "label": "d",
+          "content": "Sau khi bay đến vị trí lúc 10h30 thì máy bay ngược lại với vận tốc 800km/h với độ cao không đổi, biết lúc đó trời lặng gió thì lúc 11h máy bay ở toa độ (686;150;9).",
+          "correct": false
+        }
+      ],
+      "answer": null,
+      "explanation": "Hình về sau mô tả vị trí của máy bay vào thời điểm 9h30 phút. Biết các đơn vị trên hình tính theo đơn vị kim.\na) Phi công để máy bay ở chế độ tự động với vận tốc theo hướng động là 750km/h, độ cao không đổi. Biết rằng gió thổi theo hướng động với vận tốc 10m/s. Giả sử vận tốc và hướng gió không đổi thì lúc 10h30phút máy bay ở tọa độ (150;1086;9).\nb) Tọa độ của máy bay vào lúc 9h30 phút là: (300;150;9).\nc) Vào thời điểm 9h30 phút máy bay ở độ cao 9km.\nd) Sau khi bay đến vị trí lúc 10h30 thì máy bay ngược lại với vận tốc 800km/h với độ cao không đổi, biết lúc đó trời lặng gió thì lúc 11h máy bay ở tọa độ (686;150;9).\nLời giải\na) Vận tốc gió 10m/s = 36km/h\nQuãng đường máy bay được là: 750+36=786km\nDo đó tòa độ của máy bay lúc 10h30phút là: (150;1086;9).\nSuy ra ý a) Đúng.\nb) Nhin vào hình vẽ ta thấy máy bay ở tọa độ (150;300;9).\nSuy ra ý b) Sai.\nc) Dựa vào hình vẽ ta thấy máy bay đang ở độ cao 9km.\nSuy ra ý c) Đúng.\nd) Quãng đường máy bay bay được là: 800.$\\frac{1}{2}=400km$, theo hướng nam trong nửa giờ. Do đó tọa độ máy bay là (150;686;9).\nSuy ra ý d) Sai.",
+      "difficulty": null,
+      "flags": []
+    },
+    {
+      "key": "II-4",
+      "part": "II",
+      "indexInPart": 4,
+      "type": "true_false",
+      "content": "Một doanh nghiệp kinh doanh sản xuất đồng hồ có đồ thị hàm tổng chi phí theo số sản phẩm, là một phần của đồ thị hàm số $ f(x)=\\frac{ax^2+bx+c}{x+e} $ như hình vẽ (mỗi đơn vị trên trục hoành tương ứng với 100 sản phẩm, mỗi đơn vị trên trục tung tương ứng với 1000 USD). Biết rằng tầm đối xứng của đồ thị hàm số đó là điểm $ I\\left(-1;\\frac{2}{3}\\right) $ và đường tiệm cận xiên của đồ thị đó đi qua điểm $ B(3;2) $.",
+      "images": [
+        {
+          "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_3/imgs/img_in_image_box_427_1065_765_1332.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A35Z%2F-1%2F%2F2ec116cb28088bd3ae5d79f2344a36a9b36e9ffb8ac88c4c2cb9ed1ca9c29a24",
+          "alt": "Hình minh hoạ",
+          "scope": "question"
+        }
+      ],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [
+        {
+          "label": "a",
+          "content": "Hàm số đồng biến trên khoảng (0;+∞).",
+          "correct": false
+        },
+        {
+          "label": "b",
+          "content": "Đồ thị hàm số có đường tiệm cận đứng là x = 1.",
+          "correct": false
+        },
+        {
+          "label": "c",
+          "content": "Hàm số có thể viết lại dưới dạng $f(x)=\\frac{1}{3}x+1+\\frac{d}{x+1}$, với $d$ là số thực thuộc $\\mathbb{R}$.",
+          "correct": true
+        },
+        {
+          "label": "d",
+          "content": "Theo khảo sát, tổng doanh thu của doanh nghiệp này được mô tả bằng hàm số $ R(x) = x^{2} + 2x $ và",
+          "correct": false
+        },
+        {
+          "label": "e",
+          "content": "lợi nhuận thu về khi bán 200 sản phẩm là 5250 USD. Khi chi phí theo số sản phẩm đạt giá trị nhỏ nhất, số sản phẩm sản xuất được (làm tròn đến hàng đơn vị) là 25 sản phẩm.",
+          "correct": null
+        }
+      ],
+      "answer": null,
+      "explanation": "Một doanh nghiệp kinh doanh sản xuất đồng hồ có đồ thị hàm tổng chi phí theo số sản phẩm, là một phần của đồ thị hàm số $ f(x)=\\frac{ax^2+bx+c}{x+e} $ như hình vẽ (mỗi đơn vị trên trục hoành tương ứng với 100 sản phẩm, mỗi đơn vị trên trục tung tương ứng với 1000 USD). Biết rằng tấm đối xứng của đồ thị hàm số đó là điểm $ I\\left(-1;\\frac{2}{3}\\right) $ và đường tiệm cận xiên của đồ thị đó đi qua điểm $ B(3;2) $.\nHàm số đồng biến trên khoảng (0;+∞).\nĐồ thị hàm số có đường tiêm cận đứng là x = 1.\nc) Hàm số có thể viết lại dưới dạng $f(x)=\\frac{1}{3}x+1+\\frac{d}{x+1}$, với $d$ là số thực thuộc $\\mathbb{R}$.\nd) Theo khảo sát, tổng doanh thu của doanh nghiệp này được mô tả bằng hàm số $ R(x) = x^{2} + 2x $ và lợi nhuận thu về khi bán 200 sản phẩm là 5250 USD. Khi chi phí theo số sản phẩm đạt giá trị nhỏ nhất, số sản phẩm sản xuất được (làm tròn đến hàng đơn vị) là 25 sản phẩm.\nLời giải\na) Sai.\nDựa vào hình dáng đồ thị ta thấy đồ thị hàm số không động biến trên khoảng (0;+∞).\nb) Sai.\nTâm đối xứng $I\\left(-1;\\frac{2}{3}\\right)$ là giao điểm của hai đường tiệm cận, do đó tiệm cận đứng của đồ thị hàm số là $x=-1$.\nc) Đúng.\nĐồ thị hàm số $ f(x)=\\frac{ax^2+bx+c}{x+e} $ có đường tiệm cận đứng x=-e suy ra e=1.\nGọi phương trình đường tiệm cận xiên của đồ thị hàm số $f(x)$ là $(d)$: $y = kx + m$.\nTheo giả thiết ta có (d) đi qua hai điểm $ I\\left(-1;\\frac{2}{3}\\right) $ và $ B(3;2) $ nên ta có hệ phương trình\n $$ \\begin{cases}-k+m=\\frac{2}{3}\\Leftrightarrow\\begin{cases}k=\\frac{1}{3}\\\\m=1\\end{cases}\\Rightarrow(d):y=\\frac{1}{3}x+1.\\end{cases} $$ \nDo đó hàm số $f(x)=\\frac{ax^2+bx+c}{x+e}$ được viết lại dưới dạng $f(x)=\\frac{1}{3}x+1+\\frac{d}{x+1}$.\nd) Sai.\nGọi $P(x)$ là hàm lợi nhuận.\nTa có $ P(x)=R(x)-f(x)=x^{2}+2x-\\frac{1}{3}x-1-\\frac{d}{x+1} $.\nTheo giả thiết, lợi nhuận thu về khi bán 200 sản phẩm là 5250 USD suy ra (p(2)=5,25).\nDo đó $ \\frac{19}{3} - \\frac{d}{3} = 5, 25 \\Rightarrow d = \\frac{13}{4} = 3, 25 $.\nSuy ra $ f(x)=\\frac{1}{3}x+1+\\frac{3,25}{x+1} $\nTa có $ f'(x)=\\frac{1}{3}-\\frac{3,25}{(x+1)^2} $; $ f'(x)=0 \\Leftrightarrow \\begin{bmatrix} x=\\frac{-\\sqrt{39}}{2}-1(loai) \\\\ x=\\frac{\\sqrt{39}}{2}-1(nhai) \\end{bmatrix} $.\nBăng biến thiên\n<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>x</td><td style='text-align: center; word-wrap: break-word;'>0</td><td style='text-align: center; word-wrap: break-word;'>$ \\frac{\\sqrt{39}-2}{2} $</td><td style='text-align: center; word-wrap: break-word;'>+\\infty</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>$ f&#x27;(x) $</td><td style='text-align: center; word-wrap: break-word;'>-</td><td style='text-align: center; word-wrap: break-word;'>0</td><td style='text-align: center; word-wrap: break-word;'>+</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>$ f(x) $</td><td style='text-align: center; word-wrap: break-word;'></td><td style='text-align: center; word-wrap: break-word;'></td><td style='text-align: center; word-wrap: break-word;'>+\\infty</td></tr></table>\nVậy số sản phẩm khi chi phí đạt giá trị nhỏ nhất là $ \\frac{\\sqrt{39}-2}{2} $.100 ≈ 212 sản phẩm.",
+      "difficulty": null,
+      "flags": [
+        "TF_e_NEEDS_REVIEW",
+        "STATEMENTS_PARSED_5"
+      ]
+    },
+    {
+      "key": "III-1",
+      "part": "III",
+      "indexInPart": 1,
+      "type": "short_answer",
+      "content": "Cho hình chóp S.ABCD có đấy ABCD là hình thoi cạnh a, ADC = 60°, SA ⊥ (ABCD), SA = $ \\sqrt{3}a $\n. G là trọng tam tam giác SAC. Khoảng cách từ G đến (SCD) bằng: $ \\frac{a\\sqrt{m}}{n} $. Tính m+n?",
+      "images": [],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": null,
+      "explanation": "Cho hình chóp S.ABCD có đáy ABCD là hình thoi cạnh a, ADC=60°, SA⊥(ABCD).\nSA= $ \\sqrt{3}a $. G là trọng tam tam giác SAC. Khoảng cách từ G đến (SCD) bằng: $ \\frac{a\\sqrt{m}}{n} $.\nTính $ m+n $?\nGọi M là trung điểm của CD $ \\Rightarrow $ AM $ \\perp $ CD (Tam giác ACD đều).\nDụng AH ⊥ SM ⇒ AH ⊥ (SCD) ⇒ $ d(A, (SCD)) = AH $.\n $$ Ta\\ c\\acute{o}\\ \\frac{1}{AH^{2}}=\\frac{1}{AM^{2}}+\\frac{1}{SA^{2}}=\\frac{1}{\\left(\\frac{a\\sqrt{3}}{2}\\right)^{2}}+\\frac{1}{\\left(a\\sqrt{3}\\right)^{2}}=\\frac{5}{3a^{2}}\\ \\Rightarrow\\ AH=\\frac{a\\sqrt{15}}{5}. $$ \n $$ \\Rightarrow d\\big(G,\\big(SCD\\big)\\big)=\\frac{1}{3}d\\big(A,\\big(SCD\\big)\\big)=\\frac{a\\sqrt{15}}{15}\\Rightarrow m=n=15\\Rightarrow m+n=30. $$",
+      "difficulty": null,
+      "flags": [
+        "SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "key": "III-2",
+      "part": "III",
+      "indexInPart": 2,
+      "type": "short_answer",
+      "content": "Trọng lực $\\overrightarrow{P}$ là lực hấp dẫn do Trái Đất tác dụng lên một vật được tính bởi công thức $\\overrightarrow{P}=mg$, trong đó $m$ là khối lượng của vật (đơn vị: kg), $\\overrightarrow{g}$ là vectơ gia tốc rơi tự do, có hướng đi xuống và có độ lớn $g=9,8m/s^{2}$. Xác định độ lớn của trọng lực (đơn vị: N) tác dụng lên quả bóng có khối lượng 450 gam (làm tròn đến hàng phần trăm).",
+      "images": [],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": "4,41",
+      "explanation": "Trọng lực $P$ là lực hấp dẫn do Trái Đất tác dụng lên một vật được tính bởi công thức $\\vec{P} = mg$, trong đó $m$ là khối lượng của vật (đơn vị: kg), $\\vec{g}$ là vector gia tốc rơi tự do, có hướng đi xuống và có độ lớn $g = 9,8m/s^{2}$. Xác định độ lớn của trọng lực (đơn vị: N) tác dụng lên quả bóng có khối lượng 450 gam (làm tròn đến hàng phần trăm).\nLời giải\nĐáp số: 4,41\nQuả bóng có khối lượng m = 450 (gam) = 0,45 (kg).\nDo $ \\vec{P} = m\\vec{g} \\Rightarrow |\\vec{P}| = m|\\vec{g}| = 0, 45.9, 8 \\approx 4, 41(N) $.",
+      "difficulty": null,
+      "flags": []
+    },
+    {
+      "key": "III-3",
+      "part": "III",
+      "indexInPart": 3,
+      "type": "short_answer",
+      "content": "Để chặn đường hành lang hình chữ L, người ta dùng một que sào thắng dài đặt kín những điểm chặn với hành lang (như hình vẽ). Biết $ a = 24, b = 3 $. Hỏi cái sào thoả mã điều kiện trên có chiều dài tối thiểu là bao nhiêu? ( kết quả làm tròn đến hàng phần chục).",
+      "images": [
+        {
+          "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_4/imgs/img_in_image_box_455_612_844_919.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A37Z%2F-1%2F%2F4088a0ff077738da1e26fbd58f9b47f3c799e19672e40a9c68556070a21ee3f5",
+          "alt": "Hình minh hoạ",
+          "scope": "question"
+        }
+      ],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": "33,5",
+      "explanation": "Để chặn đường hành lang hình chữ L, người ta dùng một que sào thắng dài đặt kín những điểm chạn với hành lang (như hình vẽ). Biết $a=24,b=3$. Hỏi cái sào thoả mã điều kiện trên có chiều dài tối thiểu là bao nhiêu? ( kết quả làm tròn đến hàng phần chục).\nLời giải \nĐáp án: 33,5.\nĐặt các điểm như hình vẽ.\nĐặt $ DF = x, x > 0 $.\nTa có $ \\Delta ADF $ đồng dạng với $ \\Delta BED $ nên $ \\frac{EB}{ED} = \\frac{AF}{DF} \\Rightarrow EB = \\frac{AB}{x} $.\nGọi l là chiều dài của que sào, ta có $ l^{2} = AB^{2} = (x + b)^{2} + \\left(a + \\frac{ab}{x}\\right)^{2} $.\nXét hàm số:\n $$ \\begin{aligned}&f(x)=(x+b)^{2}+\\left(a+\\frac{ab}{x}\\right)^{2}\\\\ &\\Rightarrow f^{\\prime}(x)=2(x+b)+2\\left(a+\\frac{ab}{x}\\right).-\\frac{ab}{x^{2}}=2(x+b)\\left(1-\\frac{a^{2}b}{x^{3}}\\right)=0\\\\ &\\Leftrightarrow x=\\sqrt[2]{a^{2}b}=12.\\\\ \\end{aligned} $$ \nVậy giá trị nhỏ nhất của que sào là: $ l = \\sqrt{1125} \\approx 33,5 $.",
+      "difficulty": null,
+      "flags": []
+    },
+    {
+      "key": "III-4",
+      "part": "III",
+      "indexInPart": 4,
+      "type": "short_answer",
+      "content": "Trong cuộc gặp mặt dặn dò trước khi lên đường tham gia kì thi học sinh giỏi, có 10 bạn trong đội tuyển gồm 2 bạn đến từ lớp 12A, 3 bạn từ lớp 12B, 5 bạn còn lại đến từ 5 lớp khác (mỗi lớp một bạn). Thầy giáo xếp ngẫu nhiên các bạn kể trên ngồi vào một bàn dài có 10 ghế mà mỗi bên có 5 ghế xếp đối diện nhau. Xác suất để không có học sinh nào cùng lớp ngồi đối diện nhau bằng $ \\frac{a}{b} $ (với $ \\frac{a}{b} $ là phân số tối giản). Tính $ a-b $.",
+      "images": [],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": "-25",
+      "explanation": "Trong cuộc gặp mặt đặn dò trước khi lên đường tham gia kì thi học sinh giỏi, có 10 bạn trong đội tuyển gồm 2 bạn đến từ lớp 12A, 3 bạn từ lớp 12B, 5 bạn còn lại đến từ 5 lớp khác (mỗi lớp một bạn). Thấy giáo xếp ngẫu nhiên các bạn kể trên ngồi vào một bàn dài có 10 ghế mà mỗi bên có 5 ghế xếp đối diện nhau. Xác suất để không có học sinh nào cùng lớp ngồi đối diện nhau bằng $ \\frac{a}{b} $ (với $ \\frac{a}{b} $ là phân số tối giản). Tính $ a-b $.\nLời giải\nĐáp án: -25.\nSố cách xếp 10 bạn học sinh trong đội tuyển thi HSG vào một bản dài mà mỗi bên có 5 ghế đối diện nhau là $ n(\\Omega) = 10! $.\nXét các biến cố:\nA : \"Có học sinh cùng lớp ngồi đối diện nhau\".\nA₁ : \" Học sinh lớp 12A ngồi đôi diện nhau\".\nA₂ : \"Học sinh lớp 12B ngồi đối diện nhau\".\n $ A_{1} \\cap A_{2} : \\text{ \"Học sinh 12A ngồi đối diện nhau và học sinh 12B ngồi đối diện nhau\"}. $\n $$ \\Rightarrow A=A_{1}\\cup A_{2}\\Rightarrow n\\left(A\\right)=n\\left(A_{1}\\right)+n\\left(A_{2}\\right)-n\\left(A_{1}\\cap A_{2}\\right). $$ \nSắp xếp 2 học sinh lớp 12A ngồi vào hai ghế đối diện nhau, hoán đổi vị trí của 2 học sinh, sau đó sắp xếp 8 học sinh còn lại là: $ n(A_1) = C_5^1.2!.8! $.\nTừ 3 học sinh lớp 12B, chọn ra 2 học sinh sắp xếp 2 học sinh này ngồi vào hai ghế đối diện, sau đó sắp xếp 8 học sinh còn lại là: $ n(A_2) = A_3^2 \\cdot C_5^1 \\cdot 8! $.\nSự kiện cả 12A và 12B đều có một cặp ngồi đối diện (các cặp ghế phải khác nhau):\nChọn cặp ghế cho 12A: 5 cách.\nChọn cặp ghế khác cho 12B: còn 4 cách.\nChọn 2 trong 3 học sinh 12B để tạo cặp đối diện: $ C_{3}^{2}=3 $\nSắp xếp trong mỗi cặp cho 12A và cho 12B là 2!.\nCác 6 học sinh còn lại sắp xếp vào 6 ghế còn lại là 6!\nDo đó $ n(A_1 \\cap A_2) = 5.4.3.2! .2! .6! $ suy ra $ n(A) = n(A_1) + n(A_2) - n(A_1 \\cap A_2) = 1440000 $.",
+      "difficulty": null,
+      "flags": []
+    },
+    {
+      "key": "III-5",
+      "part": "III",
+      "indexInPart": 5,
+      "type": "short_answer",
+      "content": "Mảnh đất vườn của nhà anh Điệp có một phần ranh giới cũng là một phần đường cong (C):\n $ y=\\frac{x+a}{x+b} $, bao quanh nó là sông nước. Với hệ trục tọa độ Oxy, thích hợp, đơn vị trên mỗi trục là\n10 mét thì đường cong (C) đi qua điểm (2; 3) và có đường tiệm cận đứng x=1. Hàng ngày anh Điệp phải dùng thuyền máy để vận chuyển trái cây từ khu vườn của mình đến hai tuyến đường\n $ \\Delta_{1}:2x+y-4=0 $ và $ \\Delta_{2}:x+2y-2=0 $ cho những người lái buôn từ nơi khác đến. Anh Điệp cần xác định một vị trí $ M(x_{0};y_{0}) $ thuộc khu vườn của mình để tổng các khoảng cách từ vị trí M đó đến hai tuyến đường $ \\Delta_{1} $, $ \\Delta_{2} $ là bé nhất. Hỏi khoảng cách từ vị trí được chọn làm gốc tọa độ đến điểm M là bao nhiêu mét (làm tròn đến hàng phần chục)?",
+      "images": [
+        {
+          "url": "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d3984c7c-575f-4bd8-a739-133fe0d19028/markdown_0/imgs/img_in_image_box_302_66_887_519.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A15%3A10Z%2F-1%2F%2Fa5112ee21f603ea088eff148e36276e597f215bbb62fe66336c3e0d2ce610272",
+          "alt": "Hình minh hoạ",
+          "scope": "question"
+        }
+      ],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": "34,1",
+      "explanation": "Mảnh đất vườn của nhà anh Điệp có một phần ranh giới cũng là một phần đường cong (C):\n $ y=\\frac{x+a}{x+b} $, bao quanh nó là sông nước. Với hệ trục tọa độ Oxy, thích hợp, đơn vị trên mỗi trục là\n10 mét thì đường cong (C) đi qua điểm (2; 3) và có đường tiệm cận đứng x=1. Hàng ngày anh Điệp phải dùng thuyền máy để vận chuyển trái cây từ khu vườn của mình đến hai tuyến đường\n $ \\Delta_{1}:2x+y-4=0 $ và $ \\Delta_{2}:x+2y-2=0 $ cho những người lái buôn từ nơi khác đến. Anh Điệp cần xác định một vị trí $ M(x_{0};y_{0}) $ thuộc khu vườn của mình để tổng các khoảng cách từ vị trí M đó đến hai tuyến đường $ \\Delta_{1} $, $ \\Delta_{2} $ là bé nhất. Hỏi khoảng cách từ vị trí được chọn làm gốc tọa độ đến điểm M là bao nhiêu mét (làm tròn đến hàng phần chục)?\nLời giải \nĐáp án: 34,1\nĐô thị hàm số có tiệm cận đứng x = -b = 1 ⇄ b = -1.\nKhi đó đồ thị ham sổ y = $ \\frac{x+a}{x-1} $ qua (2; 3) $ \\Rightarrow $ 3 = $ \\frac{2+a}{2-1} $ $ \\Rightarrow $ a = 1; hàm sổ là y = $ \\frac{x+1}{x-1} $ (C).\nĐể khoảng cách từ điểm M thuộc khu vườn đến hai đường thẳng là nhỏ nhất thì điểm M phải thuộc đồ thị hàm số.\nGọi $M\\left(x_{0};\\frac{x_{0}+1}{x_{0}-1}\\right)\\in(C)$, $x_{0}>1$. Tổng khoảng cách từ $M$ đến hai đường thẳng $\\Delta_{1}$, $\\Delta_{2}$ là\n $$ d=d\\left(M,\\Delta_{1}\\right)+d\\left(M,\\Delta_{2}\\right)=\\frac{\\left|2x_{0}+\\frac{x_{0}+1}{x_{0}-1}-4\\right|}{\\sqrt{5}}+\\frac{\\left|x_{0}+2\\cdot\\frac{x_{0}+1}{x_{0}-1}-2\\right|}{\\sqrt{5}}; $$ \n $$ \\sqrt{5}d=\\left|\\frac{2x_{0}^{2}-5x_{0}+5}{x_{0}-1}\\right|+\\left|\\frac{x_{0}^{2}-x_{0}+4}{x_{0}-1}\\right|=\\frac{2x_{0}^{2}-5x_{0}+5}{x_{0}-1}+\\frac{x_{0}^{2}-x_{0}+4}{x_{0}-1} $$ \n(vi $ \\begin{cases} 2x_{0}^{2}-5x_{0}+5>0 \\\\ x_{0}-1>0 \\\\ x_{0}^{2}-x_{0}+4>0 \\end{cases} $, $ \\forall x_{0}>1 $).)\nĐặt $ \\sqrt{5}d = \\frac{3x_0^2 - 6x_0 + 9}{x_0 - 1} = g(x) $ với $ x > 1 $.\nTa có: $ g'(x) = \\frac{3x_0^2 - 6x_0 - 3}{(x_0 - 1)^2} $; $ g'(x) = 0 \\Rightarrow 3x_0^2 - 6x_0 - 3 = 0 \\Rightarrow x_0 = 1 + \\sqrt{2} > 1 $.\nTa có bảng biến thiên:\n<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>x</td><td style='text-align: center; word-wrap: break-word;'>-∞</td><td style='text-align: center; word-wrap: break-word;'>$ 1 - \\sqrt{3} $</td><td style='text-align: center; word-wrap: break-word;'>1</td><td style='text-align: center; word-wrap: break-word;'>$ 1 + \\sqrt{3} $</td><td style='text-align: center; word-wrap: break-word;'>+∞</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>f&#x27;(x)</td><td style='text-align: center; word-wrap: break-word;'>+ 0 -</td><td style='text-align: center; word-wrap: break-word;'></td><td colspan=\"3\">- 0 +</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>f(x)</td><td style='text-align: center; word-wrap: break-word;'>-∞</td><td style='text-align: center; word-wrap: break-word;'>$ 3 - 2\\sqrt{3} $ -∞</td><td style='text-align: center; word-wrap: break-word;'></td><td style='text-align: center; word-wrap: break-word;'>+∞</td><td style='text-align: center; word-wrap: break-word;'>+∞</td></tr></table>\nTừ bảng biến thiên ta có: $ \\min_{(1; +\\infty)} g(x) = g\\left(1 + \\sqrt{2}\\right) = 6\\sqrt{2} \\Rightarrow \\sqrt{5}d \\geq 6\\sqrt{2} \\Rightarrow d \\geq \\frac{6\\sqrt{10}}{5} $.\nĐâu đằng thức xảy ra khi $ x_0 = 1 + \\sqrt{2} \\Rightarrow M(1 + \\sqrt{2}; 1 + \\sqrt{2}) $.\nKhoảng cách OM trên thực tế là $ 10 \\times \\sqrt{\\left(1 + \\sqrt{2}\\right)^2 + \\left(1 + \\sqrt{2}\\right)^2} = 10 \\times \\left(1 + \\sqrt{2}\\right) \\sqrt{2} \\approx 34,1 $ (m).",
+      "difficulty": null,
+      "flags": []
+    },
+    {
+      "key": "III-6",
+      "part": "III",
+      "indexInPart": 6,
+      "type": "short_answer",
+      "content": "Cho hàm số $y = \\frac{2x + 3}{1 - x}$. Gọi đường thẳng tiệm cận đứng và tiệm cận ngang của đồ thị hàm số lần lượt có phương trình: $x = a$; $y = b$. Khi đó tổng $a + 3b$ bằng bao nhiêu?",
+      "images": [],
+      "options": [],
+      "optionCorrect": null,
+      "statements": [],
+      "answer": "-5",
+      "explanation": "Cho hàm số $y = \\frac{2x + 3}{1 - x}$. Gọi đường thẳng tiệm cận đứng và tiệm cận ngang của đồ thị hàm số lần lượt có phương trình: $x = a; y = b$. Khi đó tổng $a + 3b$ bằng bao nhiêu?\nLời giải\nĐáp án: -5\nTiệm cận đứng và tiệm cận ngang của đồ thị hàm số $ y=\\frac{2x+3}{1-x} $ lần lượt là: $ x=1 $; $ y=-2 $. Suy ra: $ a=1 $; $ b=-2 $.\nVây $a+3b=1+3.(-2)=-5$.",
+      "difficulty": null,
+      "flags": []
+    }
+  ],
+  "imageUrls": [
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_0/imgs/img_in_image_box_343_394_846_895.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A31Z%2F-1%2F%2Fe33b63bd44f80fd6276189f3ccee4f78ca05e16233274a004762a31dfe548e11",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d3984c7c-575f-4bd8-a739-133fe0d19028/markdown_1/imgs/img_in_image_box_343_392_847_895.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A15%3A12Z%2F-1%2F%2Ffff25e1adf1008c250d499ebe84117d78cf1c269691666436c7689c8b1d581a3",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_0/imgs/img_in_image_box_409_1036_959_1212.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A31Z%2F-1%2F%2F802a36444a4bf9f8c67cf0350cbf724fbe113ab2d688c027f5cc1788bc05c0c9",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d3984c7c-575f-4bd8-a739-133fe0d19028/markdown_1/imgs/img_in_image_box_254_1128_805_1307.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A15%3A12Z%2F-1%2F%2F37a9c3c9796fe37472aa016c343ab43e6ff01aacbf65fe67045e106523a21df1",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d3984c7c-575f-4bd8-a739-133fe0d19028/markdown_2/imgs/img_in_image_box_634_874_741_914.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A15%3A14Z%2F-1%2F%2Ff8481e89bc8ddd50e71d128068e6e5b0454f069bde8f0a0abb19b0d627e00b2f",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d3984c7c-575f-4bd8-a739-133fe0d19028/markdown_3/imgs/img_in_image_box_441_86_896_462.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A15%3A16Z%2F-1%2F%2F8b439ea5f96e8bc76822142309e5e780ddd6ecd6e881bcbd8bd58ee0061ba890",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_1/imgs/img_in_image_box_404_571_766_908.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A33Z%2F-1%2F%2F46fdd7435abc98689336df6059a5b52a7ccd64ca8a88ceb8296749ec7fbd7462",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d3984c7c-575f-4bd8-a739-133fe0d19028/markdown_3/imgs/img_in_image_box_404_926_766_1266.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A15%3A16Z%2F-1%2F%2Fc76929ca172e1d3c816ff6b1dfe2485f372728f1b2764896b1505a877bcabc14",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d3984c7c-575f-4bd8-a739-133fe0d19028/markdown_4/imgs/img_in_image_box_559_751_755_955.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A15%3A18Z%2F-1%2F%2Fbe2e54adaf0941705a0d2e34387e6c6a77f1ee62bbb815b082f7419d90738da1",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_2/imgs/img_in_image_box_564_96_774_349.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A34Z%2F-1%2F%2F5d6ea6be3e87369c9aba5078df594ff0614dcab4660058c35f9fac4483d7a7ff",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//c2c8413f-a8fe-4d66-98cd-fe25948092fa/markdown_0/imgs/img_in_image_box_564_97_774_349.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A11%3A13Z%2F-1%2F%2F8ff15e7fb4c8cf425baa2074977b519cbf6ce1bb4ff8a5c49bb14c13b913a92b",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_2/imgs/img_in_image_box_391_686_789_1013.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A34Z%2F-1%2F%2Fd5fccb7dc4c6a76f91939ec3659b2326cd6b29e7e95f3843f37365d8b7d1a6a0",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//c2c8413f-a8fe-4d66-98cd-fe25948092fa/markdown_0/imgs/img_in_image_box_391_868_789_1193.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A11%3A13Z%2F-1%2F%2F7cc70a1d348afe37adc0e76024a6680731447f00e818ba1b7af271d6eee0d2ec",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_3/imgs/img_in_image_box_456_154_842_495.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A35Z%2F-1%2F%2F022065493f1a11212fdfabf4499120b894c99a2d7c28557ca6caf8f350b15644",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//c2c8413f-a8fe-4d66-98cd-fe25948092fa/markdown_3/imgs/img_in_image_box_456_466_843_805.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A11%3A16Z%2F-1%2F%2F310958e14a5ed765fe1bf5f7625b932deeb4e5fdfde6d83a67338886e2da8b08",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_3/imgs/img_in_image_box_427_1065_765_1332.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A35Z%2F-1%2F%2F2ec116cb28088bd3ae5d79f2344a36a9b36e9ffb8ac88c4c2cb9ed1ca9c29a24",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//c2c8413f-a8fe-4d66-98cd-fe25948092fa/markdown_4/imgs/img_in_image_box_415_335_775_620.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A11%3A18Z%2F-1%2F%2F275e54bd10cad63c12aa58924d5850095d7c907ddd93aa954bc87e4a1dc92563",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//e67639e2-6baf-4e1c-8f13-e468b9b04a40/markdown_0/imgs/img_in_image_box_474_1084_632_1252.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A33Z%2F-1%2F%2F4d973e99ac087f359d7de3a26d91c3d2915b1a998c89ba6bfd655d100c7ef80b",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//e67639e2-6baf-4e1c-8f13-e468b9b04a40/markdown_0/imgs/img_in_image_box_735_1079_916_1227.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A33Z%2F-1%2F%2F1d743fbfc6b2ae0d82d49505b30f2198157839e72fa61b0102c62e8a8d65871f",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//e67639e2-6baf-4e1c-8f13-e468b9b04a40/markdown_1/imgs/img_in_image_box_372_178_915_592.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A34Z%2F-1%2F%2Fc54447147c423e3fc6cd1a38b5691730cada16c81b536cd903ea62e2cc56264f",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//222782f3-8a9a-47c9-92c5-0d4568b5bf4a/markdown_4/imgs/img_in_image_box_455_612_844_919.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A37Z%2F-1%2F%2F4088a0ff077738da1e26fbd58f9b47f3c799e19672e40a9c68556070a21ee3f5",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//e67639e2-6baf-4e1c-8f13-e468b9b04a40/markdown_2/imgs/img_in_image_box_454_85_845_393.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A36Z%2F-1%2F%2F480160d3442c0f98cae1ba446293fcdbcbd984cf441e633e07fbb570e42ed812",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//e67639e2-6baf-4e1c-8f13-e468b9b04a40/markdown_2/imgs/img_in_image_box_403_504_816_826.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A36Z%2F-1%2F%2Fa5568dec00d917c662157b9ccde4a7acdecce14cc8c49260ffdf611c11af6840",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//e67639e2-6baf-4e1c-8f13-e468b9b04a40/markdown_3/imgs/img_in_image_box_234_90_786_399.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A37Z%2F-1%2F%2Fcb27e3cc66b5561aecd8dbe290d4dca11e0af2c27bf1a5e0240532c491a15e4c",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//d3984c7c-575f-4bd8-a739-133fe0d19028/markdown_0/imgs/img_in_image_box_302_66_887_519.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A15%3A10Z%2F-1%2F%2Fa5112ee21f603ea088eff148e36276e597f215bbb62fe66336c3e0d2ce610272",
+    "https://pplines-online.bj.bcebos.com/deploy/official/paddleocr/pp-ocr-vl-16-online//e67639e2-6baf-4e1c-8f13-e468b9b04a40/markdown_4/imgs/img_in_image_box_303_600_886_1059.jpg?authorization=bce-auth-v1%2FALTAKDN8mY5KlNI7zaRpLmOqrw%2F2026-06-07T17%3A10%3A38Z%2F-1%2F%2Fa308da45f586810477daa7c0548d5e5e00d04dae2a85f697fa7c730b4ccb5501"
+  ]
+}
