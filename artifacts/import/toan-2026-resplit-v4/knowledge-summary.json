@@ -1,0 +1,3465 @@
+{
+  "generatedAt": "2026-06-12T11:41:30.380Z",
+  "sourceRoot": "E:\\Web-thi-thpt\\artifacts\\import\\toan-2026-resplit-v4",
+  "exams": 110,
+  "questions": 2420,
+  "maxScore": 1100,
+  "inFramework": 1456,
+  "outsideFramework": 964,
+  "lowConfidence": 49,
+  "byType": {
+    "DS": 440,
+    "TLN": 660,
+    "TN4": 1320
+  },
+  "byCognitiveLevel": {
+    "NB": 1231,
+    "TH": 180,
+    "VD": 526,
+    "VDC": 483
+  },
+  "byChapter": {
+    "C1": {
+      "count": 310,
+      "score": 131.5,
+      "title": "ỨNG DỤNG ĐẠO HÀM ĐỂ KHẢO SÁT VÀ VẼ ĐỒ THỊ HÀM SỐ"
+    },
+    "C2": {
+      "count": 391,
+      "score": 174.25,
+      "title": "VECTƠ VÀ HỆ TRỤC TOẠ ĐỘ TRONG KHÔNG GIAN"
+    },
+    "C3": {
+      "count": 114,
+      "score": 48.5,
+      "title": "CÁC SỐ ĐẶC TRƯNG ĐO MỨC ĐỘ PHÂN TÁN CỦA MẪU SỐ LIỆU GHÉP NHÓM"
+    },
+    "C4": {
+      "count": 247,
+      "score": 121,
+      "title": "NGUYÊN HÀM VÀ TÍCH PHÂN"
+    },
+    "C5": {
+      "count": 266,
+      "score": 144.75,
+      "title": "PHƯƠNG PHÁP TOẠ ĐỘ TRONG KHÔNG GIAN"
+    },
+    "C6": {
+      "count": 49,
+      "score": 39.5,
+      "title": "XÁC SUẤT CÓ ĐIỀU KIỆN"
+    },
+    "CD2": {
+      "count": 63,
+      "score": 35.5,
+      "title": "ỨNG DỤNG TOÁN HỌC GIẢI BÀI TOÁN TỐI ƯU"
+    },
+    "CD3": {
+      "count": 16,
+      "score": 9.5,
+      "title": "ỨNG DỤNG TOÁN HỌC TRONG TÀI CHÍNH"
+    }
+  },
+  "byKnowledgeCode": {
+    "C1.B1.1": {
+      "count": 41,
+      "score": 12.25,
+      "title": "Tính đơn điệu (đồng biến, nghịch biến); xét dấu đạo hàm; bảng biến thiên"
+    },
+    "C1.B1.2": {
+      "count": 77,
+      "score": 30.75,
+      "title": "Cực trị: khái niệm, cách tìm cực trị"
+    },
+    "C1.B2.2": {
+      "count": 95,
+      "score": 50.5,
+      "title": "Tìm GTLN–GTNN trên một đoạn / khoảng / tập xác định"
+    },
+    "C1.B3.1": {
+      "count": 13,
+      "score": 3.25,
+      "title": "Tiệm cận ngang"
+    },
+    "C1.B3.2": {
+      "count": 26,
+      "score": 7.75,
+      "title": "Tiệm cận đứng"
+    },
+    "C1.B3.3": {
+      "count": 11,
+      "score": 4.5,
+      "title": "Tiệm cận xiên"
+    },
+    "C1.B4.1": {
+      "count": 4,
+      "score": 1,
+      "title": "Sơ đồ khảo sát hàm số"
+    },
+    "C1.B4.2": {
+      "count": 8,
+      "score": 2,
+      "title": "Hàm đa thức bậc ba"
+    },
+    "C1.B4.3": {
+      "count": 4,
+      "score": 1,
+      "title": "Hàm phân thức hữu tỉ (bậc nhất/bậc nhất, bậc hai/bậc nhất)"
+    },
+    "C1.B5.1": {
+      "count": 7,
+      "score": 5,
+      "title": "Tốc độ thay đổi của một đại lượng"
+    },
+    "C1.B5.2": {
+      "count": 24,
+      "score": 13.5,
+      "title": "Bài toán tối ưu hoá đơn giản"
+    },
+    "C2.B6.1": {
+      "count": 4,
+      "score": 1,
+      "title": "Khái niệm vectơ trong không gian"
+    },
+    "C2.B6.2": {
+      "count": 104,
+      "score": 37,
+      "title": "Tổng và hiệu của hai vectơ"
+    },
+    "C2.B6.4": {
+      "count": 7,
+      "score": 2.25,
+      "title": "Tích vô hướng; góc giữa hai vectơ"
+    },
+    "C2.B7.1": {
+      "count": 100,
+      "score": 43.25,
+      "title": "Hệ trục toạ độ Oxyz"
+    },
+    "C2.B7.2": {
+      "count": 116,
+      "score": 59.25,
+      "title": "Toạ độ của điểm, toạ độ của vectơ"
+    },
+    "C2.B8.1": {
+      "count": 54,
+      "score": 29.75,
+      "title": "Toạ độ phép cộng, trừ, nhân với một số"
+    },
+    "C2.B8.2": {
+      "count": 6,
+      "score": 1.75,
+      "title": "Biểu thức toạ độ của tích vô hướng"
+    },
+    "C3.B10.1": {
+      "count": 37,
+      "score": 18.75,
+      "title": "Phương sai và độ lệch chuẩn"
+    },
+    "C3.B9.1": {
+      "count": 23,
+      "score": 7.25,
+      "title": "Khoảng biến thiên"
+    },
+    "C3.B9.2": {
+      "count": 54,
+      "score": 22.5,
+      "title": "Khoảng tứ phân vị"
+    },
+    "C4.B11.1": {
+      "count": 44,
+      "score": 14.25,
+      "title": "Khái niệm nguyên hàm"
+    },
+    "C4.B11.3": {
+      "count": 24,
+      "score": 9,
+      "title": "Nguyên hàm của một số hàm thường gặp (luỹ thừa, lượng giác, mũ–log)"
+    },
+    "C4.B12.1": {
+      "count": 114,
+      "score": 64.75,
+      "title": "Khái niệm tích phân"
+    },
+    "C4.B13.1": {
+      "count": 45,
+      "score": 24,
+      "title": "Tính diện tích hình phẳng"
+    },
+    "C4.B13.2": {
+      "count": 20,
+      "score": 9,
+      "title": "Tính thể tích vật thể (gồm vật thể tròn xoay)"
+    },
+    "C5.B14.1": {
+      "count": 39,
+      "score": 13.25,
+      "title": "Vectơ pháp tuyến, cặp vectơ chỉ phương"
+    },
+    "C5.B14.2": {
+      "count": 28,
+      "score": 13,
+      "title": "Phương trình tổng quát của mặt phẳng"
+    },
+    "C5.B14.3": {
+      "count": 6,
+      "score": 3,
+      "title": "Lập phương trình mặt phẳng"
+    },
+    "C5.B14.4": {
+      "count": 11,
+      "score": 4,
+      "title": "Điều kiện hai mặt phẳng vuông góc / song song"
+    },
+    "C5.B14.5": {
+      "count": 35,
+      "score": 25.25,
+      "title": "Khoảng cách từ một điểm đến một mặt phẳng"
+    },
+    "C5.B15.1": {
+      "count": 51,
+      "score": 31.75,
+      "title": "Phương trình đường thẳng (tham số, chính tắc)"
+    },
+    "C5.B15.3": {
+      "count": 17,
+      "score": 8.25,
+      "title": "Vị trí tương đối giữa hai đường thẳng"
+    },
+    "C5.B16.1": {
+      "count": 9,
+      "score": 6.5,
+      "title": "Góc giữa hai đường thẳng"
+    },
+    "C5.B16.2": {
+      "count": 1,
+      "score": 0.5,
+      "title": "Góc giữa đường thẳng và mặt phẳng"
+    },
+    "C5.B16.3": {
+      "count": 15,
+      "score": 9,
+      "title": "Góc giữa hai mặt phẳng"
+    },
+    "C5.B17.1": {
+      "count": 53,
+      "score": 29.25,
+      "title": "Phương trình mặt cầu"
+    },
+    "C5.B17.2": {
+      "count": 1,
+      "score": 1,
+      "title": "Ứng dụng mặt cầu trong thực tiễn"
+    },
+    "C6.B18.1": {
+      "count": 43,
+      "score": 34.75,
+      "title": "Khái niệm xác suất có điều kiện"
+    },
+    "C6.B19.1": {
+      "count": 4,
+      "score": 3.5,
+      "title": "Công thức xác suất toàn phần"
+    },
+    "C6.B19.2": {
+      "count": 2,
+      "score": 1.25,
+      "title": "Công thức Bayes"
+    },
+    "CD2.B3.1": {
+      "count": 1,
+      "score": 0.5,
+      "title": "Giới thiệu bài toán quy hoạch tuyến tính hai biến"
+    },
+    "CD2.B4.2": {
+      "count": 62,
+      "score": 35,
+      "title": "Tối ưu trong kinh tế"
+    },
+    "CD3.B5.2": {
+      "count": 7,
+      "score": 3.5,
+      "title": "Lãi suất và cách tính lãi suất"
+    },
+    "CD3.B5.3": {
+      "count": 1,
+      "score": 0.5,
+      "title": "Lạm phát"
+    },
+    "CD3.B6.2": {
+      "count": 6,
+      "score": 4,
+      "title": "Vay nợ của các tổ chức tín dụng"
+    },
+    "CD3.B7.2": {
+      "count": 2,
+      "score": 1.5,
+      "title": "Giải quyết một số vấn đề về đầu tư"
+    }
+  },
+  "byOutsideTopic": {
+    "OUT.CAP_SO": {
+      "count": 111,
+      "score": 35,
+      "title": "Cap so cong - cap so nhan"
+    },
+    "OUT.DAO_HAM_CO_BAN": {
+      "count": 56,
+      "score": 26.75,
+      "title": "Dao ham co ban / tiep tuyen"
+    },
+    "OUT.GIOI_HAN": {
+      "count": 78,
+      "score": 31.25,
+      "title": "Gioi han"
+    },
+    "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": {
+      "count": 169,
+      "score": 62.5,
+      "title": "Hinh hoc khong gian co dien"
+    },
+    "OUT.HINH_OXY": {
+      "count": 9,
+      "score": 4,
+      "title": "Phuong phap toa do Oxy / conic"
+    },
+    "OUT.LUONG_GIAC": {
+      "count": 136,
+      "score": 55.5,
+      "title": "Luong giac ngoai nguyen ham/tich phan"
+    },
+    "OUT.LUY_THUA_CAN_THUC": {
+      "count": 4,
+      "score": 1.25,
+      "title": "Luy thua - can thuc ngoai khung"
+    },
+    "OUT.MU_LOGARIT": {
+      "count": 154,
+      "score": 65.5,
+      "title": "Ham mu - logarit / tap xac dinh log"
+    },
+    "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": {
+      "count": 36,
+      "score": 12.5,
+      "title": "Phuong trinh / bat phuong trinh ngoai khung"
+    },
+    "OUT.TAP_HOP_MENH_DE": {
+      "count": 7,
+      "score": 2.25,
+      "title": "Tap hop / menh de ngoai khung"
+    },
+    "OUT.THONG_KE_KHAC": {
+      "count": 38,
+      "score": 11.25,
+      "title": "Thong ke ngoai khung phan tan"
+    },
+    "OUT.TO_HOP_XAC_SUAT_CO_BAN": {
+      "count": 117,
+      "score": 67.25,
+      "title": "To hop / xac suat co ban"
+    },
+    "OUT.UNCLASSIFIED": {
+      "count": 49,
+      "score": 20.5,
+      "title": "Chua nhan dien duoc theo khung"
+    }
+  },
+  "byExam": [
+    {
+      "ordinal": 1,
+      "title": "ĐỀ KHẢO SÁT LẦN 1 TOÁN 12 NĂM 2025 - 2026 TRƯỜNG THPT CHUYÊN BẮC NINH",
+      "directory": "001-de-khao-sat-lan-1-toan-12-nam-2025-2026-truong-thpt-chuyen-bac-ninh",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 5,
+      "outsideFramework": 17,
+      "buckets": {
+        "C1": 2,
+        "C2": 3,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 3,
+        "OUT.GIOI_HAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 4,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 2,
+      "title": "ĐỀ KHẢO SÁT CHÁT LƯỢNG THI TN THPT NĂM HỌC 2025 - 2026 MÔN TOÁN - Khối lớp 12 Thời gian làm bài : 90 phút (không kể thời gian phát đế)",
+      "directory": "002-de-khao-sat-chat-luong-thi-tn-thpt-nam-hoc-2025-2026-mon-toan-khoi-lop-1",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 8,
+        "C5": 1,
+        "C6": 1,
+        "CD3": 1,
+        "OUT.DAO_HAM_CO_BAN": 4,
+        "OUT.GIOI_HAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_OPTIONS_PARSED_3",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 3,
+      "title": "ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12 Thời gian: 90 phút (Không kể thời gian phát đế)",
+      "directory": "003-de-kscl-on-thi-tn-thpt-2026-mon-thi-toan-12-thoi-gian-90-phut-khong-ke-t",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 5,
+        "C2": 6,
+        "C5": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.HINH_OXY": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 3
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 4,
+      "title": "Đề Toán 2026 dòng 2116",
+      "directory": "004-de-toan-2026-dong-2116",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 10,
+      "outsideFramework": 12,
+      "buckets": {
+        "C1": 7,
+        "C2": 2,
+        "C3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 3,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.LUY_THUA_CAN_THUC": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_STATEMENTS_PARSED_3",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 5,
+      "title": "SỔ GD&ĐT TP HCM TRƯỜNG THPT NGUYỄN KHUYẾN-LTT 2025 - 2026 - ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12 Thời gian: 90 phút (Không kể thời gian phát đế)",
+      "directory": "005-so-gd-dt-tp-hcm-truong-thpt-nguyen-khuyen-ltt-2025-2026-de-kscl-on-thi-t",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 4,
+        "C2": 7,
+        "C3": 2,
+        "C5": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 6,
+      "title": "Đề Toán 2026 dòng 3416",
+      "directory": "006-de-toan-2026-dong-3416",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 5,
+        "C2": 5,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 7,
+      "title": "ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12",
+      "directory": "007-de-kscl-on-thi-tn-thpt-2026-mon-thi-toan-12",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 10,
+        "C2": 4,
+        "C5": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 3,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 8,
+      "title": "SỔ GD&ĐT NGHĨ AN CỦM LIÊN TRƯỜNG NGHỆ AN 2025-2026 - ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12 Thời gian: 90 phút (Không kể thời gian phát đế)",
+      "directory": "008-so-gd-dt-nghi-an-cum-lien-truong-nghe-an-2025-2026-de-kscl-on-thi-tn-thp",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 6,
+      "outsideFramework": 16,
+      "buckets": {
+        "C1": 4,
+        "C2": 2,
+        "OUT.CAP_SO": 2,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TAP_HOP_MENH_DE": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 9,
+      "title": "SỐ GD&ĐT NINH BÌNH TRƯỜNG THPT YÊN MÔ B - ĐỀ KHẢO SÁT CHÁT LƯỢNG MÔN: TOÁN - LÓP 12 NĂM HỌC 2025 - 2026 n làm bài: 90 phút (không kể thời gian phát đế)",
+      "directory": "009-so-gd-dt-ninh-binh-truong-thpt-yen-mo-b-de-khao-sat-chat-luong-mon-toan-",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 1,
+      "outsideFramework": 21,
+      "buckets": {
+        "C3": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.DAO_HAM_CO_BAN": 2,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 5,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.LUY_THUA_CAN_THUC": 2,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 3
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 10,
+      "title": "SỔ GD&ĐT TP HCM TRƯỜNG THCS - THPT NGUYỄN KHUYẾN - ĐỀ KHẢO SÁT CHÁT LƯỢNG MÔN: TOÁN - LÓP 12 NĂM HỌC 2025 - 2026 àm bài: 90 phút (không kể thời gian phát đế)",
+      "directory": "010-so-gd-dt-tp-hcm-truong-thcs-thpt-nguyen-khuyen-de-khao-sat-chat-luong-mo",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 4,
+        "C2": 4,
+        "C3": 2,
+        "CD2": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 5,
+        "OUT.MU_LOGARIT": 4,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "EXAM_I_SOLUTION_INCOMPLETE_11_OF_12",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_NO_SOLUTION_FOUND",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 11,
+      "title": "SỐ GD&ĐT BÌNH DƯƠNG TRƯỜNG THPT NGUYỄN KHUYỆN - ĐỀ THI THỦ TỐT NGHIỆP THPT NĂM 2025 MÔN: TOÁN; LÓP 12 Thời gian làm bài: 90 phút (không kể thời gian phát đế)",
+      "directory": "011-so-gd-dt-binh-duong-truong-thpt-nguyen-khuyen-de-thi-thu-tot-nghiep-thpt",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 17,
+      "outsideFramework": 5,
+      "buckets": {
+        "C1": 9,
+        "C2": 6,
+        "C5": 2,
+        "OUT.DAO_HAM_CO_BAN": 2,
+        "OUT.GIOI_HAN": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 12,
+      "title": "TRƯỜNG ĐẠI HỌC KHTN HÀ NỘI - ĐỀ THI KSCL LẦN 1 NĂM HỌC 2025 - 2026 Môn: TOÁN 12 Thời gian: 90 phút (không kể thời gian phát đế) - TRƯỜNG THPT CHUYÊN KHTN",
+      "directory": "012-truong-dai-hoc-khtn-ha-noi-de-thi-kscl-lan-1-nam-hoc-2025-2026-mon-toan-",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 4,
+        "C2": 4,
+        "C5": 4,
+        "CD2": 2,
+        "CD3": 1,
+        "OUT.GIOI_HAN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 3,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 13,
+      "title": "SỔ GD&ĐT TP HCM TRƯỜNG THPT NGUYỄN KHUYẾN-LTT - ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12 Thời gian: 90 phút (Không kể thời gian phát đế)",
+      "directory": "013-so-gd-dt-tp-hcm-truong-thpt-nguyen-khuyen-ltt-de-kscl-on-thi-tn-thpt-202",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C2": 5,
+        "C3": 1,
+        "C4": 3,
+        "C5": 5,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.LUY_THUA_CAN_THUC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_TF_b_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 14,
+      "title": "SGD & ĐT TỈNH NINH BÌNH KHỐI 12 - LÀN 1",
+      "directory": "014-sgd-dt-tinh-ninh-binh-khoi-12-lan-1",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 17,
+      "outsideFramework": 5,
+      "buckets": {
+        "C1": 6,
+        "C2": 7,
+        "C3": 4,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.MU_LOGARIT": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 15,
+      "title": "ĐỀ KS THPT LÊ THÁNH TÔNG NĂM HỌC 2025 - 2026",
+      "directory": "015-de-ks-thpt-le-thanh-tong-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 17,
+      "outsideFramework": 5,
+      "buckets": {
+        "C1": 2,
+        "C2": 4,
+        "C3": 1,
+        "C4": 4,
+        "C5": 5,
+        "C6": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 2
+      },
+      "reviewFlags": [
+        "EXAM_II_SOLUTION_INCOMPLETE_3_OF_4",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_NO_SOLUTION_FOUND"
+      ]
+    },
+    {
+      "ordinal": 16,
+      "title": "SGD & ĐT TỈNH QUẢNG NINH TRƯỜNG THPT CHUYÊN HẠ LONG - LÀN 1",
+      "directory": "016-sgd-dt-tinh-quang-ninh-truong-thpt-chuyen-ha-long-lan-1",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 8,
+      "outsideFramework": 14,
+      "buckets": {
+        "C1": 3,
+        "C2": 3,
+        "C5": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 2,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 17,
+      "title": "SỐ GD&ĐT HÀ NỘI TRƯỜNG THPT LÊ QUÝ ĐÔN 2025-2026 - ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12 Thời gian: 90 phút (Không kể thời gian phát đế)",
+      "directory": "017-so-gd-dt-ha-noi-truong-thpt-le-quy-don-2025-2026-de-kscl-on-thi-tn-thpt-",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 4,
+        "C2": 5,
+        "C3": 2,
+        "C5": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2,
+        "OUT.UNCLASSIFIED": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 18,
+      "title": "TRƯỜNG THPT NGUYỄN KHUYẾN TPHCM 2025-2026 - ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12 Thời gian: 90 phút (Không kể thời gian phát đế)",
+      "directory": "018-truong-thpt-nguyen-khuyen-tphcm-2025-2026-de-kscl-on-thi-tn-thpt-2026-mo",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 2,
+        "C2": 3,
+        "C3": 1,
+        "C4": 5,
+        "C5": 2,
+        "C6": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_OPTIONS_PARSED_0",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 19,
+      "title": "LÊ THÁNH TÔNG - HCM NĂM HỌC 2025 - 2026",
+      "directory": "019-le-thanh-tong-hcm-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 18,
+      "outsideFramework": 4,
+      "buckets": {
+        "C1": 4,
+        "C2": 3,
+        "C3": 1,
+        "C4": 4,
+        "C5": 5,
+        "C6": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.THONG_KE_KHAC": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_STATEMENTS_PARSED_3",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 20,
+      "title": "THPT THIỆU HÓA – THANH HÓA 2025 – 2026",
+      "directory": "020-thpt-thieu-hoa-thanh-hoa-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 4,
+        "C2": 6,
+        "C3": 2,
+        "C5": 3,
+        "C6": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TAP_HOP_MENH_DE": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 21,
+      "title": "Đề Toán 2026 dòng 13795",
+      "directory": "021-de-toan-2026-dong-13795",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 4,
+        "C2": 8,
+        "C3": 2,
+        "C5": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 22,
+      "title": "ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12 Thời gian: 90 phút (Không kể thời gian phát đế)",
+      "directory": "022-de-kscl-on-thi-tn-thpt-2026-mon-thi-toan-12-thoi-gian-90-phut-khong-ke-t",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 4,
+        "C2": 6,
+        "C3": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.GIOI_HAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 23,
+      "title": "TRIÊU SƠN 3 - THANH HOÁ NĂM HỌC 2025 - 2026",
+      "directory": "023-trieu-son-3-thanh-hoa-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 2,
+        "C2": 5,
+        "C3": 3,
+        "C4": 3,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 3
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_STATEMENTS_PARSED_3",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 24,
+      "title": "SỐ GIÁO DỤC VÀ ĐÀO TẠO HẢI PHÒNG CỦM TRƯỜNG THPT - ĐỀ THI THỦ TN THPT LẦN 1 NĂM HỌC 2025 - 2026 MÔN: TOÁN Thời gian làm bài: 90 phút",
+      "directory": "024-so-giao-duc-va-dao-tao-hai-phong-cum-truong-thpt-de-thi-thu-tn-thpt-lan-",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 10,
+      "outsideFramework": 12,
+      "buckets": {
+        "C1": 4,
+        "C2": 3,
+        "C5": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 3,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 25,
+      "title": "SGD & ĐT TỈNH HÀ TỈNH CỤM TRƯỜNG THPT - KI THI THỦ TNTHPT- LẦN 1 - Năm học: 2025-2026",
+      "directory": "025-sgd-dt-tinh-ha-tinh-cum-truong-thpt-ki-thi-thu-tnthpt-lan-1-nam-hoc-2025",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 4,
+        "C2": 5,
+        "C5": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 26,
+      "title": "TRƯỜNG THPT CHUYÊN LÊ THÁNH TÔNG ĐÀ NĂNG KSCL LẦN 1 2025-2026 - ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12 Thời gian: 90 phút (Không kể thời gian phát đế)",
+      "directory": "026-truong-thpt-chuyen-le-thanh-tong-da-nang-kscl-lan-1-2025-2026-de-kscl-on",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 3,
+        "C2": 7,
+        "C3": 3,
+        "C5": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 27,
+      "title": "SGD & ĐT TỈNH HÀ TỈNH CỤM TRƯỜNG THPT - KI THI THỦ TNTHPT- LẦN 1 - Năm học: 2025-2026",
+      "directory": "027-sgd-dt-tinh-ha-tinh-cum-truong-thpt-ki-thi-thu-tnthpt-lan-1-nam-hoc-2025",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 4,
+        "C2": 5,
+        "C5": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 28,
+      "title": "ĐỀ THI THỦ TN THPT 2026 MÔN: TOÁN Thời gian làm bài: 90 phút",
+      "directory": "028-de-thi-thu-tn-thpt-2026-mon-toan-thoi-gian-lam-bai-90-phut",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 2,
+        "C2": 4,
+        "C3": 1,
+        "C4": 3,
+        "C5": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.HINH_OXY": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 29,
+      "title": "ĐỀ THI THỬ TÓT NGHIỆP THPT NĂM HỌC 2025 - 2026 SỔ GIÁO DỤC VÀ ĐÀO TẠO PHÚ THỘ",
+      "directory": "029-de-thi-thu-tot-nghiep-thpt-nam-hoc-2025-2026-so-giao-duc-va-dao-tao-phu-",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 4,
+        "C2": 5,
+        "C3": 2,
+        "C5": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_OXY": 1,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_OPTIONS_PARSED_2",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 30,
+      "title": "SỐ GIÁO DỤC VÀ ĐÀO TẠO NGHỆ AN TRƯỜNG THPT CỦA LÒ ĐỀ THI THỦ TN THPT LẦN 1",
+      "directory": "030-so-giao-duc-va-dao-tao-nghe-an-truong-thpt-cua-lo-de-thi-thu-tn-thpt-lan",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 8,
+      "outsideFramework": 14,
+      "buckets": {
+        "C1": 2,
+        "C2": 4,
+        "C3": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.HINH_OXY": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 4,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_OPTIONS_PARSED_2",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 31,
+      "title": "ĐỀ KHẢO SÁT CHẤT LƯỢNG CUỐI HỌC KỸ I SỞ HƯNG YÊN - NĂM HỌC 2025 - 2026",
+      "directory": "031-de-khao-sat-chat-luong-cuoi-hoc-ky-i-so-hung-yen-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 17,
+      "outsideFramework": 5,
+      "buckets": {
+        "C1": 4,
+        "C2": 8,
+        "C3": 4,
+        "CD2": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "EXAM_I_SOLUTION_INCOMPLETE_11_OF_12",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_NO_SOLUTION_FOUND"
+      ]
+    },
+    {
+      "ordinal": 32,
+      "title": "ĐẠI HỌC KHẨN HÀ NỘI TRƯỜNG THỐT CHUYỆN ĐỊHKHỊN - KI THI THỪ TỘN THỊP - LÀN 1 Năm học: 2025-2026",
+      "directory": "032-dai-hoc-khan-ha-noi-truong-thot-chuyen-dihkhin-ki-thi-thu-ton-thip-lan-1",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C2": 2,
+        "C3": 1,
+        "C4": 3,
+        "C5": 7,
+        "C6": 2,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 33,
+      "title": "TRƯỜNG THPT NGUYỄN THỊ MINH KHAI - HÀ NỘI KI THI THỦ TNTHPT- LẦN 1 - Năm học: 2025-2026",
+      "directory": "033-truong-thpt-nguyen-thi-minh-khai-ha-noi-ki-thi-thu-tnthpt-lan-1-nam-hoc-",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 3,
+        "C2": 4,
+        "C3": 1,
+        "C4": 3,
+        "C5": 4,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "EXAM_I_SOLUTION_INCOMPLETE_11_OF_12",
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_NO_SOLUTION_FOUND"
+      ]
+    },
+    {
+      "ordinal": 34,
+      "title": "THPT NGUYỄN GIA THIỆU - HÀ NỘI NĂM 2025 - 2026",
+      "directory": "034-thpt-nguyen-gia-thieu-ha-noi-nam-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 4,
+        "C2": 4,
+        "C3": 3,
+        "C4": 1,
+        "C5": 2,
+        "CD2": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 35,
+      "title": "ĐỀ THI THỦ LIÊN TRƯỜNG THPT ĐÀ NĂNG NĂM HỌC 2025 - 2026",
+      "directory": "035-de-thi-thu-lien-truong-thpt-da-nang-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 3,
+        "C2": 8,
+        "C3": 1,
+        "C5": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 2,
+        "OUT.GIOI_HAN": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 36,
+      "title": "LIÊN TRƯỜNG THPT NGHỆ AN NĂM HỌC 2025 - 2026",
+      "directory": "036-lien-truong-thpt-nghe-an-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 5,
+        "C2": 5,
+        "C3": 2,
+        "C5": 1,
+        "CD2": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 2,
+        "OUT.MU_LOGARIT": 3,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 37,
+      "title": "SỐ BẮC NINH",
+      "directory": "037-so-bac-ninh",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 3,
+        "C2": 3,
+        "C3": 1,
+        "C4": 4,
+        "C5": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_STATEMENTS_PARSED_3",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 38,
+      "title": "LIÊN TRƯỜNG THPT CỤM BẮC-NAM TỪ LIÊM HÀ NỘI",
+      "directory": "038-lien-truong-thpt-cum-bac-nam-tu-liem-ha-noi",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 4,
+        "C2": 6,
+        "CD2": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 3,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 39,
+      "title": "ĐỀ KHẢO SÁT 12 LÀN 1 CỦM ĐÔNG HP NĂM HỌC 2025-2026",
+      "directory": "039-de-khao-sat-12-lan-1-cum-dong-hp-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 8,
+      "outsideFramework": 14,
+      "buckets": {
+        "C1": 2,
+        "C2": 4,
+        "C5": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.MU_LOGARIT": 4,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 40,
+      "title": "TRƯỜNG ĐẠI HỌC VINH ĐỀ THI THỬ TÓT NGHIỆP THPT NĂM HỌC 2025 - 2026 - LÀN I",
+      "directory": "040-truong-dai-hoc-vinh-de-thi-thu-tot-nghiep-thpt-nam-hoc-2025-2026-lan-i",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C2": 3,
+        "C3": 1,
+        "C4": 3,
+        "C5": 3,
+        "C6": 2,
+        "CD2": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.HINH_OXY": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "EXAM_I_SOLUTION_INCOMPLETE_11_OF_12",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_OPTIONS_PARSED_2",
+        "OUT_OF_FRAME",
+        "QUESTION_NO_SOLUTION_FOUND",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 41,
+      "title": "TRƯỜNG THPT THỘ XUÂN 5 THANH HÓA KSCL LÀN 1 2025-2026 - ĐỀ KSCL ÔN THI TN THPT 2026 MÔN THI: TOÁN 12 Thời gian: 90 phút (Không kể thời gian phát đế)",
+      "directory": "041-truong-thpt-tho-xuan-5-thanh-hoa-kscl-lan-1-2025-2026-de-kscl-on-thi-tn-",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 4,
+        "C2": 6,
+        "C3": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TAP_HOP_MENH_DE": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 42,
+      "title": "ĐỀ THI THỦ TNTHPT LẦN 2 NĂM 2026 - TRƯỜNG TH-THCS-THPT LÊ THÁNH TÔNG - HỒ CHÍ MINH",
+      "directory": "042-de-thi-thu-tnthpt-lan-2-nam-2026-truong-th-thcs-thpt-le-thanh-tong-ho-ch",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 17,
+      "outsideFramework": 5,
+      "buckets": {
+        "C1": 1,
+        "C2": 4,
+        "C3": 1,
+        "C4": 4,
+        "C5": 5,
+        "C6": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 43,
+      "title": "Đề Toán 2026 dòng 29063",
+      "directory": "043-de-toan-2026-dong-29063",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C2": 4,
+        "C3": 2,
+        "C4": 3,
+        "C5": 3,
+        "CD2": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 44,
+      "title": "ĐỀ KHẢO SÁT TOÁN 12 NĂM HỌC 2025-2026 CỦM 13 TRƯỜNG THPT HẢI PHÒNG",
+      "directory": "044-de-khao-sat-toan-12-nam-hoc-2025-2026-cum-13-truong-thpt-hai-phong",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 2,
+        "C2": 6,
+        "C3": 2,
+        "C5": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 3,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_c_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 45,
+      "title": "ĐỀ KHẢO SÁT - THPT TRẦN NHÂN TÔNG HÀ NỘI - NĂM HỌC 2025 - 2026",
+      "directory": "045-de-khao-sat-thpt-tran-nhan-tong-ha-noi-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 10,
+      "outsideFramework": 12,
+      "buckets": {
+        "C1": 1,
+        "C2": 2,
+        "C4": 4,
+        "C5": 2,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 4,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "EXAM_III_SOLUTION_INCOMPLETE_5_OF_6",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW",
+        "QUESTION_NO_SOLUTION_FOUND"
+      ]
+    },
+    {
+      "ordinal": 46,
+      "title": "ĐỀ THI THỦ TN THPT CỔ LOA NĂM HỌC 2025- 2026",
+      "directory": "046-de-thi-thu-tn-thpt-co-loa-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 1,
+        "C2": 3,
+        "C3": 1,
+        "C4": 3,
+        "C5": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_OPTIONS_PARSED_0",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 47,
+      "title": "ĐỀ KSCL THPT HÀM RỒNG MÔN TOÁN 12 - NĂM HỌC 2025 - 2026",
+      "directory": "047-de-kscl-thpt-ham-rong-mon-toan-12-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 10,
+      "outsideFramework": 12,
+      "buckets": {
+        "C1": 2,
+        "C2": 5,
+        "C3": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 3,
+        "OUT.UNCLASSIFIED": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 48,
+      "title": "ĐỀ THI THỦ CHUYỀN QUANG TRUNG 2025 - 2026",
+      "directory": "048-de-thi-thu-chuyen-quang-trung-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 9,
+      "outsideFramework": 13,
+      "buckets": {
+        "C2": 3,
+        "C4": 4,
+        "C5": 1,
+        "CD2": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TAP_HOP_MENH_DE": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 49,
+      "title": "THPT LÊ QUÝ ĐÔN-ĐÔNG ĐA-HÀ NỘI NĂM HỌC 2025 - 2026",
+      "directory": "049-thpt-le-quy-don-dong-da-ha-noi-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 3,
+        "C2": 2,
+        "C4": 3,
+        "C5": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 3,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 4,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "EXAM_III_SOLUTION_INCOMPLETE_5_OF_6",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW",
+        "QUESTION_NO_SOLUTION_FOUND"
+      ]
+    },
+    {
+      "ordinal": 50,
+      "title": "THPT NGUYỄN TRUNG THIÊN- HÀ TỈNH NĂM HỌC 2025-2026",
+      "directory": "050-thpt-nguyen-trung-thien-ha-tinh-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 1,
+        "C2": 6,
+        "C3": 2,
+        "C4": 3,
+        "C5": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 51,
+      "title": "THPT TRẦN NHÂN TÔNG -HÀ NỘI NĂM HỌC 2025 - 2026",
+      "directory": "051-thpt-tran-nhan-tong-ha-noi-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 1,
+        "C2": 2,
+        "C3": 1,
+        "C4": 4,
+        "C5": 2,
+        "CD2": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 4,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 52,
+      "title": "LÊ THÁNH TÔNG - HCM - Năm học 2025 - 2026",
+      "directory": "052-le-thanh-tong-hcm-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 2,
+        "C2": 3,
+        "C4": 4,
+        "C5": 3,
+        "C6": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 53,
+      "title": "ĐỀ THI THỦ THPT LẦN 1 LIÊN TRƯỜNG HÀ NỘI NĂM HỌC 2025 - 2026",
+      "directory": "053-de-thi-thu-thpt-lan-1-lien-truong-ha-noi-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 1,
+        "C2": 4,
+        "C3": 1,
+        "C4": 2,
+        "C5": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 54,
+      "title": "SỐ GĐĐT THÀNH PHỐ ĐÀ NĂNG TRƯỜNG THỊT HỒ NGHINH - LÊ HỒNG PHONG NGUYỄN HIỆN (DX) - SẢO NAM - KỶ THI THỦ THPT QUỐC GIA LÀN 1 NĂM HỌC 2025 - 2026 MÔN: TOÁN Thời gian làm bài: 90 phút (không kể thời gian phát đẻ)",
+      "directory": "054-so-gddt-thanh-pho-da-nang-truong-thit-ho-nghinh-le-hong-phong-nguyen-hie",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 3,
+        "C2": 7,
+        "C3": 1,
+        "C5": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 2,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 55,
+      "title": "TRƯỜNG CHUYÊN LÊ THÁNH TÔNG NĂM HỌC 2025-2026",
+      "directory": "055-truong-chuyen-le-thanh-tong-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 3,
+        "C2": 7,
+        "C3": 3,
+        "C5": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 3,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 56,
+      "title": "TRƯỜNG THPT MAI ANH TUẤN NĂM HỌC 2025 - 2026",
+      "directory": "056-truong-thpt-mai-anh-tuan-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 4,
+        "C2": 3,
+        "C3": 2,
+        "C4": 4,
+        "C5": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 57,
+      "title": "SỐ GIÁO DỤC VÀ ĐÀO TẠO KHÁNH HÒA TRƯỜNG THPT PHAN BỘI CHÂU NĂM 2025 – 2026",
+      "directory": "057-so-giao-duc-va-dao-tao-khanh-hoa-truong-thpt-phan-boi-chau-nam-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 21,
+      "outsideFramework": 1,
+      "buckets": {
+        "C1": 7,
+        "C2": 9,
+        "C3": 4,
+        "CD2": 1,
+        "OUT.GIOI_HAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_OPTIONS_PARSED_3",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 58,
+      "title": "THPT NGUYỄN TRẦI - HÀ NỘI NĂM HỌC 2025 - 2026",
+      "directory": "058-thpt-nguyen-trai-ha-noi-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 6,
+        "C2": 5,
+        "C3": 2,
+        "C5": 1,
+        "CD2": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 59,
+      "title": "ĐỀ THI THỦ TÓT NGHIỆP THPT NĂM HỌC 2025 - 2026 SỔ GIÁO DỤC VÀ ĐÀO TẠO HÀ NỘI",
+      "directory": "059-de-thi-thu-tot-nghiep-thpt-nam-hoc-2025-2026-so-giao-duc-va-dao-tao-ha-n",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 1,
+        "C2": 3,
+        "C4": 5,
+        "C5": 2,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "EXAM_I_SOLUTION_INCOMPLETE_11_OF_12",
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_NO_SOLUTION_FOUND",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 60,
+      "title": "Đề Toán 2026 dòng 41877",
+      "directory": "060-de-toan-2026-dong-41877",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 1,
+        "C2": 2,
+        "C3": 1,
+        "C4": 4,
+        "C5": 3,
+        "CD2": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TAP_HOP_MENH_DE": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 61,
+      "title": "SỐ NINH BÌNH Kì THI THỬ TNTHPT- LÀN 2 - Năm học: 2025-2026",
+      "directory": "061-so-ninh-binh-ki-thi-thu-tnthpt-lan-2-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 19,
+      "outsideFramework": 3,
+      "buckets": {
+        "C1": 3,
+        "C2": 6,
+        "C3": 1,
+        "C4": 6,
+        "C5": 3,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 62,
+      "title": "SGD PHÚ THỘ TRƯỜNG THPT CHUYÊN VĨNH PHÚC NĂM HỌC 2025 - 2026",
+      "directory": "062-sgd-phu-tho-truong-thpt-chuyen-vinh-phuc-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 2,
+        "C2": 2,
+        "C3": 2,
+        "C4": 4,
+        "C5": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 63,
+      "title": "SỐ GIÁO DỤC ĐÀO TẠO SƠN LA NĂM HỌC 2025 - 2026",
+      "directory": "063-so-giao-duc-dao-tao-son-la-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 1,
+        "C2": 3,
+        "C3": 1,
+        "C4": 3,
+        "C5": 2,
+        "C6": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TAP_HOP_MENH_DE": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_OPTIONS_PARSED_3",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 64,
+      "title": "SỐ THÁI NGUYÊN NĂM HỌC 2025-2026",
+      "directory": "064-so-thai-nguyen-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 4,
+        "C2": 3,
+        "C3": 1,
+        "C4": 2,
+        "C5": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 4,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 65,
+      "title": "SỐ LÀO CAI Năm học: 2025-2026",
+      "directory": "065-so-lao-cai-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 3,
+        "C2": 4,
+        "C3": 1,
+        "C4": 4,
+        "C5": 3,
+        "CD2": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 66,
+      "title": "ĐỀ THI THỦ TỐT NGHIỆP 2026 SỐ GIÁO DỤC HƯNG YÊN",
+      "directory": "066-de-thi-thu-tot-nghiep-2026-so-giao-duc-hung-yen",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 2,
+        "C2": 2,
+        "C3": 1,
+        "C4": 4,
+        "C5": 5,
+        "CD2": 1,
+        "CD3": 1,
+        "OUT.GIOI_HAN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 67,
+      "title": "SỐ PHÚ THỘ NĂM HỌC 2025 - 2026",
+      "directory": "067-so-phu-tho-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 4,
+        "C2": 4,
+        "C3": 2,
+        "C4": 4,
+        "C5": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 68,
+      "title": "TRƯỜNG CHUYÊN PHAN BỘI CHÂU - NGHĨ AN NĂM HỌC 2025-2026",
+      "directory": "068-truong-chuyen-phan-boi-chau-nghi-an-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 10,
+      "outsideFramework": 12,
+      "buckets": {
+        "C1": 2,
+        "C2": 2,
+        "C3": 1,
+        "C4": 2,
+        "C5": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2,
+        "OUT.UNCLASSIFIED": 2
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 69,
+      "title": "TRƯỜNG THPT LÊ LỘI, THANH HÓA Năm học 2025 - 2026",
+      "directory": "069-truong-thpt-le-loi-thanh-hoa-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 11,
+      "outsideFramework": 11,
+      "buckets": {
+        "C1": 1,
+        "C2": 3,
+        "C3": 1,
+        "C4": 4,
+        "C5": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.HINH_OXY": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 3
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_c_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 70,
+      "title": "TRƯỜNG THPT NGA SƠN - THANH HÓA Năm học 2025 - 2026",
+      "directory": "070-truong-thpt-nga-son-thanh-hoa-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 3,
+        "C2": 6,
+        "C3": 1,
+        "C4": 2,
+        "C5": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 3,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 71,
+      "title": "THPT QUẢNG XƯƠNG 1 - THANH HÓA Năm 2025 - 2026",
+      "directory": "071-thpt-quang-xuong-1-thanh-hoa-nam-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 3,
+        "C2": 1,
+        "C3": 1,
+        "C4": 5,
+        "C5": 4,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 72,
+      "title": "SỐ LẠNG SƠN Năm 2025 - 2026",
+      "directory": "072-so-lang-son-nam-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 2,
+        "C2": 2,
+        "C3": 1,
+        "C4": 4,
+        "C5": 4,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 73,
+      "title": "SGD & ĐT THÀNH PHỐ HUỆ Năm học 2025-2026",
+      "directory": "073-sgd-dt-thanh-pho-hue-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 4,
+        "C2": 2,
+        "C3": 1,
+        "C4": 3,
+        "C5": 2,
+        "OUT.CAP_SO": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 3,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 74,
+      "title": "SỐ ĐỒNG NAI Năm học: 2025-2026",
+      "directory": "074-so-dong-nai-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 2,
+        "C2": 3,
+        "C4": 4,
+        "C5": 3,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 75,
+      "title": "SGD & ĐT TỈNH CAO BẰNG KI THI THỦ TNTHPT - LẦN 1 - Năm học: 2025-2026",
+      "directory": "075-sgd-dt-tinh-cao-bang-ki-thi-thu-tnthpt-lan-1-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 1,
+        "C2": 1,
+        "C3": 1,
+        "C4": 4,
+        "C5": 3,
+        "C6": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.UNCLASSIFIED": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 76,
+      "title": "SỐ THANH HÓA - 2025 – 2026",
+      "directory": "076-so-thanh-hoa-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 10,
+      "outsideFramework": 12,
+      "buckets": {
+        "C1": 1,
+        "C2": 1,
+        "C4": 4,
+        "C5": 3,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 3,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 77,
+      "title": "SỐ NGHĨ AN - 2025 - 2026",
+      "directory": "077-so-nghi-an-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 3,
+        "C2": 3,
+        "C3": 2,
+        "C4": 1,
+        "C5": 3,
+        "CD2": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 78,
+      "title": "CHUYÊN KHTN - HÀ NỘI LẦN 2 - 2025 - 2026",
+      "directory": "078-chuyen-khtn-ha-noi-lan-2-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 2,
+        "C4": 3,
+        "C5": 5,
+        "C6": 2,
+        "OUT.GIOI_HAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 79,
+      "title": "ĐỀ THI THỦ THPT QUỐC GIA LÀN 2 LIÊN TRƯỜNG THPT HÀ NỘI CỦM 9 NĂM HỌC 2025 - 2026",
+      "directory": "079-de-thi-thu-thpt-quoc-gia-lan-2-lien-truong-thpt-ha-noi-cum-9-nam-hoc-202",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 1,
+        "C2": 1,
+        "C3": 1,
+        "C4": 3,
+        "C5": 6,
+        "CD2": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 80,
+      "title": "THPT LÊ THÁNH TÔNG NĂM HỌC: 2025 -2026",
+      "directory": "080-thpt-le-thanh-tong-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 3,
+        "C2": 3,
+        "C3": 1,
+        "C4": 2,
+        "C5": 3,
+        "C6": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 3,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_OPTIONS_PARSED_0",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 81,
+      "title": "THPT TRẦN PHÚ-PHÚ THỘ",
+      "directory": "081-thpt-tran-phu-phu-tho",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 3,
+        "C2": 2,
+        "C4": 3,
+        "C5": 7,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 82,
+      "title": "CỤM HẢI PHÒNG NĂM HỌC 2025 - 2026",
+      "directory": "082-cum-hai-phong-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 3,
+        "C2": 5,
+        "C3": 2,
+        "C4": 3,
+        "C5": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_OPTIONS_PARSED_3",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 83,
+      "title": "SỐ HẢI PHÒNG Năm 2025 - 2026",
+      "directory": "083-so-hai-phong-nam-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 1,
+        "C2": 3,
+        "C3": 1,
+        "C4": 4,
+        "C5": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 84,
+      "title": "HOÀNG DIỆU SÀO NAM - ĐÀ NĂNG",
+      "directory": "084-hoang-dieu-sao-nam-da-nang",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 4,
+        "C2": 2,
+        "C3": 1,
+        "C4": 3,
+        "C5": 4,
+        "CD2": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 2,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 85,
+      "title": "SGD & ĐT HẢI PHÒNG Kì THI THỦ TNTHPT - LÀN 1 - Năm học: 2025-2026",
+      "directory": "085-sgd-dt-hai-phong-ki-thi-thu-tnthpt-lan-1-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 2,
+        "C2": 2,
+        "C3": 1,
+        "C4": 3,
+        "C5": 4,
+        "C6": 1,
+        "CD2": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 86,
+      "title": "SỐ GIÁO DỤC VÀ ĐÀO TẠO ĐÀ NĂNG ĐỀ THI THỦ TÓT NGHIỆP THPT NĂM HỌC 2025 - 2026",
+      "directory": "086-so-giao-duc-va-dao-tao-da-nang-de-thi-thu-tot-nghiep-thpt-nam-hoc-2025-2",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 4,
+        "C2": 2,
+        "C4": 3,
+        "C5": 2,
+        "C6": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 3,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 87,
+      "title": "SỐ QUẢNG TRỊ - Năm học: 2025-2026",
+      "directory": "087-so-quang-tri-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 1,
+        "C2": 1,
+        "C3": 1,
+        "C4": 4,
+        "C5": 6,
+        "OUT.CAP_SO": 2,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 88,
+      "title": "SGD & ĐT TỈNH CÀ MAU ĐỀ THI THỦ TỐT NGHIỆP THPT - Năm học: 2025-2026",
+      "directory": "088-sgd-dt-tinh-ca-mau-de-thi-thu-tot-nghiep-thpt-nam-hoc-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 3,
+        "C2": 3,
+        "C4": 2,
+        "C5": 3,
+        "C6": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.HINH_OXY": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 89,
+      "title": "SỐ GD&ĐT TỈNH TUYỀN QUANG ĐỀ THI CHÍNH THỨC - KỶ THI THỦ TÓT NGHIỆP THPT NĂM 2026 - LÀN 2 MÔN THI: TOÁN",
+      "directory": "089-so-gd-dt-tinh-tuyen-quang-de-thi-chinh-thuc-ky-thi-thu-tot-nghiep-thpt-n",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 2,
+        "C2": 3,
+        "C3": 1,
+        "C4": 4,
+        "C5": 3,
+        "C6": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 90,
+      "title": "CHUYÊN LƯƠNG VĂN CHÁNH - 2025 – 2026",
+      "directory": "090-chuyen-luong-van-chanh-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 3,
+        "C2": 1,
+        "C3": 1,
+        "C4": 4,
+        "C5": 3,
+        "C6": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 91,
+      "title": "MUỒNG LÁT - THANH HÓA - 2025 - 2026",
+      "directory": "091-muong-lat-thanh-hoa-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 1,
+        "C2": 2,
+        "C3": 2,
+        "C4": 5,
+        "C5": 4,
+        "C6": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 92,
+      "title": "SỐ PHÚ THO - 2025 – 2026",
+      "directory": "092-so-phu-tho-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 3,
+        "C2": 3,
+        "C4": 2,
+        "C5": 4,
+        "C6": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 93,
+      "title": "SỐ QUẢNG NINH 2025 - 2026",
+      "directory": "093-so-quang-ninh-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 2,
+        "C2": 1,
+        "C3": 1,
+        "C4": 3,
+        "C5": 6,
+        "C6": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 94,
+      "title": "THPT PHỤ DỰC - HƯNG YÊN - 2025 - 2026",
+      "directory": "094-thpt-phu-duc-hung-yen-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 7,
+        "C2": 2,
+        "C3": 2,
+        "C4": 2,
+        "C5": 1,
+        "C6": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 4,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_OPTIONS_PARSED_0",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 95,
+      "title": "THPT HÀM RỒNG - THANH HOÁ",
+      "directory": "095-thpt-ham-rong-thanh-hoa",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 2,
+        "C2": 3,
+        "C4": 3,
+        "C5": 3,
+        "C6": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 3,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 96,
+      "title": "TRIỆU SƠN 1 - THANH HÓA - L2 2025-2026",
+      "directory": "096-trieu-son-1-thanh-hoa-l2-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C1": 3,
+        "C2": 2,
+        "C3": 1,
+        "C4": 4,
+        "C5": 3,
+        "C6": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 2
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 97,
+      "title": "SỐ ĐỒNG NAI - LẦN 2 2025 - 2026",
+      "directory": "097-so-dong-nai-lan-2-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 2,
+        "C2": 3,
+        "C3": 1,
+        "C4": 4,
+        "C5": 3,
+        "C6": 3,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 98,
+      "title": "PHỐ THÔNG NĂNG KHIỄU HCM",
+      "directory": "098-pho-thong-nang-khieu-hcm",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 1,
+        "C2": 2,
+        "C4": 1,
+        "C5": 5,
+        "C6": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.HINH_OXY": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 99,
+      "title": "THPT TRẦN PHÚ-HOÀN KIỂM",
+      "directory": "099-thpt-tran-phu-hoan-kiem",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 2,
+        "C2": 1,
+        "C4": 4,
+        "C5": 4,
+        "C6": 2,
+        "CD2": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.LUONG_GIAC": 2,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 100,
+      "title": "SỐ ĐỒNG THÁP 2025-2026",
+      "directory": "100-so-dong-thap-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 2,
+        "C2": 2,
+        "C4": 3,
+        "C5": 5,
+        "C6": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.UNCLASSIFIED": 2
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 101,
+      "title": "SỐ GIÁO DỤC VÀ ĐÀO TẠO NINH BÌNH NĂM HỌC 2025 - 20256 - LẦN 3",
+      "directory": "101-so-giao-duc-va-dao-tao-ninh-binh-nam-hoc-2025-20256-lan-3",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 3,
+        "C2": 2,
+        "C4": 2,
+        "C5": 4,
+        "C6": 1,
+        "CD2": 1,
+        "OUT.CAP_SO": 2,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.THONG_KE_KHAC": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "QUESTION_TF_c_NEEDS_REVIEW",
+        "QUESTION_TF_d_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 102,
+      "title": "SỐ BẮC NINH 2025 - 2026",
+      "directory": "102-so-bac-ninh-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 17,
+      "outsideFramework": 5,
+      "buckets": {
+        "C1": 3,
+        "C2": 4,
+        "C4": 3,
+        "C5": 5,
+        "C6": 2,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "QUESTION_TF_b_NEEDS_REVIEW",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 103,
+      "title": "SỐ CẦN THO - 2025 – 2026",
+      "directory": "103-so-can-tho-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 3,
+        "C2": 5,
+        "C3": 1,
+        "C4": 3,
+        "C5": 3,
+        "C6": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 104,
+      "title": "SỐ GIÁO DỤC VÀ ĐÀO TẠO VỀNH LONG ĐỀ THI CHÍNH THỨC (Đề thi có 04 trang) - KỶ THI THỬ TỐT NGHIỆP THPT NĂM 2026 Môn thi: TOÁN",
+      "directory": "104-so-giao-duc-va-dao-tao-venh-long-de-thi-chinh-thuc-de-thi-co-04-trang-ky",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 14,
+      "outsideFramework": 8,
+      "buckets": {
+        "C2": 2,
+        "C3": 1,
+        "C4": 4,
+        "C5": 4,
+        "C6": 1,
+        "CD2": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 105,
+      "title": "SỐ ĐIỆN BIÊN - 2025 – 2026",
+      "directory": "105-so-dien-bien-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 1,
+        "C2": 4,
+        "C3": 1,
+        "C4": 3,
+        "C5": 3,
+        "C6": 1,
+        "OUT.CAP_SO": 3,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME"
+      ]
+    },
+    {
+      "ordinal": 106,
+      "title": "SỐ GIÁO DỤC VÀ ĐÀO TẠO TỈNH LẠNG SƠN ĐỀ CHÍNH THỨC Đề thi này có 04 trang - KỶ THI THỦ TỐT NGHIỆP THPT NĂM 2026 LÀN 2 Môn thi: TOÁN",
+      "directory": "106-so-giao-duc-va-dao-tao-tinh-lang-son-de-chinh-thuc-de-thi-nay-co-04-tran",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 16,
+      "outsideFramework": 6,
+      "buckets": {
+        "C1": 2,
+        "C2": 2,
+        "C4": 4,
+        "C5": 5,
+        "C6": 1,
+        "CD2": 1,
+        "CD3": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.THONG_KE_KHAC": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 107,
+      "title": "SỐ AN GIANG - 2025 - 2026",
+      "directory": "107-so-an-giang-2025-2026",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 13,
+      "outsideFramework": 9,
+      "buckets": {
+        "C1": 2,
+        "C2": 5,
+        "C4": 2,
+        "C5": 3,
+        "C6": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 3,
+        "OUT.THONG_KE_KHAC": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "OUT_OF_FRAME",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 108,
+      "title": "SỞ GIÁO DỤC & ĐÀO TẠO QUẢNG NGẬI TRƯỜNG THPT CHUYÊN LÊ KHIỂT ĐỀ CHÍNH THỨC (Đề có 04 trang) - THI THỪ TÓT NGHIỆP THPT LÀN 2 NĂM 2026 MÔN TOÁN Thời gian làm bài 90 phút, không kể thời gian phát đế",
+      "directory": "108-so-giao-duc-dao-tao-quang-ngai-truong-thpt-chuyen-le-khiet-de-chinh-thuc",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 12,
+      "outsideFramework": 10,
+      "buckets": {
+        "C1": 1,
+        "C2": 1,
+        "C3": 1,
+        "C4": 4,
+        "C5": 4,
+        "C6": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.DAO_HAM_CO_BAN": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "LOW_CONFIDENCE"
+      ]
+    },
+    {
+      "ordinal": 109,
+      "title": "THPT QUẢNG XƯƠNG 1 - THANH HÓA Năm 2025 - 2026 - Làn 2",
+      "directory": "109-thpt-quang-xuong-1-thanh-hoa-nam-2025-2026-lan-2",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 2,
+        "C2": 3,
+        "C3": 2,
+        "C4": 5,
+        "C5": 2,
+        "C6": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.MU_LOGARIT": 2,
+        "OUT.TO_HOP_XAC_SUAT_CO_BAN": 1,
+        "OUT.UNCLASSIFIED": 1
+      },
+      "reviewFlags": [
+        "EXAM_I_SOLUTION_INCOMPLETE_11_OF_12",
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_OPTIONS_PARSED_0",
+        "QUESTION_NO_SOLUTION_FOUND",
+        "QUESTION_TF_a_NEEDS_REVIEW",
+        "LOW_CONFIDENCE",
+        "QUESTION_SHORT_ANSWER_NEEDS_REVIEW"
+      ]
+    },
+    {
+      "ordinal": 110,
+      "title": "SỐ GD & ĐT TỈNH QUẢNG NINH TRƯỜNG THPT TRẦN PHÚ ĐỀ CHÍNH THỨC (Đề thi có 04 trang)",
+      "directory": "110-so-gd-dt-tinh-quang-ninh-truong-thpt-tran-phu-de-chinh-thuc-de-thi-co-04",
+      "questions": 22,
+      "maxScore": 10,
+      "inFramework": 15,
+      "outsideFramework": 7,
+      "buckets": {
+        "C1": 3,
+        "C2": 2,
+        "C3": 1,
+        "C4": 2,
+        "C5": 4,
+        "C6": 2,
+        "CD2": 1,
+        "OUT.CAP_SO": 1,
+        "OUT.GIOI_HAN": 1,
+        "OUT.HINH_HOC_KHONG_GIAN_CO_DIEN": 2,
+        "OUT.HINH_OXY": 1,
+        "OUT.LUONG_GIAC": 1,
+        "OUT.PHUONG_TRINH_BAT_PHUONG_TRINH": 1
+      },
+      "reviewFlags": [
+        "QUESTION_MC_ANSWER_NEEDS_REVIEW",
+        "OUT_OF_FRAME",
+        "QUESTION_TF_a_NEEDS_REVIEW"
+      ]
+    }
+  ]
+}
