@@ -12,6 +12,7 @@ import { translateAuthError } from '@/lib/supabase/auth-errors';
 import { useExamStore } from '@/store/useExamStore';
 
 const RESEND_COOLDOWN = 60;
+const OTP_LENGTH = 8;
 
 function ResetPasswordForm() {
   const searchParams = useSearchParams();
@@ -54,7 +55,7 @@ function ResetPasswordForm() {
         return false;
       }
       setStep('verify');
-      setMessage(`Đã gửi mã OTP gồm 6 số đến ${targetEmail}. Vui lòng kiểm tra hộp thư (kể cả mục Spam).`);
+      setMessage(`Đã gửi mã OTP gồm ${OTP_LENGTH} số đến ${targetEmail}. Vui lòng kiểm tra hộp thư (kể cả mục Spam).`);
       setCooldown(RESEND_COOLDOWN);
       return true;
     } finally {
@@ -88,8 +89,8 @@ function ResetPasswordForm() {
     setMessage('');
 
     const code = otp.trim();
-    if (code.length !== 6) {
-      setError('Mã OTP gồm 6 số. Vui lòng nhập đầy đủ.');
+    if (code.length !== OTP_LENGTH) {
+      setError(`Mã OTP gồm ${OTP_LENGTH} số. Vui lòng nhập đầy đủ.`);
       return;
     }
     if (password.length < 6) {
@@ -169,7 +170,7 @@ function ResetPasswordForm() {
           <>
             <h1 className={styles.title}>Quên mật khẩu</h1>
             <p className={styles.subtitle}>
-              Nhập email tài khoản. Chúng tôi sẽ gửi <strong>mã OTP 6 số</strong> đến hộp thư của bạn để đặt lại mật khẩu.
+              Nhập email tài khoản. Chúng tôi sẽ gửi <strong>mã OTP {OTP_LENGTH} số</strong> đến hộp thư của bạn để đặt lại mật khẩu.
             </p>
 
             <form onSubmit={handleRequest}>
@@ -213,11 +214,11 @@ function ResetPasswordForm() {
                     required
                     inputMode="numeric"
                     autoComplete="one-time-code"
-                    maxLength={6}
+                    maxLength={OTP_LENGTH}
                     className={styles.input}
                     value={otp}
-                    placeholder="6 số"
-                    onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                    placeholder={`${OTP_LENGTH} số`}
+                    onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, OTP_LENGTH))}
                   />
                 </div>
               </div>

@@ -32,3 +32,6 @@
  GET / 200 in 170ms (next.js: 10ms, proxy.ts: 8ms, application-code: 152ms)
  GET / 200 in 237ms (next.js: 13ms, proxy.ts: 12ms, application-code: 212ms)
  GET / 200 in 849ms (next.js: 16ms, proxy.ts: 19ms, application-code: 814ms)
+ GET /reset-password 200 in 294ms (next.js: 72ms, proxy.ts: 23ms, application-code: 199ms)
+✓ Compiled in 388ms
+ GET /reset-password 200 in 1008ms (next.js: 379ms, proxy.ts: 405ms, application-code: 223ms)
