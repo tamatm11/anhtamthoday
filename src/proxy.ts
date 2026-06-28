@@ -35,7 +35,6 @@ export async function proxy(request: NextRequest) {
 
     if (!hasAuthCookie) {
       const loginUrl = new URL('/', request.url);
-      loginUrl.searchParams.set('redirect', pathname);
       return NextResponse.redirect(loginUrl);
     }
   }
