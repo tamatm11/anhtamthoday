@@ -69,7 +69,7 @@ export async function loadCandidateProfile(
     supabase
       .from('students')
       .select(
-        'gmail, full_name, school_name, date_of_birth, gender, province_name, district_name, phone',
+        'full_name, school_name, date_of_birth, gender, province_name, district_name, phone',
       )
       .eq('id', user.id)
       .maybeSingle(),
@@ -80,7 +80,6 @@ export async function loadCandidateProfile(
     | null;
   const student = studentResult.data as
     | {
-        gmail: string | null;
         full_name: string | null;
         school_name: string | null;
         date_of_birth: string | null;
@@ -93,7 +92,7 @@ export async function loadCandidateProfile(
 
   return {
     code: user.id.slice(0, 8).toUpperCase(),
-    email: user.email ?? profile?.email ?? student?.gmail ?? '',
+    email: user.email ?? profile?.email ?? '',
     name: student?.full_name ?? profile?.full_name ?? fallbackName(user),
     school: student?.school_name ?? '',
     dob: student?.date_of_birth ?? '',
@@ -146,7 +145,6 @@ export async function ensureStudentProfile(
 
   const studentPayload: Record<string, unknown> = {
     id: user.id,
-    gmail: email,
     full_name: fullName,
   };
 
