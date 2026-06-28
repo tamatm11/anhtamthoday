@@ -112,11 +112,11 @@ export default function RoomKeyPage() {
     try {
       const supabase = createClient();
 
-      // join_exam live trên DB nhận (p_code, p_subject_code)
-      // p_subject_code là optional (default null) nếu key đã gắn sẵn vào phòng thi
+      // Keys are global; the selected room determines the concrete exam session.
       const { data: sessionId, error: rpcError } = await supabase.rpc('join_exam', {
         p_code: trimmedKey,
         p_subject_code: selectedSubjectCode ?? null,
+        p_exam_room_id: selectedExamSetId,
       });
 
       if (rpcError) {

@@ -2723,13 +2723,13 @@ export type Database = {
     }
     Functions: {
       activate_exam_key: {
-        Args: { p_key_code: string; p_subject_code?: string }
+        Args: { p_key_code: string; p_subject_code?: string | null }
         Returns: Json
       }
       finish_import_job: { Args: { p_job_id: string }; Returns: undefined }
       generate_exam_keys: {
         Args: {
-          p_exam_room_id: string
+          p_exam_room_id: string | null
           p_expires_at: string | null
           p_is_public: boolean
           p_note: string | null
@@ -2740,13 +2740,13 @@ export type Database = {
           batch_id: string
           code: string
           created_at: string
-          exam_room_id: string
+          exam_room_id: string | null
           exam_room_name: string
-          expires_at: string
+          expires_at: string | null
           id: string
           is_public: boolean
           status: Database["public"]["Enums"]["exam_key_status"]
-          subject_code: string
+          subject_code: string | null
           total_attempts: number
           used_attempts: number
         }[]
@@ -2762,7 +2762,11 @@ export type Database = {
         }[]
       }
       join_exam: {
-        Args: { p_code: string; p_subject_code?: string }
+        Args: {
+          p_code: string
+          p_exam_room_id?: string | null
+          p_subject_code?: string | null
+        }
         Returns: string
       }
       json_matches_schema: {

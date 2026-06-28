@@ -113,13 +113,6 @@ type StudentSummaryRecord = {
   current_key_code: string | null;
 };
 
-type ExamRoomOption = {
-  id: string;
-  name: string;
-  subject_name: string;
-  code: string;
-};
-
 const keyStatusLabels: Record<ExamKeyStatus, KeyStatusLabel> = {
   unused: 'Chưa dùng',
   active: 'Đang dùng',
@@ -259,8 +252,6 @@ export default function AdminPage() {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [questions, setQuestions] = useState<DraftQuestion[]>([]);
   const [keys, setKeys] = useState<ExamKey[]>([]);
-  const [examRooms, setExamRooms] = useState<ExamRoomOption[]>([]);
-  const [selectedRoomId, setSelectedRoomId] = useState('');
   const [keyMode, setKeyMode] = useState<'public' | 'private'>('public');
   const [keyQuantity, setKeyQuantity] = useState('1');
   const [keyTotalAttempts, setKeyTotalAttempts] = useState('100');
@@ -352,40 +343,16 @@ export default function AdminPage() {
 
     try {
       const supabase = createClient();
-      const [keysResponse, roomsResponse] = await Promise.all([
-        supabase
-          .from('admin_exam_key_overview')
-          .select('id,code,exam_room_name,subject_name,student_name,is_public,total_attempts,used_attempts,status,expires_at,created_at')
-          .order('created_at', { ascending: false })
-          .limit(200),
-        supabase
-          .from('exam_rooms')
-          .select('id,name,code,subject_code,subjects(name)')
-          .eq('status', 'published')
-          .order('subject_code'),
-      ]);
+      const keysResponse = await supabase
+        .from('admin_exam_key_overview')
+        .select('id,code,exam_room_name,subject_name,student_name,is_public,total_attempts,used_attempts,status,expires_at,created_at')
+        .order('created_at', { ascending: false })
+        .limit(200);
 
       if (keysResponse.error) throw keysResponse.error;
 
       const loadedKeys = ((keysResponse.data ?? []) as unknown as AdminExamKeyRecord[]).map(mapKeyRecord);
       setKeys(loadedKeys);
-
-      if (!roomsResponse.error && roomsResponse.data) {
-        const roomList = roomsResponse.data.map((room) => {
-          const subjectRel = Array.isArray(room.subjects) ? room.subjects[0] : room.subjects;
-          return {
-            id: room.id as string,
-            name: room.name as string,
-            code: room.code as string,
-            subject_name: (subjectRel as { name?: string } | null)?.name ?? room.subject_code as string,
-          };
-        });
-        setExamRooms(roomList);
-        // Auto-select phòng thi đầu tiên nếu chưa chọn
-        if (roomList.length > 0) {
-          setSelectedRoomId((prev) => prev || roomList[0].id);
-        }
-      }
     } catch (error) {
       setKeyFeedback(getAdminDataErrorMessage(error));
     } finally {
@@ -513,10 +480,7 @@ export default function AdminPage() {
       return;
     }
 
-    if (!selectedRoomId) {
-      setKeyFeedback('Vui lòng chọn phòng thi trước khi tạo key.');
-      return;
-    }
+    const isPublicKey = keyMode === 'public';
 
     setIsCreatingKeys(true);
     setKeyFeedback('');
@@ -524,12 +488,12 @@ export default function AdminPage() {
     try {
       const supabase = createClient();
       const { data, error } = await supabase.rpc('generate_exam_keys', {
-        p_exam_room_id: selectedRoomId,
+        p_exam_room_id: null,
         p_quantity: quantity,
         p_expires_at: expiresAt,
         p_note: keyNote.trim() || null,
         p_total_attempts: totalAttempts,
-        p_is_public: keyMode === 'public',
+        p_is_public: isPublicKey,
       });
 
       if (error) throw error;
@@ -538,7 +502,7 @@ export default function AdminPage() {
         id: key.id,
         code: key.code,
         subject: key.subject_code ?? 'Dùng chung',
-        room: key.exam_room_name ?? 'Chưa gán phòng thi',
+        room: key.exam_room_name ?? 'Dùng cho mọi phòng thi',
         student: key.is_public ? 'Nhiều tài khoản' : 'Chưa gán',
         isPublic: key.is_public,
         attempts: `${key.used_attempts}/${key.total_attempts}`,
@@ -653,25 +617,37 @@ export default function AdminPage() {
 
             {catalogFeedback ? <p className={styles.feedback}>{catalogFeedback}</p> : null}
 
-            <div className={styles.list}>
-              {questions.length === 0 ? (
+            {questions.length === 0 ? (
+              <div className={styles.list}>
                 <div className={styles.emptyCell}>
                   {isLoadingCatalog ? 'Đang tải câu hỏi...' : 'Chưa có câu hỏi trong cơ sở dữ liệu.'}
                 </div>
-              ) : null}
-              {questions.map((question) => (
-                <article key={question.id} className={styles.questionRow}>
-                  <span>{question.code}</span>
-                  <div>
-                    <strong>{question.title}</strong>
-                    <p>
-                      {question.subject} · {question.difficulty}
-                      {question.answer ? ` · Đáp án nháp ${question.answer}` : ''}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
+              </div>
+            ) : (
+              <details className={styles.questionDisclosure}>
+                <summary>
+                  <span>
+                    <strong>{questions.length} câu hỏi trong ngân hàng</strong>
+                    <small>Danh sách chi tiết đang được thu gọn để màn hình quản trị dễ quét hơn.</small>
+                  </span>
+                  <span className={styles.disclosureAction}>Xem danh sách</span>
+                </summary>
+                <div className={styles.list}>
+                  {questions.map((question) => (
+                    <article key={question.id} className={styles.questionRow}>
+                      <span>{question.code}</span>
+                      <div>
+                        <strong>{question.title}</strong>
+                        <p>
+                          {question.subject} · {question.difficulty}
+                          {question.answer ? ` · Đáp án nháp ${question.answer}` : ''}
+                        </p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </details>
+            )}
           </section>
 
           <section id="subjects" className={styles.panel}>
@@ -734,7 +710,7 @@ export default function AdminPage() {
           <div className={styles.panelHeader}>
             <div>
               <h2>Quản lý key</h2>
-              <p>Tạo key public hoặc cá nhân, đặt quota và theo dõi phạm vi sử dụng.</p>
+              <p>Tạo key public hoặc cá nhân, đặt quota và theo dõi lượt sử dụng.</p>
             </div>
             <button
               className="btn outline small"
@@ -761,26 +737,6 @@ export default function AdminPage() {
                 >
                   <option value="public">Public — nhiều tài khoản</option>
                   <option value="private">Cá nhân — một tài khoản</option>
-                </select>
-              </label>
-              <label>
-                <span className={styles.labelText}>
-                  Phòng thi <span className={styles.requiredMark}>*</span>
-                </span>
-                <select
-                  value={selectedRoomId}
-                  onChange={(event) => setSelectedRoomId(event.target.value)}
-                  required
-                >
-                  {examRooms.length === 0 ? (
-                    <option value="">Chưa có phòng thi nào đang mở</option>
-                  ) : (
-                    examRooms.map((room) => (
-                      <option key={room.id} value={room.id}>
-                        {room.name} — {room.subject_name}
-                      </option>
-                    ))
-                  )}
                 </select>
               </label>
               <label>
@@ -830,14 +786,20 @@ export default function AdminPage() {
               <button
                 className="btn"
                 type="submit"
-                disabled={isCreatingKeys || isLoadingKeys || !hasConfiguredSupabase}
+                disabled={
+                  isCreatingKeys ||
+                  isLoadingKeys ||
+                  !hasConfiguredSupabase
+                }
               >
                 <Plus size={16} />
                 {isCreatingKeys ? 'Đang tạo...' : `Tạo ${Number.parseInt(keyQuantity, 10) || 0} key`}
               </button>
               <span>
                 {keyTotalAttempts || 0} lượt/key ·{' '}
-                {keyMode === 'public' ? 'Dùng chung nhiều tài khoản' : 'Chỉ một tài khoản'} ·{' '}
+                {keyMode === 'public'
+                  ? 'Dùng chung nhiều tài khoản, mọi phòng thi'
+                  : 'Một tài khoản, mọi phòng thi'} ·{' '}
                 Hết hạn {formatDate(keyExpiry ? getEndOfDayIso(keyExpiry) : null)}
               </span>
             </div>
@@ -851,7 +813,7 @@ export default function AdminPage() {
                 <tr>
                   <th>Key</th>
                   <th>Loại</th>
-                  <th>Phạm vi</th>
+                  <th>Hiệu lực</th>
                   <th>Học viên</th>
                   <th>Lượt</th>
                   <th>Hết hạn</th>

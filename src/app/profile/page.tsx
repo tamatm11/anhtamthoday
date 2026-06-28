@@ -235,16 +235,7 @@ export default function ProfilePage() {
 
   return (
     <ProfileContent
-      key={[
-        candidateInfo.code,
-        candidateInfo.name,
-        candidateInfo.dob,
-        candidateInfo.gender,
-        candidateInfo.school,
-        candidateInfo.province,
-        candidateInfo.district,
-        candidateInfo.phone,
-      ].join(':')}
+      key={candidateInfo.code}
       candidateInfo={candidateInfo}
       activeKeys={activeKeys}
       usedKeys={usedKeys}
@@ -263,20 +254,19 @@ function ProfileContent({
   updateProfile,
   onBack,
 }: ProfileContentProps) {
-  const [form, setForm] = useState<ProfileFormState>(() =>
-    getInitialForm(candidateInfo),
-  );
+  const [draftForm, setDraftForm] = useState<ProfileFormState | null>(null);
   const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>(
     'idle',
   );
   const [feedback, setFeedback] = useState('');
   const today = hanoiTodayInputValue();
+  const form = draftForm ?? getInitialForm(candidateInfo);
 
   const updateField =
     (field: keyof ProfileFormState) =>
     (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      setForm((currentForm) => ({
-        ...currentForm,
+      setDraftForm((currentForm) => ({
+        ...(currentForm ?? getInitialForm(candidateInfo)),
         [field]: event.target.value,
       }));
       if (status !== 'idle') {
@@ -337,15 +327,7 @@ function ProfileContent({
         district: profile.district,
         phone: profile.phone,
       });
-      setForm({
-        name: profile.name,
-        dob: profile.dob,
-        gender: profile.gender,
-        school: profile.school,
-        province: profile.province,
-        district: profile.district,
-        phone: profile.phone,
-      });
+      setDraftForm(null);
       setStatus('success');
       setFeedback('Đã lưu thông tin vào cơ sở dữ liệu.');
     } catch (saveError) {

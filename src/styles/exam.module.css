@@ -387,7 +387,7 @@
   left: 0;
   right: 0;
   display: grid;
-  grid-template-columns: minmax(320px, 43%) minmax(0, 57%);
+  grid-template-columns: minmax(0, 56%) minmax(360px, 44%);
   gap: 0;
   background: color-mix(in srgb, var(--surface) 86%, transparent);
 }
@@ -403,7 +403,7 @@
 }
 
 .passagePanel {
-  padding: 30px 38px 96px;
+  padding: 28px 40px 96px;
   border-right: 1px solid var(--border);
   color: var(--text);
   font-size: var(--answer-font);
@@ -434,6 +434,32 @@
   font-style: italic;
 }
 
+.promptCard,
+.answerCard {
+  width: min(100%, 860px);
+  margin: 0 auto;
+}
+
+.panelLabel {
+  margin-bottom: 14px;
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.questionContext {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
 .errorText {
   padding: 10px 12px;
   border-left: 3px solid var(--danger);
@@ -445,7 +471,7 @@
 }
 
 .questionPanel {
-  padding: 22px 30px 98px;
+  padding: 28px 30px 98px;
   font-size: var(--answer-font);
   line-height: 1.56;
 }
@@ -453,6 +479,45 @@
 [data-theme="dark"] .questionPanel {
   background: var(--bg-question);
   color: var(--text-body);
+}
+
+.answerCard {
+  min-height: 100%;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: color-mix(in srgb, var(--surface-elevated) 92%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.answerHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.answerHeader .panelLabel {
+  margin-bottom: 4px;
+}
+
+.answerHeader h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: calc(var(--answer-font) + 5px);
+  line-height: 1.25;
+}
+
+.answerHeader .flagBtn {
+  position: static;
+  flex: 0 0 auto;
+}
+
+.answerCard :global(.katex-display) {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .questionBlock {
@@ -847,6 +912,11 @@
 
   .questionPanel {
     padding: 14px 12px 36px;
+  }
+
+  .answerCard {
+    padding: 16px;
+    border-radius: var(--radius-lg);
   }
 
   .questionBlock {

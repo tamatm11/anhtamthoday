@@ -15,7 +15,9 @@ import {
   type ExamSessionQuestion,
   type SessionAnswerInput,
 } from '@/lib/supabase/exam-data';
-import QuestionRenderer from '@/components/question/QuestionRenderer';
+import QuestionRenderer, {
+  type RenderableQuestion,
+} from '@/components/question/QuestionRenderer';
 import { useExamStore } from '@/store/useExamStore';
 import styles from '@/styles/exam.module.css';
 
@@ -49,6 +51,30 @@ function formatTime(seconds: number) {
   const minutes = Math.floor(seconds / 60).toString().padStart(2, '0');
   const remainingSeconds = (seconds % 60).toString().padStart(2, '0');
   return `${minutes}:${remainingSeconds}`;
+}
+
+function toRenderableQuestion(question: ExamSessionQuestion): RenderableQuestion {
+  return {
+    id: question.id,
+    displayNo: question.displayNo,
+    type: question.type,
+    content: question.content,
+    imageUrl: question.imageUrl,
+    imageAltText: question.imageAltText,
+    maxPoints: question.maxPoints,
+    options: question.options.map((option) => ({
+      id: option.id,
+      label: option.label,
+      content: option.content,
+      imageUrl: option.imageUrl,
+      imageAltText: option.imageAltText,
+    })),
+    trueFalseItems: question.trueFalseItems.map((item) => ({
+      id: item.id,
+      label: item.label,
+      content: item.content,
+    })),
+  };
 }
 
 export default function ExamPage() {
@@ -197,6 +223,16 @@ export default function ExamPage() {
 
   const questions = useMemo(() => examData?.questions ?? [], [examData]);
   const totalQuestions = questions.length;
+  const activeQuestion = useMemo(
+    () =>
+      questions.find((question) => question.number === currentQuestion) ??
+      questions[0],
+    [currentQuestion, questions],
+  );
+  const renderableQuestion = useMemo(
+    () => (activeQuestion ? toRenderableQuestion(activeQuestion) : null),
+    [activeQuestion],
+  );
   const durationSeconds = (examData?.room?.durationMinutes ?? 50) * 60;
 
   const deadlineMs = useMemo(() => {
@@ -258,9 +294,9 @@ export default function ExamPage() {
     [questions, marked],
   );
 
-  const scrollToQuestion = useCallback((questionNumber: number) => {
-    const el = document.getElementById(`question-${questionNumber}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const resetPanelScroll = useCallback(() => {
+    document.getElementById('exam-question-prompt')?.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('exam-answer-panel')?.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const showSaveIndicator = useCallback((status: 'saving' | 'saved' | 'error') => {
@@ -455,7 +491,7 @@ export default function ExamPage() {
           e.preventDefault();
           if (currentQuestion < totalQuestions) {
             setCurrentQuestion(currentQuestion + 1);
-            scrollToQuestion(currentQuestion + 1);
+            resetPanelScroll();
           }
           break;
         case 'p':
@@ -463,7 +499,7 @@ export default function ExamPage() {
           e.preventDefault();
           if (currentQuestion > 1) {
             setCurrentQuestion(currentQuestion - 1);
-            scrollToQuestion(currentQuestion - 1);
+            resetPanelScroll();
           }
           break;
         case 'm':
@@ -489,7 +525,7 @@ export default function ExamPage() {
     currentQuestion,
     persistChoice,
     questions,
-    scrollToQuestion,
+    resetPanelScroll,
     setCurrentQuestion,
     showReviewPanel,
     toggleMark,
@@ -499,14 +535,14 @@ export default function ExamPage() {
   const handleNext = () => {
     if (currentQuestion < totalQuestions) {
       setCurrentQuestion(currentQuestion + 1);
-      scrollToQuestion(currentQuestion + 1);
+      resetPanelScroll();
     }
   };
 
   const handlePrev = () => {
     if (currentQuestion > 1) {
       setCurrentQuestion(currentQuestion - 1);
-      scrollToQuestion(currentQuestion - 1);
+      resetPanelScroll();
     }
   };
 
@@ -668,21 +704,11 @@ export default function ExamPage() {
       )}
 
       <div className={styles.content}>
-        <article className={styles.passagePanel}>
-          <h2>{room?.name ?? 'Phiên thi từ cơ sở dữ liệu'}</h2>
-          <p>
-            <strong>{room?.blueprintName ?? 'Đang tải cấu trúc đề thi'}</strong>
-          </p>
-          <p>Mã phòng: {room?.code ?? '...'}</p>
-          <p>Thời gian làm bài: {room?.durationMinutes ?? 50} phút</p>
-          <p>Số lượt/key: {room?.totalAttemptsDefault ?? 3}</p>
-          {loadError ? <p className={styles.errorText}>{loadError}</p> : null}
-          {saveError ? <p className={styles.errorText}>{saveError}</p> : null}
-          <p className={styles.passageNote}>
-            Nội dung câu hỏi bên phải được tải từ bảng câu hỏi của phiên thi.
-          </p>
-        </article>
-        <section className={styles.questionPanel}>
+        <section
+          id="exam-question-prompt"
+          className={styles.passagePanel}
+          aria-label="Nội dung câu hỏi"
+        >
           {isLoading ? (
             <div className={styles.emptyState}>Đang tải câu hỏi từ Supabase...</div>
           ) : null}
@@ -691,76 +717,82 @@ export default function ExamPage() {
               Cơ sở dữ liệu chưa có câu hỏi cho phiên thi này.
             </div>
           ) : null}
-          {questions.map((question) => {
-            const selected = choiceAnswers[question.id];
-            const textValue = textAnswers[question.id] ?? '';
-            const tfDraft = trueFalseAnswers[question.id] ?? {};
-            const isAnswered =
-              Boolean(selected) ||
-              Boolean(textValue.trim()) ||
-              Object.keys(tfDraft).length > 0;
-            const isMarked = marked.includes(question.number);
-            const isCurrent = question.number === currentQuestion;
+          {loadError ? <p className={styles.errorText}>{loadError}</p> : null}
+          {saveError ? <p className={styles.errorText}>{saveError}</p> : null}
 
-            return (
-              <article
-                key={question.id}
-                id={`question-${question.number}`}
-                className={`${styles.questionBlock} ${
-                  isAnswered ? styles.answered : ''
-                } ${isMarked ? styles.marked : ''} ${
-                  isCurrent ? styles.current : ''
-                }`}
-              >
+          {activeQuestion && renderableQuestion ? (
+            <article className={styles.promptCard}>
+              <div className={styles.panelLabel}>NỘI DUNG CÂU HỎI</div>
+              <QuestionRenderer
+                key={activeQuestion.id}
+                question={renderableQuestion}
+                section="prompt"
+              />
+              <div className={styles.questionContext}>
+                <span>{room?.name ?? 'Phiên thi'}</span>
+                <span>{room?.blueprintName ?? room?.subjectName ?? 'Đề thi'}</span>
+              </div>
+            </article>
+          ) : null}
+        </section>
+
+        <section
+          id="exam-answer-panel"
+          className={styles.questionPanel}
+          aria-label="Phần trả lời"
+        >
+          {activeQuestion && renderableQuestion ? (
+            <article className={styles.answerCard}>
+              <div className={styles.answerHeader}>
+                <div>
+                  <div className={styles.panelLabel}>PHẦN TRẢ LỜI</div>
+                  <h2>Câu {activeQuestion.displayNo}</h2>
+                </div>
                 <button
-                  className={`${styles.flagBtn} ${isMarked ? styles.marked : ''}`}
-                  aria-label={isMarked ? 'Bỏ đánh dấu câu hỏi' : 'Đánh dấu câu hỏi'}
-                  onClick={() => toggleMark(question.number)}
+                  className={`${styles.flagBtn} ${
+                    marked.includes(activeQuestion.number) ? styles.marked : ''
+                  }`}
+                  aria-label={
+                    marked.includes(activeQuestion.number)
+                      ? 'Bỏ đánh dấu câu hỏi'
+                      : 'Đánh dấu câu hỏi'
+                  }
+                  onClick={() => toggleMark(activeQuestion.number)}
                 >
-                  <Flag size={16} fill={isMarked ? 'currentColor' : 'none'} />
+                  <Flag
+                    size={16}
+                    fill={
+                      marked.includes(activeQuestion.number)
+                        ? 'currentColor'
+                        : 'none'
+                    }
+                  />
                 </button>
-                <QuestionRenderer
-                  question={{
-                    id: question.id,
-                    displayNo: question.displayNo,
-                    type: question.type,
-                    content: question.content,
-                    imageUrl: question.imageUrl,
-                    imageAltText: question.imageAltText,
-                    maxPoints: question.maxPoints,
-                    options: question.options.map((option) => ({
-                      id: option.id,
-                      label: option.label,
-                      content: option.content,
-                      imageUrl: option.imageUrl,
-                      imageAltText: option.imageAltText,
-                    })),
-                    trueFalseItems: question.trueFalseItems.map((item) => ({
-                      id: item.id,
-                      label: item.label,
-                      content: item.content,
-                    })),
-                  }}
-                  selectedOptionId={selected}
-                  trueFalseAnswers={tfDraft}
-                  textValue={textValue}
-                  onSelectOption={(optionId, label) =>
-                    persistChoice(question, optionId, label)
-                  }
-                  onTrueFalseChange={(itemId, value) =>
-                    persistTrueFalse(question, itemId, value)
-                  }
-                  onTextChange={(value) =>
-                    setTextAnswers((current) => ({
-                      ...current,
-                      [question.id]: value,
-                    }))
-                  }
-                  onTextBlur={() => persistTextAnswer(question)}
-                />
-              </article>
-            );
-          })}
+              </div>
+
+              <QuestionRenderer
+                key={activeQuestion.id}
+                question={renderableQuestion}
+                section="answer"
+                selectedOptionId={choiceAnswers[activeQuestion.id]}
+                trueFalseAnswers={trueFalseAnswers[activeQuestion.id] ?? {}}
+                textValue={textAnswers[activeQuestion.id] ?? ''}
+                onSelectOption={(optionId, label) =>
+                  persistChoice(activeQuestion, optionId, label)
+                }
+                onTrueFalseChange={(itemId, value) =>
+                  persistTrueFalse(activeQuestion, itemId, value)
+                }
+                onTextChange={(value) =>
+                  setTextAnswers((current) => ({
+                    ...current,
+                    [activeQuestion.id]: value,
+                  }))
+                }
+                onTextBlur={() => persistTextAnswer(activeQuestion)}
+              />
+            </article>
+          ) : null}
         </section>
       </div>
 
@@ -782,7 +814,7 @@ export default function ExamPage() {
                 }`}
                 onClick={() => {
                   setCurrentQuestion(question.number);
-                  scrollToQuestion(question.number);
+                  resetPanelScroll();
                 }}
               >
                 {question.displayNo}
@@ -843,7 +875,7 @@ export default function ExamPage() {
                       onClick={() => {
                         setShowReviewPanel(false);
                         setCurrentQuestion(q.number);
-                        scrollToQuestion(q.number);
+                        resetPanelScroll();
                       }}
                     >
                       Câu {q.displayNo}
@@ -864,7 +896,7 @@ export default function ExamPage() {
                       onClick={() => {
                         setShowReviewPanel(false);
                         setCurrentQuestion(q.number);
-                        scrollToQuestion(q.number);
+                        resetPanelScroll();
                       }}
                     >
                       Câu {q.displayNo}

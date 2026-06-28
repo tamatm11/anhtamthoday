@@ -159,7 +159,9 @@ export async function loadAuthoringWorkspaceData(): Promise<AuthoringWorkspaceDa
       .order('name'),
     supabase
       .from('exam_room_papers')
-      .select('id,paper_code,label,is_default,status,exam_rooms(name,subject_code)')
+      .select(
+        'id,paper_code,label,is_default,status,exam_rooms!exam_room_papers_exam_room_id_fkey(name,subject_code)',
+      )
       .in('status', ['draft', 'published'])
       .order('created_at', { ascending: false }),
   ]);
@@ -268,7 +270,7 @@ export async function createAuthoringDocument(input: {
 
       const { data: sourcePaper, error: sourceError } = await supabase
         .from('exam_room_papers')
-        .select('id,status,exam_rooms(subject_code)')
+        .select('id,status,exam_rooms!exam_room_papers_exam_room_id_fkey(subject_code)')
         .eq('id', input.sourcePaperId)
         .single();
 

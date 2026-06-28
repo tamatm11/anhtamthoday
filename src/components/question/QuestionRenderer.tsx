@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import katex from 'katex';
 import type { ExamQuestionType } from '@/lib/supabase/exam-data';
 import styles from '@/styles/question-renderer.module.css';
@@ -35,6 +35,7 @@ export type RenderableQuestion = {
 
 type QuestionRendererProps = {
   question: RenderableQuestion;
+  section?: 'all' | 'prompt' | 'answer';
   selectedOptionId?: string;
   trueFalseAnswers?: Record<string, 'true' | 'false'>;
   textValue?: string;
@@ -106,14 +107,6 @@ function QuestionImage({
   alt: string | null;
 }) {
   const [failed, setFailed] = useState(false);
-  const loadedRef = useRef(false);
-
-  useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      if (!loadedRef.current) setFailed(true);
-    }, 8000);
-    return () => window.clearTimeout(timeout);
-  }, []);
 
   if (failed) {
     return (
@@ -131,9 +124,6 @@ function QuestionImage({
       src={url}
       alt={alt ?? ''}
       loading="lazy"
-      onLoad={() => {
-        loadedRef.current = true;
-      }}
       onError={() => setFailed(true)}
     />
   );
@@ -141,6 +131,7 @@ function QuestionImage({
 
 export default function QuestionRenderer({
   question,
+  section = 'all',
   selectedOptionId,
   trueFalseAnswers = {},
   textValue = '',
@@ -150,26 +141,33 @@ export default function QuestionRenderer({
   onTextChange,
   onTextBlur,
 }: QuestionRendererProps) {
+  const showPrompt = section !== 'answer';
+  const showAnswer = section !== 'prompt';
+
   return (
     <div className={styles.renderer}>
-      <div className={styles.heading}>
-        <strong>Câu {question.displayNo}.</strong>{' '}
-        <MathText value={question.content} />
-      </div>
+      {showPrompt ? (
+        <>
+          <div className={styles.heading}>
+            <strong>Câu {question.displayNo}.</strong>{' '}
+            <MathText value={question.content} />
+          </div>
 
-      {question.maxPoints !== undefined ? (
-        <p className={styles.meta}>{question.maxPoints} điểm</p>
+          {question.maxPoints !== undefined ? (
+            <p className={styles.meta}>{question.maxPoints} điểm</p>
+          ) : null}
+
+          {question.imageUrl ? (
+            <QuestionImage
+              key={question.imageUrl}
+              url={question.imageUrl}
+              alt={question.imageAltText}
+            />
+          ) : null}
+        </>
       ) : null}
 
-      {question.imageUrl ? (
-        <QuestionImage
-          key={question.imageUrl}
-          url={question.imageUrl}
-          alt={question.imageAltText}
-        />
-      ) : null}
-
-      {question.type === 'multiple_choice' ? (
+      {showAnswer && question.type === 'multiple_choice' ? (
         <div className={styles.options}>
           {question.options.map((option) => (
             <label
@@ -204,7 +202,7 @@ export default function QuestionRenderer({
         </div>
       ) : null}
 
-      {question.type === 'true_false' ? (
+      {showAnswer && question.type === 'true_false' ? (
         <div className={styles.trueFalseList}>
           {question.trueFalseItems.map((item) => (
             <div key={item.id} className={styles.trueFalseItem}>
@@ -241,7 +239,7 @@ export default function QuestionRenderer({
         </div>
       ) : null}
 
-      {question.type === 'short_answer' ? (
+      {showAnswer && question.type === 'short_answer' ? (
         <input
           className={styles.textAnswer}
           value={textValue}
@@ -252,7 +250,7 @@ export default function QuestionRenderer({
         />
       ) : null}
 
-      {question.type === 'essay' ? (
+      {showAnswer && question.type === 'essay' ? (
         <textarea
           className={styles.textAnswer}
           value={textValue}
