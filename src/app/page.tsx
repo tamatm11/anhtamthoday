@@ -121,10 +121,12 @@ export default function LoginPage() {
       });
 
       if (authError) {
+        console.error('Google OAuth error:', authError);
         setError(translateAuthError(authError.message));
         setGoogleLoading(false);
       }
     } catch (loginError) {
+      console.error('Google login exception:', loginError);
       setError(
         loginError instanceof Error
           ? translateAuthError(loginError.message)
@@ -228,6 +230,8 @@ export default function LoginPage() {
           </svg>
           <span>{googleLoading ? 'Đang chuyển tới Google...' : 'Tiếp tục với Google'}</span>
         </button>
+
+        {error && <p className={styles.errorText}>{error}</p>}
 
         <div className={styles.footerLinks}>
           <Link
