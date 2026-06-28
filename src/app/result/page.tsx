@@ -5,24 +5,26 @@ import { useRouter } from 'next/navigation';
 import { Moon, Sun, Clock, BookOpen, Award, ChevronDown, ChevronUp } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import {
-  fetchExamSessionData,
+  fetchSessionReview,
+  getSupabaseErrorMessage,
   questionTypeLabel,
-  type ExamSessionData,
-  type ExamSessionQuestion,
-  type ExamSessionAnswer,
+  type SessionReview,
+  type SessionReviewQuestion,
+  type SessionReviewAnswer,
   type ExamQuestionType,
 } from '@/lib/supabase/exam-data';
 import { useExamStore } from '@/store/useExamStore';
 import QuestionRenderer from '@/components/question/QuestionRenderer';
 import type { RenderableQuestion } from '@/components/question/QuestionRenderer';
+import { formatHanoiDateTime } from '@/lib/datetime';
 import styles from '@/styles/result.module.css';
 
 /* ─── Types ──────────────────────────────────────────── */
 type ReviewFilter = 'all' | 'correct' | 'wrong' | 'unanswered';
 
 type QuestionReviewItem = {
-  question: ExamSessionQuestion;
-  answer: ExamSessionAnswer | null;
+  question: SessionReviewQuestion;
+  answer: SessionReviewAnswer;
   status: 'correct' | 'wrong' | 'unanswered';
   earnedPoints: number;
   maxPoints: number;
@@ -46,7 +48,6 @@ function ScoreDonut({ percent, score10 }: { percent: number; score10: string }) 
   const [offset, setOffset] = useState(circumference);
 
   useEffect(() => {
-    // Animate on mount
     const timeout = setTimeout(() => {
       setOffset(circumference - (percent / 100) * circumference);
     }, 120);
@@ -94,34 +95,38 @@ function formatDuration(startedAt: string, submittedAt: string | null): string {
   return `${seconds} giây`;
 }
 
-function buildReviewItems(
-  questions: ExamSessionQuestion[],
-  answers: ExamSessionAnswer[],
-): QuestionReviewItem[] {
-  const answerMap = new Map(answers.map((a) => [a.sessionQuestionId, a]));
-  return questions.map((q) => {
-    const answer = answerMap.get(q.id) ?? null;
+function hasMeaningfulAnswer(answer: SessionReviewAnswer): boolean {
+  if (!answer) return false;
+  if (answer.selectedOptionId) return true;
+  if (answer.shortAnswerText && answer.shortAnswerText.trim()) return true;
+  if (
+    answer.answerJson &&
+    typeof answer.answerJson === 'object' &&
+    'items' in answer.answerJson
+  ) {
+    const items = (answer.answerJson as { items?: Record<string, unknown> }).items;
+    return Boolean(items && Object.keys(items).length > 0);
+  }
+  return false;
+}
+
+function buildReviewItems(questions: SessionReviewQuestion[]): QuestionReviewItem[] {
+  return questions.map((question) => {
+    const answer = question.answer;
     let status: 'correct' | 'wrong' | 'unanswered' = 'unanswered';
-    if (answer) {
-      if (answer.isCorrect === true) status = 'correct';
-      else if (answer.isCorrect === false) status = 'wrong';
-      // isCorrect === null means not yet graded — treat as answered but unknown
+
+    if (hasMeaningfulAnswer(answer)) {
+      if (answer?.isCorrect === true) status = 'correct';
+      else if (answer?.isCorrect === false) status = 'wrong';
+      else status = 'wrong'; // có làm nhưng không đúng / chờ chấm tay
     }
-    // If the student has an answer but isCorrect is null (not graded), still show as 'unanswered'
-    // in terms of correctness status
-    const hasAnswer = answer && (
-      answer.selectedOptionId !== null ||
-      answer.shortAnswerText !== null ||
-      (answer.answerJson !== null && answer.answerJson !== undefined)
-    );
-    if (!hasAnswer) status = 'unanswered';
 
     return {
-      question: q,
+      question,
       answer,
       status,
       earnedPoints: answer?.earnedPoints ?? 0,
-      maxPoints: q.maxPoints,
+      maxPoints: question.maxPoints,
     };
   });
 }
@@ -150,12 +155,11 @@ function buildTypeBreakdowns(items: QuestionReviewItem[]): TypeBreakdown[] {
     else if (item.status === 'wrong') b.wrong += 1;
     else b.unanswered += 1;
   }
-  // Sort by: multiple_choice, true_false, short_answer, essay
   const order: ExamQuestionType[] = ['multiple_choice', 'true_false', 'short_answer', 'essay'];
   return order.filter((t) => map.has(t)).map((t) => map.get(t)!);
 }
 
-function toRenderableQuestion(q: ExamSessionQuestion): RenderableQuestion {
+function toRenderableQuestion(q: SessionReviewQuestion): RenderableQuestion {
   return {
     id: q.id,
     displayNo: q.displayNo,
@@ -169,33 +173,46 @@ function toRenderableQuestion(q: ExamSessionQuestion): RenderableQuestion {
       content: o.content,
       imageUrl: o.imageUrl,
       imageAltText: o.imageAltText,
+      correct: o.correct,
     })),
     trueFalseItems: q.trueFalseItems.map((t) => ({
       id: t.id,
       label: t.label,
       content: t.content,
+      correct: t.correctValue ?? undefined,
     })),
     maxPoints: q.maxPoints,
   };
 }
 
+function readTfItems(answer: SessionReviewAnswer): Record<string, string> {
+  if (
+    answer?.answerJson &&
+    typeof answer.answerJson === 'object' &&
+    'items' in answer.answerJson
+  ) {
+    return (
+      (answer.answerJson as { items?: Record<string, string> }).items ?? {}
+    );
+  }
+  return {};
+}
+
 function getStudentAnswerLabel(
-  question: ExamSessionQuestion,
-  answer: ExamSessionAnswer | null,
+  question: SessionReviewQuestion,
+  answer: SessionReviewAnswer,
 ): string {
-  if (!answer) return 'Không trả lời';
+  if (!hasMeaningfulAnswer(answer)) return 'Không trả lời';
 
   if (question.type === 'multiple_choice') {
-    if (!answer.selectedOptionId) return 'Không trả lời';
-    const option = question.options.find((o) => o.id === answer.selectedOptionId);
+    const option = question.options.find((o) => o.id === answer?.selectedOptionId);
     return option ? `${option.label}. ${option.content}` : 'Không xác định';
   }
 
   if (question.type === 'true_false') {
-    if (!answer.answerJson || typeof answer.answerJson !== 'object') return 'Không trả lời';
-    const tfAnswers = answer.answerJson as Record<string, string>;
+    const items = readTfItems(answer);
     const parts = question.trueFalseItems.map((item) => {
-      const val = tfAnswers[item.id];
+      const val = items[item.id];
       const label = item.label ? `${item.label}) ` : '';
       return `${label}${val === 'true' ? 'Đúng' : val === 'false' ? 'Sai' : '—'}`;
     });
@@ -203,22 +220,35 @@ function getStudentAnswerLabel(
   }
 
   if (question.type === 'short_answer' || question.type === 'essay') {
-    return answer.shortAnswerText || 'Không trả lời';
+    return answer?.shortAnswerText || 'Không trả lời';
   }
 
   return 'Không trả lời';
 }
 
-function getCorrectAnswerLabel(question: ExamSessionQuestion): string {
+function getCorrectAnswerLabel(question: SessionReviewQuestion): string {
   if (question.type === 'multiple_choice') {
-    // We don't have correct option data in the current fetch for students
-    // The options don't include a `correct` field when fetched by student
-    return 'Xem giải thích chi tiết';
+    const correct = question.options.filter((o) => o.correct);
+    if (correct.length === 0) return '—';
+    return correct.map((o) => `${o.label}. ${o.content}`).join('; ');
   }
+
   if (question.type === 'true_false') {
-    // Similarly, we don't have trueFalseItems.correct here
-    return 'Xem giải thích chi tiết';
+    return question.trueFalseItems
+      .map((item) => {
+        const label = item.label ? `${item.label}) ` : '';
+        return `${label}${item.correctValue === true ? 'Đúng' : item.correctValue === false ? 'Sai' : '—'}`;
+      })
+      .join('; ');
   }
+
+  if (question.type === 'short_answer') {
+    const keys = question.shortAnswerKeys
+      .map((k) => k.display)
+      .filter((v): v is string => Boolean(v));
+    return keys.length > 0 ? keys.join(' hoặc ') : '—';
+  }
+
   return '—';
 }
 
@@ -230,15 +260,23 @@ export default function ResultPage() {
     theme,
     setTheme,
     finishSession,
+    clearDraft,
     candidateInfo,
     roomKey,
     currentSessionId,
   } = useExamStore();
-  const [examData, setExamData] = useState<ExamSessionData | null>(null);
+  const supabase = useMemo(() => createClient(), []);
+  const [review, setReview] = useState<SessionReview | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isScoring, setIsScoring] = useState(false);
   const [loadError, setLoadError] = useState('');
   const [reviewFilter, setReviewFilter] = useState<ReviewFilter>('all');
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+
+  // Kết thúc: không lưu tiến trình làm bài nữa (xóa bản nháp resume).
+  useEffect(() => {
+    clearDraft();
+  }, [clearDraft]);
 
   useEffect(() => {
     if (hasHydrated && !candidateInfo) {
@@ -254,35 +292,51 @@ export default function ResultPage() {
   useEffect(() => {
     if (!hasHydrated || !currentSessionId) return;
 
-    let isMounted = true;
+    let mounted = true;
+    const sessionId = currentSessionId;
 
-    fetchExamSessionData(createClient(), currentSessionId)
-      .then((data) => {
-        if (!isMounted) return;
-        setExamData(data);
+    const run = async (attempt: number) => {
+      try {
+        const data = await fetchSessionReview(supabase, sessionId);
+        if (!mounted) return;
+        setReview(data);
         setLoadError('');
-      })
-      .catch((error: unknown) => {
-        if (!isMounted) return;
-        const message =
-          error instanceof Error
-            ? error.message
-            : 'Không thể tải kết quả từ Supabase.';
-        setLoadError(message);
-      })
-      .finally(() => {
-        if (isMounted) setIsLoading(false);
-      });
+
+        // Điểm chưa có (đang chấm) -> thử lại tối đa 3 lần, cách 1.5s.
+        if (data.session.score === null && attempt < 3) {
+          setIsScoring(true);
+          window.setTimeout(() => {
+            if (mounted) void run(attempt + 1);
+          }, 1500);
+        } else {
+          setIsScoring(false);
+          setIsLoading(false);
+        }
+      } catch (error: unknown) {
+        if (!mounted) return;
+        setLoadError(
+          getSupabaseErrorMessage(error, 'Không thể tải kết quả từ Supabase.'),
+        );
+        setIsScoring(false);
+        setIsLoading(false);
+      }
+    };
+
+    void run(0);
 
     return () => {
-      isMounted = false;
+      mounted = false;
     };
-  }, [currentSessionId, hasHydrated]);
+  }, [currentSessionId, hasHydrated, supabase]);
+
+  const isPractice = (review?.session.roomCode ?? '')
+    .toUpperCase()
+    .startsWith('PRACTICE');
 
   /* ─── Derived data ──────────────────────────────────── */
   const reviewItems = useMemo(
-    () => (examData ? buildReviewItems(examData.questions, examData.answers) : []),
-    [examData],
+    () => (review ? buildReviewItems(review.questions) : []),
+    [review],
   );
 
   const resultStats = useMemo(() => {
@@ -304,18 +358,18 @@ export default function ResultPage() {
     return reviewItems.filter((i) => i.status === reviewFilter);
   }, [reviewItems, reviewFilter]);
 
-  const score = examData?.session.score;
-  const maxScore = examData?.session.maxScore ?? 10;
+  const score = review?.session.score ?? null;
+  const maxScore = review?.session.maxScore ?? 10;
   const score10 =
     typeof score === 'number' && maxScore > 0
       ? ((score / maxScore) * 10).toFixed(2)
       : '—';
   const progressPercent =
     typeof score === 'number' && maxScore > 0 ? (score / maxScore) * 100 : 0;
-  const subjectName = examData?.room?.subjectName ?? 'Môn thi';
-  const examRoomName = examData?.room?.name ?? 'Phòng thi';
-  const timeTaken = examData
-    ? formatDuration(examData.session.startedAt, examData.session.submittedAt)
+  const subjectName = review?.session.subjectName ?? 'Môn thi';
+  const examRoomName = review?.session.roomName ?? 'Phòng thi';
+  const timeTaken = review
+    ? formatDuration(review.session.startedAt, review.session.submittedAt)
     : '';
 
   const toggleExpand = (id: string) => {
@@ -358,7 +412,9 @@ export default function ResultPage() {
               <div className={styles.body}>
                 {isLoading && (
                   <p className={styles.successMessage}>
-                    Đang tải kết quả từ Supabase...
+                    {isScoring
+                      ? 'Đang chấm điểm…'
+                      : 'Đang tải kết quả từ Supabase...'}
                   </p>
                 )}
                 {loadError && <p className={styles.errorText}>{loadError}</p>}
@@ -367,7 +423,7 @@ export default function ResultPage() {
           )}
 
           {/* ─── Main result display ─── */}
-          {!isLoading && !loadError && examData && (
+          {!isLoading && !loadError && review && (
             <>
               {/* Score Hero Card */}
               <section className={styles.card}>
@@ -401,7 +457,7 @@ export default function ResultPage() {
                         <strong>
                           {typeof score === 'number'
                             ? `${score.toFixed(2)} / ${maxScore}`
-                            : 'Chưa chấm'}
+                            : 'Đang chấm…'}
                         </strong>
                       </span>
                     </div>
@@ -420,8 +476,14 @@ export default function ResultPage() {
                   </span>
                   <span className={styles.metaTag}>
                     <Award size={14} />
-                    Lần thi thứ {examData.session.attemptNumber}
+                    Lần thi thứ {review.session.attemptNumber}
                   </span>
+                  {review.session.submittedAt ? (
+                    <span className={styles.metaTag}>
+                      <Clock size={14} />
+                      Nộp lúc: {formatHanoiDateTime(review.session.submittedAt)}
+                    </span>
+                  ) : null}
                 </div>
               </section>
 
@@ -454,136 +516,134 @@ export default function ResultPage() {
                 </section>
               )}
 
-              {/* Detailed Answer Review */}
-              <section className={styles.card}>
-                <div className={styles.reviewHeader}>
+              {/* Detailed Answer Review — ẩn với phòng luyện tập (PRACTICE) */}
+              {isPractice ? (
+                <section className={styles.card}>
                   <h3 className={styles.reviewTitle}>Xem lại bài làm</h3>
-                  <div className={styles.reviewFilter}>
-                    {(
-                      [
-                        ['all', 'Tất cả'],
-                        ['correct', 'Đúng'],
-                        ['wrong', 'Sai'],
-                        ['unanswered', 'Bỏ trống'],
-                      ] as [ReviewFilter, string][]
-                    ).map(([value, label]) => (
-                      <button
-                        key={value}
-                        type="button"
-                        className={`${styles.filterBtn} ${
-                          reviewFilter === value ? styles.filterBtnActive : ''
-                        }`}
-                        onClick={() => setReviewFilter(value)}
-                      >
-                        {label}
-                        {value !== 'all' && (
-                          <>
-                            {' '}
-                            (
-                            {value === 'correct'
-                              ? resultStats.correctAnswers
-                              : value === 'wrong'
-                                ? resultStats.wrongAnswers
-                                : resultStats.empty}
-                            )
-                          </>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div className={styles.reviewList}>
-                  {filteredReviewItems.length === 0 && (
-                    <p style={{ textAlign: 'center', color: 'var(--muted)', fontWeight: 700 }}>
-                      Không có câu hỏi nào ở bộ lọc này.
-                    </p>
-                  )}
-                  {filteredReviewItems.map((item) => {
-                    const isExpanded = expandedItems.has(item.question.id);
-                    const statusClass =
-                      item.status === 'correct'
-                        ? styles.reviewItemCorrect
-                        : item.status === 'wrong'
-                          ? styles.reviewItemWrong
-                          : styles.reviewItemUnanswered;
-
-                    return (
-                      <div
-                        key={item.question.id}
-                        className={`${styles.reviewItem} ${statusClass}`}
-                      >
+                  <p style={{ color: 'var(--muted)', fontWeight: 600 }}>
+                    Phòng luyện tập không hiển thị đáp án chi tiết để bạn tự ôn lại.
+                  </p>
+                </section>
+              ) : (
+                <section className={styles.card}>
+                  <div className={styles.reviewHeader}>
+                    <h3 className={styles.reviewTitle}>Xem lại bài làm &amp; đáp án</h3>
+                    <div className={styles.reviewFilter}>
+                      {(
+                        [
+                          ['all', 'Tất cả'],
+                          ['correct', 'Đúng'],
+                          ['wrong', 'Sai'],
+                          ['unanswered', 'Bỏ trống'],
+                        ] as [ReviewFilter, string][]
+                      ).map(([value, label]) => (
                         <button
+                          key={value}
                           type="button"
-                          className={styles.reviewItemHead}
-                          onClick={() => toggleExpand(item.question.id)}
-                          style={{ cursor: 'pointer', width: '100%', border: 'none', background: 'inherit' }}
+                          className={`${styles.filterBtn} ${
+                            reviewFilter === value ? styles.filterBtnActive : ''
+                          }`}
+                          onClick={() => setReviewFilter(value)}
                         >
-                          <span className={styles.reviewItemNo}>
-                            Câu {item.question.displayNo} — {questionTypeLabel(item.question.type)}
-                          </span>
-                          <div className={styles.reviewItemBadges}>
-                            <span
-                              className={`${styles.badge} ${
-                                item.status === 'correct'
-                                  ? styles.badgeCorrect
-                                  : item.status === 'wrong'
-                                    ? styles.badgeWrong
-                                    : styles.badgeUnanswered
-                              }`}
-                            >
-                              {item.status === 'correct'
-                                ? '✓ Đúng'
-                                : item.status === 'wrong'
-                                  ? '✗ Sai'
-                                  : '— Chưa trả lời'}
-                            </span>
-                            <span className={`${styles.badge} ${styles.badgePoints}`}>
-                              {item.earnedPoints.toFixed(1)} / {item.maxPoints.toFixed(1)} đ
-                            </span>
-                            {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                          </div>
+                          {label}
+                          {value !== 'all' && (
+                            <>
+                              {' '}
+                              (
+                              {value === 'correct'
+                                ? resultStats.correctAnswers
+                                : value === 'wrong'
+                                  ? resultStats.wrongAnswers
+                                  : resultStats.empty}
+                              )
+                            </>
+                          )}
                         </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className={styles.reviewList}>
+                    {filteredReviewItems.length === 0 && (
+                      <p style={{ textAlign: 'center', color: 'var(--muted)', fontWeight: 700 }}>
+                        Không có câu hỏi nào ở bộ lọc này.
+                      </p>
+                    )}
+                    {filteredReviewItems.map((item) => {
+                      const isExpanded = expandedItems.has(item.question.id);
+                      const statusClass =
+                        item.status === 'correct'
+                          ? styles.reviewItemCorrect
+                          : item.status === 'wrong'
+                            ? styles.reviewItemWrong
+                            : styles.reviewItemUnanswered;
 
-                        {isExpanded && (
-                          <div className={styles.reviewItemBody}>
-                            <QuestionRenderer
-                              question={toRenderableQuestion(item.question)}
-                              selectedOptionId={item.answer?.selectedOptionId ?? undefined}
-                              trueFalseAnswers={
-                                item.question.type === 'true_false' &&
-                                item.answer?.answerJson &&
-                                typeof item.answer.answerJson === 'object'
-                                  ? (item.answer.answerJson as Record<string, 'true' | 'false'>)
-                                  : undefined
-                              }
-                              textValue={item.answer?.shortAnswerText ?? ''}
-                              showSolutions={false}
-                            />
-                            <div className={styles.answerCompare}>
-                              <div className={`${styles.answerRow} ${styles.answerRowStudent}`}>
-                                <span className={styles.answerLabel}>Bạn chọn:</span>
-                                <span className={styles.answerValue}>
-                                  {getStudentAnswerLabel(item.question, item.answer)}
-                                </span>
-                              </div>
-                              {item.status !== 'unanswered' && (
+                      return (
+                        <div
+                          key={item.question.id}
+                          className={`${styles.reviewItem} ${statusClass}`}
+                        >
+                          <button
+                            type="button"
+                            className={styles.reviewItemHead}
+                            onClick={() => toggleExpand(item.question.id)}
+                            style={{ cursor: 'pointer', width: '100%', border: 'none', background: 'inherit' }}
+                          >
+                            <span className={styles.reviewItemNo}>
+                              Câu {item.question.displayNo} — {questionTypeLabel(item.question.type)}
+                            </span>
+                            <div className={styles.reviewItemBadges}>
+                              <span
+                                className={`${styles.badge} ${
+                                  item.status === 'correct'
+                                    ? styles.badgeCorrect
+                                    : item.status === 'wrong'
+                                      ? styles.badgeWrong
+                                      : styles.badgeUnanswered
+                                }`}
+                              >
+                                {item.status === 'correct'
+                                  ? '✓ Đúng'
+                                  : item.status === 'wrong'
+                                    ? '✗ Sai'
+                                    : '— Chưa trả lời'}
+                              </span>
+                              <span className={`${styles.badge} ${styles.badgePoints}`}>
+                                {item.earnedPoints.toFixed(1)} / {item.maxPoints.toFixed(1)} đ
+                              </span>
+                              {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                            </div>
+                          </button>
+
+                          {isExpanded && (
+                            <div className={styles.reviewItemBody}>
+                              <QuestionRenderer
+                                question={toRenderableQuestion(item.question)}
+                                selectedOptionId={item.answer?.selectedOptionId ?? undefined}
+                                textValue={item.answer?.shortAnswerText ?? ''}
+                                showSolutions
+                              />
+                              <div className={styles.answerCompare}>
+                                <div className={`${styles.answerRow} ${styles.answerRowStudent}`}>
+                                  <span className={styles.answerLabel}>Bạn chọn:</span>
+                                  <span className={styles.answerValue}>
+                                    {getStudentAnswerLabel(item.question, item.answer)}
+                                  </span>
+                                </div>
                                 <div className={`${styles.answerRow} ${styles.answerRowCorrect}`}>
                                   <span className={styles.answerLabel}>Đáp án:</span>
                                   <span className={styles.answerValue}>
-                                    {item.status === 'correct'
-                                      ? '✓ Câu trả lời của bạn đúng!'
-                                      : getCorrectAnswerLabel(item.question)}
+                                    {getCorrectAnswerLabel(item.question)}
                                   </span>
                                 </div>
-                              )}
+                              </div>
                             </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+              )}
 
               {/* Finish button */}
               <div className={styles.actions}>

@@ -18,6 +18,7 @@ import {
 import { createClient } from '@/lib/supabase/client';
 import { hasSupabaseEnv } from '@/lib/supabase/env';
 import { difficultyLabel } from '@/lib/supabase/exam-data';
+import { HANOI_TZ, hanoiEndOfDayISO, hanoiTodayInputValue } from '@/lib/datetime';
 import styles from '@/styles/admin.module.css';
 
 type Subject = {
@@ -45,6 +46,7 @@ type ExamKey = {
   subject: string;
   room: string;
   student: string;
+  isPublic: boolean;
   attempts: string;
   status: KeyStatusLabel;
   expiresAt: string | null;
@@ -64,6 +66,7 @@ type AdminExamKeyRecord = {
   exam_room_name: string;
   subject_name: string;
   student_name: string | null;
+  is_public: boolean;
   total_attempts: number;
   used_attempts: number;
   status: ExamKeyStatus;
@@ -76,6 +79,7 @@ type GeneratedExamKeyRecord = {
   code: string;
   exam_room_name: string;
   subject_code: string | null;
+  is_public: boolean;
   total_attempts: number;
   used_attempts: number;
   status: ExamKeyStatus;
@@ -126,32 +130,24 @@ const keyStatusLabels: Record<ExamKeyStatus, KeyStatusLabel> = {
 
 const activeKeyStatuses = new Set<KeyStatusLabel>(['Chưa dùng', 'Đang dùng']);
 
-function toDateInputValue(date: Date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
-}
-
 function getDefaultExpiryDate() {
-  const date = new Date();
-  date.setDate(date.getDate() + 30);
+  // 30 ngày kể từ "hôm nay" theo giờ Hà Nội.
+  const base = new Date(`${hanoiTodayInputValue()}T00:00:00+07:00`);
+  base.setDate(base.getDate() + 30);
 
-  return toDateInputValue(date);
+  return hanoiTodayInputValue(base);
 }
 
 function getEndOfDayIso(dateValue: string) {
-  const [year, month, day] = dateValue.split('-').map(Number);
-  const date = new Date(year, month - 1, day, 23, 59, 59, 999);
-
-  return date.toISOString();
+  // 23:59:59.999 cuối ngày theo giờ Hà Nội của ngày người dùng chọn.
+  return hanoiEndOfDayISO(dateValue) ?? new Date(dateValue).toISOString();
 }
 
 function formatDate(value: string | null) {
   if (!value) return 'Không đặt';
 
   return new Intl.DateTimeFormat('vi-VN', {
+    timeZone: HANOI_TZ,
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
@@ -164,7 +160,8 @@ function mapKeyRecord(key: AdminExamKeyRecord): ExamKey {
     code: key.code,
     subject: key.subject_name,
     room: key.exam_room_name,
-    student: key.student_name ?? 'Chưa gán',
+    student: key.is_public ? 'Nhiều tài khoản' : key.student_name ?? 'Chưa gán',
+    isPublic: key.is_public,
     attempts: `${key.used_attempts}/${key.total_attempts}`,
     status: keyStatusLabels[key.status],
     expiresAt: key.expires_at,
@@ -184,6 +181,10 @@ function getErrorMessage(error: unknown) {
 
   if (message.includes('Key expiry must be in the future')) {
     return 'Ngày hết hạn phải nằm trong tương lai.';
+  }
+
+  if (message.includes('Total attempts must be between')) {
+    return 'Giới hạn lượt làm phải từ 1 đến 100.000.';
   }
 
   return message ? `Không tạo được key: ${message}` : 'Không tạo được key. Vui lòng thử lại.';
@@ -260,7 +261,9 @@ export default function AdminPage() {
   const [keys, setKeys] = useState<ExamKey[]>([]);
   const [examRooms, setExamRooms] = useState<ExamRoomOption[]>([]);
   const [selectedRoomId, setSelectedRoomId] = useState('');
-  const [keyQuantity, setKeyQuantity] = useState('5');
+  const [keyMode, setKeyMode] = useState<'public' | 'private'>('public');
+  const [keyQuantity, setKeyQuantity] = useState('1');
+  const [keyTotalAttempts, setKeyTotalAttempts] = useState('100');
   const [keyExpiry, setKeyExpiry] = useState(getDefaultExpiryDate);
   const [keyNote, setKeyNote] = useState('');
   const [isLoadingCatalog, setIsLoadingCatalog] = useState(false);
@@ -352,7 +355,7 @@ export default function AdminPage() {
       const [keysResponse, roomsResponse] = await Promise.all([
         supabase
           .from('admin_exam_key_overview')
-          .select('id,code,exam_room_name,subject_name,student_name,total_attempts,used_attempts,status,expires_at,created_at')
+          .select('id,code,exam_room_name,subject_name,student_name,is_public,total_attempts,used_attempts,status,expires_at,created_at')
           .order('created_at', { ascending: false })
           .limit(200),
         supabase
@@ -486,9 +489,15 @@ export default function AdminPage() {
     event.preventDefault();
 
     const quantity = Number.parseInt(keyQuantity, 10);
+    const totalAttempts = Number.parseInt(keyTotalAttempts, 10);
 
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 500) {
       setKeyFeedback('Số lượng key phải từ 1 đến 500.');
+      return;
+    }
+
+    if (!Number.isInteger(totalAttempts) || totalAttempts < 1 || totalAttempts > 100000) {
+      setKeyFeedback('Giới hạn lượt làm phải từ 1 đến 100.000.');
       return;
     }
 
@@ -519,6 +528,8 @@ export default function AdminPage() {
         p_quantity: quantity,
         p_expires_at: expiresAt,
         p_note: keyNote.trim() || null,
+        p_total_attempts: totalAttempts,
+        p_is_public: keyMode === 'public',
       });
 
       if (error) throw error;
@@ -528,7 +539,8 @@ export default function AdminPage() {
         code: key.code,
         subject: key.subject_code ?? 'Dùng chung',
         room: key.exam_room_name ?? 'Chưa gán phòng thi',
-        student: 'Chưa gán',
+        student: key.is_public ? 'Nhiều tài khoản' : 'Chưa gán',
+        isPublic: key.is_public,
         attempts: `${key.used_attempts}/${key.total_attempts}`,
         status: keyStatusLabels[key.status],
         expiresAt: key.expires_at,
@@ -722,7 +734,7 @@ export default function AdminPage() {
           <div className={styles.panelHeader}>
             <div>
               <h2>Quản lý key</h2>
-              <p>Tạo key dùng chung, đặt ngày hết hạn và theo dõi phạm vi sử dụng.</p>
+              <p>Tạo key public hoặc cá nhân, đặt quota và theo dõi phạm vi sử dụng.</p>
             </div>
             <button
               className="btn outline small"
@@ -737,6 +749,20 @@ export default function AdminPage() {
 
           <form className={`${styles.form} ${styles.keyForm}`} onSubmit={handleCreateKeys}>
             <div className={styles.keyFormGrid}>
+              <label>
+                Loại key
+                <select
+                  value={keyMode}
+                  onChange={(event) => {
+                    const mode = event.target.value as 'public' | 'private';
+                    setKeyMode(mode);
+                    setKeyTotalAttempts(mode === 'public' ? '100' : '3');
+                  }}
+                >
+                  <option value="public">Public — nhiều tài khoản</option>
+                  <option value="private">Cá nhân — một tài khoản</option>
+                </select>
+              </label>
               <label>
                 <span className={styles.labelText}>
                   Phòng thi <span className={styles.requiredMark}>*</span>
@@ -758,6 +784,18 @@ export default function AdminPage() {
                 </select>
               </label>
               <label>
+                Giới hạn lượt làm
+                <input
+                  value={keyTotalAttempts}
+                  onChange={(event) => setKeyTotalAttempts(event.target.value)}
+                  type="number"
+                  min={1}
+                  max={100000}
+                  inputMode="numeric"
+                  required
+                />
+              </label>
+              <label>
                 Số lượng key
                 <input
                   value={keyQuantity}
@@ -775,7 +813,7 @@ export default function AdminPage() {
                   value={keyExpiry}
                   onChange={(event) => setKeyExpiry(event.target.value)}
                   type="date"
-                  min={toDateInputValue(new Date())}
+                  min={hanoiTodayInputValue()}
                 />
               </label>
               <label>
@@ -798,7 +836,9 @@ export default function AdminPage() {
                 {isCreatingKeys ? 'Đang tạo...' : `Tạo ${Number.parseInt(keyQuantity, 10) || 0} key`}
               </button>
               <span>
-                3 lượt/key · Dùng cho mọi phòng thi · Hết hạn {formatDate(keyExpiry ? getEndOfDayIso(keyExpiry) : null)}
+                {keyTotalAttempts || 0} lượt/key ·{' '}
+                {keyMode === 'public' ? 'Dùng chung nhiều tài khoản' : 'Chỉ một tài khoản'} ·{' '}
+                Hết hạn {formatDate(keyExpiry ? getEndOfDayIso(keyExpiry) : null)}
               </span>
             </div>
 
@@ -810,6 +850,7 @@ export default function AdminPage() {
               <thead>
                 <tr>
                   <th>Key</th>
+                  <th>Loại</th>
                   <th>Phạm vi</th>
                   <th>Học viên</th>
                   <th>Lượt</th>
@@ -820,7 +861,7 @@ export default function AdminPage() {
               <tbody>
                 {keys.length === 0 ? (
                   <tr>
-                    <td className={styles.emptyCell} colSpan={6}>
+                    <td className={styles.emptyCell} colSpan={7}>
                       {isLoadingKeys ? 'Đang tải key...' : 'Chưa có key nào được tạo.'}
                     </td>
                   </tr>
@@ -828,6 +869,7 @@ export default function AdminPage() {
                   keys.map((key) => (
                     <tr key={key.id}>
                       <td><strong>{key.code}</strong></td>
+                      <td><span className={styles.keyStatus}>{key.isPublic ? 'Public' : 'Cá nhân'}</span></td>
                       <td>{key.room}</td>
                       <td>{key.student}</td>
                       <td>{key.attempts}</td>

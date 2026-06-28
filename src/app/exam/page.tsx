@@ -8,9 +8,12 @@ import { CheckCircle, Flag, Maximize, Moon, Sun, AlertTriangle, X, Eye } from 'l
 import { createClient } from '@/lib/supabase/client';
 import {
   fetchExamSessionData,
-  saveSessionAnswer,
+  getCurrentStudentId,
+  getSupabaseErrorMessage,
+  saveSessionAnswers,
   type ExamSessionData,
   type ExamSessionQuestion,
+  type SessionAnswerInput,
 } from '@/lib/supabase/exam-data';
 import QuestionRenderer from '@/components/question/QuestionRenderer';
 import { useExamStore } from '@/store/useExamStore';
@@ -63,7 +66,9 @@ export default function ExamPage() {
     candidateInfo,
     roomKey,
     currentSessionId,
-    finishSession,
+    examDraft,
+    setDraft,
+    clearDraft,
   } = useExamStore();
 
   // Tạo client 1 lần và tái sử dụng trong mọi handlers
@@ -75,7 +80,7 @@ export default function ExamPage() {
   const [trueFalseAnswers, setTrueFalseAnswers] = useState<
     Record<string, TrueFalseDraft>
   >({});
-  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [nowMs, setNowMs] = useState(() => Date.now());
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
   const [saveError, setSaveError] = useState('');
@@ -84,7 +89,13 @@ export default function ExamPage() {
   const [tabSwitchCount, setTabSwitchCount] = useState(0);
   const [showTabWarning, setShowTabWarning] = useState(false);
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const flushTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const autoSubmittedRef = useRef(false);
+
+  // Buffer ghi đáp án (tiết kiệm DB): gom thay đổi rồi flush gộp, không ghi mỗi thao tác.
+  const studentIdRef = useRef<string | null>(null);
+  const dirtyRef = useRef<Map<string, SessionAnswerInput>>(new Map());
+  const flushingRef = useRef(false);
 
   useEffect(() => {
     if (!hasHydrated) return;
@@ -104,17 +115,26 @@ export default function ExamPage() {
 
     let isMounted = true;
 
+    // Lấy student id 1 lần để flush không phải gọi getUser mỗi lần.
+    getCurrentStudentId(supabase)
+      .then((id) => {
+        if (isMounted) studentIdRef.current = id;
+      })
+      .catch(() => undefined);
+
     fetchExamSessionData(supabase, currentSessionId)
       .then((data) => {
         if (!isMounted) return;
 
-        // Tính elapsed time từ started_at để timer không reset về 0 khi reload
         const durationSec = (data.room?.durationMinutes ?? 50) * 60;
-        if (data.session.startedAt) {
-          const alreadyElapsed = Math.floor(
-            (Date.now() - new Date(data.session.startedAt).getTime()) / 1000,
-          );
-          setElapsedSeconds(Math.min(Math.max(alreadyElapsed, 0), durationSec));
+        const deadlineMs = data.session.dueAt
+          ? new Date(data.session.dueAt).getTime()
+          : new Date(data.session.startedAt).getTime() + durationSec * 1000;
+
+        // Phiên đã kết thúc hoặc đã hết giờ -> không cho làm bài, sang trang kết quả.
+        if (data.session.status !== 'in_progress' || Date.now() >= deadlineMs) {
+          router.replace('/result');
+          return;
         }
 
         const nextChoices: Record<string, string> = {};
@@ -143,19 +163,26 @@ export default function ExamPage() {
           }
         });
 
+        // Resume: phủ bản nháp cục bộ (các sửa đổi gần nhất chưa kịp flush) lên trên DB.
+        if (examDraft && examDraft.sessionId === currentSessionId) {
+          Object.assign(nextChoices, examDraft.choiceAnswers);
+          Object.assign(nextTexts, examDraft.textAnswers);
+          Object.assign(nextTrueFalse, examDraft.trueFalseAnswers);
+        }
+
         setExamData(data);
         setChoiceAnswers(nextChoices);
         setTextAnswers(nextTexts);
         setTrueFalseAnswers(nextTrueFalse);
+        setNowMs(Date.now());
         setLoadError('');
       })
       .catch((error: unknown) => {
         if (!isMounted) return;
-        const message =
-          error instanceof Error
-            ? error.message
-            : 'Không thể tải phiên thi từ Supabase.';
-        setLoadError(message);
+        console.error('[exam] fetchExamSessionData failed', error);
+        setLoadError(
+          getSupabaseErrorMessage(error, 'Không thể tải phiên thi từ Supabase.'),
+        );
       })
       .finally(() => {
         if (isMounted) setIsLoading(false);
@@ -164,11 +191,23 @@ export default function ExamPage() {
     return () => {
       isMounted = false;
     };
-  }, [currentSessionId, hasHydrated, supabase]);
+    // examDraft cố tình không nằm trong deps: chỉ overlay 1 lần lúc load.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSessionId, hasHydrated, supabase, router]);
 
   const questions = useMemo(() => examData?.questions ?? [], [examData]);
   const totalQuestions = questions.length;
   const durationSeconds = (examData?.room?.durationMinutes ?? 50) * 60;
+
+  const deadlineMs = useMemo(() => {
+    if (!examData) return null;
+    if (examData.session.dueAt) {
+      return new Date(examData.session.dueAt).getTime();
+    }
+    return (
+      new Date(examData.session.startedAt).getTime() + durationSeconds * 1000
+    );
+  }, [examData, durationSeconds]);
 
   useEffect(() => {
     if (currentQuestion > Math.max(totalQuestions, 1)) {
@@ -176,14 +215,11 @@ export default function ExamPage() {
     }
   }, [currentQuestion, setCurrentQuestion, totalQuestions]);
 
+  // Đồng hồ: chỉ cần nhịp giây để tính timeLeft từ hạn chót tuyệt đối (due_at).
   useEffect(() => {
-    const timer = setInterval(() => {
-      setElapsedSeconds((prev) =>
-        prev < durationSeconds ? prev + 1 : durationSeconds,
-      );
-    }, 1000);
+    const timer = setInterval(() => setNowMs(Date.now()), 1000);
     return () => clearInterval(timer);
-  }, [durationSeconds]);
+  }, []);
 
   const answeredCount = useMemo(
     () =>
@@ -199,7 +235,10 @@ export default function ExamPage() {
     [choiceAnswers, questions, textAnswers, trueFalseAnswers],
   );
 
-  const timeLeft = Math.max(durationSeconds - elapsedSeconds, 0);
+  const timeLeft =
+    deadlineMs !== null
+      ? Math.max(Math.floor((deadlineMs - nowMs) / 1000), 0)
+      : durationSeconds;
   const room = examData?.room;
   const timerWarning = timeLeft <= 60 ? 'critical' : timeLeft <= 300 ? 'warning' : 'normal';
 
@@ -232,18 +271,107 @@ export default function ExamPage() {
     }
   }, []);
 
-  const persistChoice = useCallback(async (
-    question: ExamSessionQuestion,
-    optionId: string,
-    label: string,
-  ) => {
-    setChoiceAnswers((current) => ({ ...current, [question.id]: optionId }));
-    setCurrentQuestion(question.number);
-    setSaveError('');
+  // Flush buffer đáp án lên DB theo lô (gom + dedup theo câu hỏi).
+  const flush = useCallback(async () => {
+    if (flushingRef.current || dirtyRef.current.size === 0) return;
+
+    const pending = dirtyRef.current;
+    dirtyRef.current = new Map();
+    flushingRef.current = true;
     showSaveIndicator('saving');
 
     try {
-      await saveSessionAnswer(supabase, {
+      if (!studentIdRef.current) {
+        studentIdRef.current = await getCurrentStudentId(supabase);
+      }
+      await saveSessionAnswers(
+        supabase,
+        studentIdRef.current,
+        Array.from(pending.values()),
+      );
+      setSaveError('');
+      showSaveIndicator('saved');
+    } catch (error) {
+      // Đưa lại các mục lỗi vào buffer để thử lại, không đè lên sửa đổi mới hơn.
+      pending.forEach((value, key) => {
+        if (!dirtyRef.current.has(key)) dirtyRef.current.set(key, value);
+      });
+      setSaveError(getSupabaseErrorMessage(error, 'Không thể lưu đáp án.'));
+      showSaveIndicator('error');
+    } finally {
+      flushingRef.current = false;
+    }
+  }, [supabase, showSaveIndicator]);
+
+  const scheduleFlush = useCallback(() => {
+    if (flushTimerRef.current) clearTimeout(flushTimerRef.current);
+    flushTimerRef.current = setTimeout(() => {
+      void flush();
+    }, 1500);
+  }, [flush]);
+
+  const queueAnswer = useCallback(
+    (input: SessionAnswerInput) => {
+      dirtyRef.current.set(input.sessionQuestionId, input);
+      scheduleFlush();
+    },
+    [scheduleFlush],
+  );
+
+  // Flush định kỳ 10s (an toàn) khi đang làm bài.
+  useEffect(() => {
+    if (isLoading || !examData) return;
+    const interval = setInterval(() => {
+      void flush();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [flush, isLoading, examData]);
+
+  // Flush khi rời tab / đóng trang để không mất đáp án.
+  useEffect(() => {
+    const handleHide = () => {
+      if (document.visibilityState === 'hidden') void flush();
+    };
+    document.addEventListener('visibilitychange', handleHide);
+    window.addEventListener('pagehide', handleHide);
+    return () => {
+      document.removeEventListener('visibilitychange', handleHide);
+      window.removeEventListener('pagehide', handleHide);
+    };
+  }, [flush]);
+
+  // Lưu bản nháp cục bộ (debounce) để resume nhanh khi reload.
+  useEffect(() => {
+    if (isLoading || !examData || !currentSessionId) return;
+    const timeout = setTimeout(() => {
+      setDraft({
+        sessionId: currentSessionId,
+        choiceAnswers,
+        textAnswers,
+        trueFalseAnswers,
+        marked,
+        currentQuestion,
+        updatedAt: Date.now(),
+      });
+    }, 800);
+    return () => clearTimeout(timeout);
+  }, [
+    choiceAnswers,
+    textAnswers,
+    trueFalseAnswers,
+    marked,
+    currentQuestion,
+    currentSessionId,
+    examData,
+    isLoading,
+    setDraft,
+  ]);
+
+  const persistChoice = useCallback(
+    (question: ExamSessionQuestion, optionId: string, label: string) => {
+      setChoiceAnswers((current) => ({ ...current, [question.id]: optionId }));
+      setCurrentQuestion(question.number);
+      queueAnswer({
         sessionQuestionId: question.id,
         selectedOptionId: optionId,
         answerJson: {
@@ -252,14 +380,9 @@ export default function ExamPage() {
           label,
         },
       });
-      showSaveIndicator('saved');
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : 'Không thể lưu đáp án.';
-      setSaveError(message);
-      showSaveIndicator('error');
-    }
-  }, [setCurrentQuestion, showSaveIndicator, supabase]);
+    },
+    [queueAnswer, setCurrentQuestion],
+  );
 
   const handleSubmit = useCallback(async (force = false) => {
     if (!force) {
@@ -267,7 +390,9 @@ export default function ExamPage() {
       return;
     }
 
-    // Gọi RPC để ghi trạng thái 'submitted' vào DB trước khi navigate
+    // Đẩy nốt đáp án trong buffer trước khi nộp.
+    await flush();
+
     if (currentSessionId) {
       try {
         await supabase.rpc('submit_exam_session', {
@@ -278,9 +403,11 @@ export default function ExamPage() {
       }
     }
 
-    finishSession();
+    // Không lưu tiến trình sau khi kết thúc: xóa bản nháp; GIỮ currentSessionId
+    // để trang /result tải được kết quả + đáp án.
+    clearDraft();
     router.push('/result');
-  }, [currentSessionId, finishSession, router, supabase]);
+  }, [clearDraft, currentSessionId, flush, router, supabase]);
 
   const handleConfirmSubmit = useCallback(async () => {
     setShowReviewPanel(false);
@@ -349,7 +476,7 @@ export default function ExamPage() {
             const opt = q.options[optIndex];
             if (opt) {
               e.preventDefault();
-              void persistChoice(q, opt.id, opt.label);
+              persistChoice(q, opt.id, opt.label);
             }
           }
           break;
@@ -383,7 +510,7 @@ export default function ExamPage() {
     }
   };
 
-  const persistTrueFalse = async (
+  const persistTrueFalse = (
     question: ExamSessionQuestion,
     itemId: string,
     value: 'true' | 'false',
@@ -398,48 +525,28 @@ export default function ExamPage() {
       [question.id]: nextDraft,
     }));
     setCurrentQuestion(question.number);
-    setSaveError('');
-    showSaveIndicator('saving');
-
-    try {
-      await saveSessionAnswer(supabase, {
-        sessionQuestionId: question.id,
-        answerJson: {
-          type: 'true_false',
-          items: nextDraft,
-        },
-      });
-      showSaveIndicator('saved');
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : 'Không thể lưu đáp án.';
-      setSaveError(message);
-      showSaveIndicator('error');
-    }
+    queueAnswer({
+      sessionQuestionId: question.id,
+      answerJson: {
+        type: 'true_false',
+        items: nextDraft,
+      },
+    });
   };
 
-  const persistTextAnswer = async (question: ExamSessionQuestion) => {
+  const persistTextAnswer = (question: ExamSessionQuestion) => {
     const value = textAnswers[question.id]?.trim() ?? '';
     if (!value) return;
 
-    setSaveError('');
-    showSaveIndicator('saving');
-    try {
-      await saveSessionAnswer(supabase, {
-        sessionQuestionId: question.id,
-        shortAnswerText: value,
-        answerJson: {
-          type: question.type,
-          value,
-        },
-      });
-      showSaveIndicator('saved');
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : 'Không thể lưu đáp án.';
-      setSaveError(message);
-      showSaveIndicator('error');
-    }
+    queueAnswer({
+      sessionQuestionId: question.id,
+      shortAnswerText: value,
+      answerJson: {
+        type: question.type,
+        value,
+      },
+    });
+    void flush();
   };
 
 
@@ -638,10 +745,10 @@ export default function ExamPage() {
                   trueFalseAnswers={tfDraft}
                   textValue={textValue}
                   onSelectOption={(optionId, label) =>
-                    void persistChoice(question, optionId, label)
+                    persistChoice(question, optionId, label)
                   }
                   onTrueFalseChange={(itemId, value) =>
-                    void persistTrueFalse(question, itemId, value)
+                    persistTrueFalse(question, itemId, value)
                   }
                   onTextChange={(value) =>
                     setTextAnswers((current) => ({
@@ -649,7 +756,7 @@ export default function ExamPage() {
                       [question.id]: value,
                     }))
                   }
-                  onTextBlur={() => void persistTextAnswer(question)}
+                  onTextBlur={() => persistTextAnswer(question)}
                 />
               </article>
             );

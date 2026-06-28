@@ -259,6 +259,7 @@ export type Database = {
           exam_room_id: string | null
           expires_at: string | null
           id: string
+          is_public: boolean
           paper_id: string | null
           payment_ref: string | null
           price_paid: number
@@ -277,6 +278,7 @@ export type Database = {
           exam_room_id?: string | null
           expires_at?: string | null
           id?: string
+          is_public?: boolean
           paper_id?: string | null
           payment_ref?: string | null
           price_paid?: number
@@ -295,6 +297,7 @@ export type Database = {
           exam_room_id?: string | null
           expires_at?: string | null
           id?: string
+          is_public?: boolean
           paper_id?: string | null
           payment_ref?: string | null
           price_paid?: number
@@ -846,6 +849,7 @@ export type Database = {
           exam_room_id: string | null
           expires_at: string | null
           id: string
+          is_public: boolean
           note: string | null
           quantity: number
           total_attempts: number
@@ -856,6 +860,7 @@ export type Database = {
           exam_room_id?: string | null
           expires_at?: string | null
           id?: string
+          is_public?: boolean
           note?: string | null
           quantity: number
           total_attempts?: number
@@ -866,6 +871,7 @@ export type Database = {
           exam_room_id?: string | null
           expires_at?: string | null
           id?: string
+          is_public?: boolean
           note?: string | null
           quantity?: number
           total_attempts?: number
@@ -2305,6 +2311,7 @@ export type Database = {
           exam_room_name: string | null
           expires_at: string | null
           id: string | null
+          is_public: boolean | null
           remaining_attempts: number | null
           status: Database["public"]["Enums"]["exam_key_status"] | null
           student_name: string | null
@@ -2722,10 +2729,12 @@ export type Database = {
       finish_import_job: { Args: { p_job_id: string }; Returns: undefined }
       generate_exam_keys: {
         Args: {
-          p_expires_at?: string
-          p_note?: string
+          p_exam_room_id: string
+          p_expires_at: string | null
+          p_is_public: boolean
+          p_note: string | null
           p_quantity: number
-          p_total_attempts?: number
+          p_total_attempts: number
         }
         Returns: {
           batch_id: string
@@ -2735,6 +2744,7 @@ export type Database = {
           exam_room_name: string
           expires_at: string
           id: string
+          is_public: boolean
           status: Database["public"]["Enums"]["exam_key_status"]
           subject_code: string
           total_attempts: number

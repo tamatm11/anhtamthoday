@@ -9,6 +9,7 @@ import {
   saveCandidateProfile,
 } from '@/lib/supabase/user-profile';
 import { useExamStore } from '@/store/useExamStore';
+import { formatHanoiDateTime, hanoiTodayInputValue } from '@/lib/datetime';
 import styles from '@/styles/profile.module.css';
 
 type StoreState = ReturnType<typeof useExamStore.getState>;
@@ -216,10 +217,9 @@ export default function ProfilePage() {
               subject: room?.subject_code ?? 'Chưa rõ môn',
               examSet: room?.name,
               score,
-              date: new Intl.DateTimeFormat('vi-VN', {
-                dateStyle: 'short',
-                timeStyle: 'short',
-              }).format(new Date(session.submitted_at ?? session.started_at)),
+              date: formatHanoiDateTime(
+                session.submitted_at ?? session.started_at,
+              ),
             };
           }),
         );
@@ -270,7 +270,7 @@ function ProfileContent({
     'idle',
   );
   const [feedback, setFeedback] = useState('');
-  const today = new Date().toISOString().slice(0, 10);
+  const today = hanoiTodayInputValue();
 
   const updateField =
     (field: keyof ProfileFormState) =>

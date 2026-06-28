@@ -20,12 +20,13 @@ function keyErrorMessage(hint: string | undefined, fallback?: string) {
       return 'Mã phòng thi không tồn tại.';
     case 'KEY_INVALID_STATUS':
     case 'KEY_REVOKED':
-      return 'Mã phòng thi đã bị khóa hoặc chưa kích hoạt.';
+      return 'Mã phòng thi đã bị khóa hoặc đã hết lượt sử dụng.';
     case 'KEY_EXPIRED':
       return 'Mã phòng thi đã hết hạn.';
     case 'KEY_ALREADY_ASSIGNED':
       return 'Mã phòng thi này đã được gán cho học sinh khác.';
     case 'KEY_EXHAUSTED':
+    case 'KEY_NO_ATTEMPTS_LEFT':
       return 'Mã phòng thi này đã sử dụng hết số lượt thi.';
     case 'KEY_SUBJECT_MISMATCH':
       return 'Mã phòng thi không dùng cho môn đã chọn.';
@@ -34,7 +35,8 @@ function keyErrorMessage(hint: string | undefined, fallback?: string) {
     case 'NOT_STUDENT':
       return 'Tài khoản hiện tại chưa có hồ sơ học sinh trong cơ sở dữ liệu.';
     case 'SESSION_ALREADY_EXISTS':
-      return 'Bạn đang có một phiên thi khác chưa kết thúc.';
+    case 'SESSION_ALREADY_ACTIVE':
+      return 'Bạn đang có một bài thi khác chưa hoàn thành. Hãy hoàn thành hoặc chờ hết giờ rồi quay lại (dùng nút "Tiếp tục bài thi" ở trang chọn môn).';
     case 'EXAM_ROOM_CLOSED':
       return 'Phòng thi này đã đóng.';
     default:

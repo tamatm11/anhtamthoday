@@ -9,10 +9,13 @@ import {
   fetchPublishedRooms,
   fetchSubjectsWithRoomCounts,
   formatPriceVnd,
+  getActiveSession,
+  type ActiveSessionInfo,
   type ExamRoomSummary,
   type SubjectSummary,
 } from '@/lib/supabase/exam-data';
 import { useExamStore } from '@/store/useExamStore';
+import { formatHanoiTime } from '@/lib/datetime';
 import styles from '@/styles/subjects.module.css';
 
 const genderLabels: Record<string, string> = {
@@ -51,8 +54,10 @@ export default function SubjectsPage() {
   const [isLoading, setIsLoading] = useState(hasConfiguredSupabase);
   const [loadError, setLoadError] = useState('');
   const [userRole, setUserRole] = useState<string | null>(null);
+  const [activeSession, setActiveSession] = useState<ActiveSessionInfo | null>(null);
   const [loggingOut, setLoggingOut] = useState(false);
   const logout = useExamStore((state) => state.logout);
+  const setSession = useExamStore((state) => state.setSession);
 
   const isStaff = userRole === 'admin' || userRole === 'teacher';
 
@@ -102,11 +107,14 @@ export default function SubjectsPage() {
           setUserRole(row?.role ?? null);
         }
       }),
+      // Phiên thi đang làm dở (còn giờ) -> hiện banner "Tiếp tục".
+      getActiveSession(supabase).catch(() => null),
     ])
-      .then(([subjectRows, roomRows]) => {
+      .then(([subjectRows, roomRows, , active]) => {
         if (!isMounted) return;
         setSubjects(subjectRows);
         setRooms(roomRows);
+        setActiveSession(active ?? null);
         setLoadError('');
       })
       .catch((error: unknown) => {
@@ -198,6 +206,45 @@ export default function SubjectsPage() {
 
       <div className={styles.main}>
         <h1 className={styles.examTitle}>Kỳ thi tốt nghiệp THPT 2026</h1>
+
+        {activeSession ? (
+          <section
+            className="card"
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '12px',
+              borderLeft: '4px solid var(--primary)',
+              marginBottom: '16px',
+            }}
+          >
+            <div>
+              <strong>Bạn có một bài thi đang làm dở</strong>
+              <div style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>
+                {activeSession.subjectName ?? activeSession.roomName}
+                {activeSession.dueAt
+                  ? ` · Hết giờ lúc ${formatHanoiTime(activeSession.dueAt)}`
+                  : ''}
+              </div>
+            </div>
+            <button
+              className="btn"
+              type="button"
+              onClick={() => {
+                setSession(
+                  activeSession.sessionId,
+                  activeSession.roomCode || 'RESUME',
+                );
+                router.push('/exam', { transitionTypes: ['nav-forward'] });
+              }}
+            >
+              Tiếp tục bài thi
+            </button>
+          </section>
+        ) : null}
+
         <div className={styles.infoGrid}>
           <section className={`card ${styles.infoCard}`}>
             <h2 className="section-title">Thông tin thí sinh</h2>

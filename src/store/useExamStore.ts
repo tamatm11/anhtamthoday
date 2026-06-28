@@ -1,5 +1,16 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { formatHanoiDateTime } from '@/lib/datetime';
+
+export interface ExamDraft {
+  sessionId: string;
+  choiceAnswers: Record<string, string>;
+  textAnswers: Record<string, string>;
+  trueFalseAnswers: Record<string, Record<string, 'true' | 'false'>>;
+  marked: number[];
+  currentQuestion: number;
+  updatedAt: number;
+}
 
 export interface ExamHistory {
   id: string;
@@ -43,6 +54,7 @@ interface ExamState {
   selectedExamSetId: string | null;
   roomKey: string | null;
   currentSessionId: string | null;
+  examDraft: ExamDraft | null;
 
   setTheme: (theme: 'light' | 'dark') => void;
   setHasHydrated: (hasHydrated: boolean) => void;
@@ -59,6 +71,8 @@ interface ExamState {
   setSelectedExamSetId: (examSetId: string | null) => void;
   selectExamSet: (subjectCode: string, examSetId: string) => void;
   setRoomKey: (key: string | null) => void;
+  setDraft: (draft: ExamDraft) => void;
+  clearDraft: () => void;
   resetExam: () => void;
   finishSession: () => void;
 }
@@ -81,6 +95,7 @@ export const useExamStore = create<ExamState>()(
       selectedExamSetId: null,
       roomKey: null,
       currentSessionId: null,
+      examDraft: null,
 
       setHasHydrated: (hasHydrated) => set({ hasHydrated }),
       setTheme: (theme) => set({ theme }),
@@ -118,6 +133,7 @@ export const useExamStore = create<ExamState>()(
           selectedExamSetId: null,
           roomKey: null,
           currentSessionId: null,
+          examDraft: null,
           answers: {},
           marked: [],
         }),
@@ -140,7 +156,7 @@ export const useExamStore = create<ExamState>()(
         const state = get();
         if (!state.roomKey) return;
 
-        const date = new Date().toLocaleString('vi-VN');
+        const date = formatHanoiDateTime(new Date());
         const historyRecord: ExamHistory = {
           id: Date.now().toString(),
           subject,
@@ -153,6 +169,7 @@ export const useExamStore = create<ExamState>()(
           examHistory: [historyRecord, ...currentState.examHistory],
           roomKey: null,
           currentSessionId: null,
+          examDraft: null,
         }));
       },
 
@@ -182,11 +199,14 @@ export const useExamStore = create<ExamState>()(
           currentSessionId: null,
         }),
       setRoomKey: (roomKey) => set({ roomKey }),
+      setDraft: (examDraft) => set({ examDraft }),
+      clearDraft: () => set({ examDraft: null }),
       resetExam: () => set({ answers: {}, marked: [], currentQuestion: 1 }),
       finishSession: () =>
         set({
           roomKey: null,
           currentSessionId: null,
+          examDraft: null,
           answers: {},
           marked: [],
           currentQuestion: 1,
@@ -210,6 +230,8 @@ export const useExamStore = create<ExamState>()(
         examHistory: state.examHistory,
         activeKeys: state.activeKeys,
         usedKeys: state.usedKeys,
+        // Bản nháp làm bài để resume nhanh khi reload; bị xóa khi phiên kết thúc.
+        examDraft: state.examDraft,
       }),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);

@@ -45,6 +45,7 @@ import {
   saveAuthoringDocument,
 } from './actions';
 import LatexEditor, { type LatexEditorHandle } from './LatexEditor';
+import { HANOI_TZ } from '@/lib/datetime';
 import styles from '@/styles/authoring.module.css';
 
 type Props = {
@@ -60,6 +61,7 @@ const difficultyOptions = [
 
 function formatTime(value: string) {
   return new Intl.DateTimeFormat('vi-VN', {
+    timeZone: HANOI_TZ,
     hour: '2-digit',
     minute: '2-digit',
     day: '2-digit',

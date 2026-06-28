@@ -209,7 +209,7 @@
 
 .keyFormGrid {
   display: grid;
-  grid-template-columns: minmax(280px, 1.45fr) minmax(150px, .72fr) minmax(190px, .9fr) minmax(220px, 1fr);
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
   align-items: start;
   gap: 14px;
 }

@@ -37,3 +37,44 @@
  GET /reset-password 200 in 1008ms (next.js: 379ms, proxy.ts: 405ms, application-code: 223ms)
  GET /reset-password 200 in 682ms (next.js: 12ms, proxy.ts: 13ms, application-code: 656ms)
  GET / 200 in 159ms (next.js: 59ms, proxy.ts: 13ms, application-code: 87ms)
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 1069ms (next.js: 35ms, proxy.ts: 925ms, application-code: 109ms)
+✓ Compiled in 136ms
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 537ms (next.js: 209ms, proxy.ts: 171ms, application-code: 157ms)
+ GET /reset-password 200 in 360ms (next.js: 297ms, proxy.ts: 7ms, application-code: 55ms)
+✓ Compiled in 182ms
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 594ms (next.js: 170ms, proxy.ts: 251ms, application-code: 173ms)
+ GET /reset-password 200 in 586ms (next.js: 271ms, proxy.ts: 251ms, application-code: 65ms)
+✓ Compiled in 74ms
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 602ms (next.js: 168ms, proxy.ts: 149ms, application-code: 285ms)
+ GET /reset-password 200 in 623ms (next.js: 341ms, proxy.ts: 158ms, application-code: 124ms)
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 74ms (next.js: 11ms, proxy.ts: 9ms, application-code: 55ms)
+ GET /reset-password 200 in 74ms (next.js: 36ms, proxy.ts: 11ms, application-code: 28ms)
+✓ Compiled in 19ms
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 565ms (next.js: 252ms, proxy.ts: 170ms, application-code: 143ms)
+ GET /reset-password 200 in 579ms (next.js: 113ms, proxy.ts: 173ms, application-code: 293ms)
+ GET /reset-password 200 in 101ms (next.js: 14ms, proxy.ts: 12ms, application-code: 75ms)
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 98ms (next.js: 54ms, proxy.ts: 13ms, application-code: 31ms)
+✓ Compiled in 34ms
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 658ms (next.js: 119ms, proxy.ts: 181ms, application-code: 358ms)
+ GET /reset-password 200 in 660ms (next.js: 275ms, proxy.ts: 183ms, application-code: 202ms)
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 145ms (next.js: 34ms, proxy.ts: 17ms, application-code: 95ms)
+ GET /reset-password 200 in 145ms (next.js: 90ms, proxy.ts: 21ms, application-code: 34ms)
+✓ Compiled in 263ms
+ GET /?code=759f82c0-42f0-43a0-86a6-7009a483a703 200 in 979ms (next.js: 319ms, proxy.ts: 365ms, application-code: 296ms)
+ GET /reset-password 200 in 969ms (next.js: 512ms, proxy.ts: 368ms, application-code: 89ms)
+✓ Compiled in 9ms
+✓ Compiled in 92ms
+✓ Compiled in 42ms
+ GET / 200 in 567ms (next.js: 118ms, proxy.ts: 148ms, application-code: 300ms)
+ GET / 200 in 1408ms (next.js: 527ms, proxy.ts: 38ms, application-code: 843ms)
+ GET / 200 in 275ms (next.js: 26ms, proxy.ts: 20ms, application-code: 228ms)
+✓ Compiled in 120ms
+ GET / 200 in 1331ms (next.js: 776ms, proxy.ts: 389ms, application-code: 166ms)
+○ Compiling /admin ...
+ GET /admin?previewPublicKey=1 200 in 5.8s (next.js: 4.5s, proxy.ts: 12ms, application-code: 1239ms)
+ GET /admin?previewPublicKey=1 200 in 210ms (next.js: 16ms, proxy.ts: 15ms, application-code: 178ms)
+✓ Compiled in 230ms
+ GET / 200 in 918ms (next.js: 311ms, proxy.ts: 348ms, application-code: 258ms)
+ GET / 200 in 156ms (next.js: 23ms, proxy.ts: 15ms, application-code: 118ms)
+ GET / 200 in 672ms (next.js: 11ms, proxy.ts: 13ms, application-code: 648ms)
+ GET / 200 in 655ms (next.js: 15ms, proxy.ts: 25ms, application-code: 615ms)
