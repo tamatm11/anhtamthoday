@@ -368,7 +368,7 @@ export default function AuthoringWorkspace({ initialData }: Props) {
           </span>
         </div>
         <div className={styles.topActions}>
-          <Link href="/admin" className={styles.ghostButton}>
+          <Link href="/admin" transitionTypes={['nav-back']} className={styles.ghostButton}>
             <ArrowLeft size={16} /> Admin
           </Link>
           <button

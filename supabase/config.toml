@@ -160,7 +160,7 @@ site_url = "http://127.0.0.1:3000"
 # The public URL that Auth serves on. Defaults to the API external URL with `/auth/v1` appended.
 # external_url = ""
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
-additional_redirect_urls = ["https://127.0.0.1:3000"]
+additional_redirect_urls = ["https://127.0.0.1:3000", "http://127.0.0.1:3000/auth/confirm", "http://localhost:3000/auth/confirm"]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
 # JWT issuer URL. If not set, defaults to auth.external_url.
@@ -196,7 +196,9 @@ password_requirements = ""
 
 [auth.rate_limit]
 # Number of emails that can be sent per hour. Requires auth.email.smtp to be enabled.
-email_sent = 2
+# Nâng lên để đủ cho luồng đăng ký + đặt lại mật khẩu OTP. Production cũng cần chỉnh
+# tương ứng tại Dashboard > Authentication > Rate Limits.
+email_sent = 100
 # Number of SMS messages that can be sent per hour. Requires auth.sms to be enabled.
 sms_sent = 30
 # Number of anonymous sign-ins that can be made per hour per IP address. Requires enable_anonymous_sign_ins = true.
@@ -233,26 +235,30 @@ otp_length = 6
 # Number of seconds before the email OTP expires (defaults to 1 hour).
 otp_expiry = 3600
 
-# Use a production-ready SMTP server
+# SMTP cho production: dùng Resend để (1) hiển thị tên người gửi là "Anh Tâm Thợ Dạy"
+# thay vì "Supabase Auth", và (2) gửi được mail tới mọi địa chỉ Gmail.
+# Local dev vẫn dùng inbucket nên khối này để comment. Khi áp dụng cho project hosted:
+# cấu hình trong Dashboard > Authentication > SMTP Settings, HOẶC bỏ comment khối dưới,
+# set biến môi trường RESEND_SMTP_PASSWORD rồi chạy `supabase config push`.
 # [auth.email.smtp]
 # enabled = true
-# host = "smtp.sendgrid.net"
-# port = 587
-# user = "apikey"
-# pass = "env(SENDGRID_API_KEY)"
-# admin_email = "admin@email.com"
-# sender_name = "Admin"
+# host = "smtp.resend.com"
+# port = 465
+# user = "resend"
+# pass = "env(RESEND_SMTP_PASSWORD)"           # = Resend API key (re_...)
+# admin_email = "no-reply@your-domain.com"      # địa chỉ gửi thuộc domain đã verify ở Resend
+# sender_name = "Anh Tâm Thợ Dạy"
 
-# Uncomment to customize email template
-# [auth.email.template.invite]
-# subject = "You have been invited"
-# content_path = "./supabase/templates/invite.html"
+# Email đặt lại mật khẩu — gửi mã OTP ({{ .Token }}) thay vì link đăng nhập.
+[auth.email.template.recovery]
+subject = "Mã đặt lại mật khẩu của bạn"
+content_path = "./supabase/templates/recovery.html"
 
-# Uncomment to customize notification email template
-# [auth.email.notification.password_changed]
-# enabled = true
-# subject = "Your password has been changed"
-# content_path = "./templates/password_changed_notification.html"
+# Thông báo tự động gửi cho người dùng ngay sau khi đổi mật khẩu thành công.
+[auth.email.notification.password_changed]
+enabled = true
+subject = "Mật khẩu của bạn vừa được thay đổi"
+content_path = "./supabase/templates/password_changed_notification.html"
 
 [auth.sms]
 # Allow/disallow new user signups via SMS to your project.

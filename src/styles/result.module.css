@@ -45,7 +45,7 @@
   width: 92px;
   height: 4px;
   margin: 14px auto 0;
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   background: linear-gradient(90deg, var(--primary), color-mix(in srgb, var(--accent) 76%, #ffffff));
 }
 
@@ -67,10 +67,11 @@
   width: 100%;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   background: color-mix(in srgb, var(--surface) 94%, transparent);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
 .card h2 {
@@ -235,7 +236,7 @@
   align-items: center;
   gap: 7px;
   padding: 6px 14px;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: var(--surface-soft);
   border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
   color: var(--text);
@@ -263,7 +264,7 @@
 
 .breakdownItem {
   padding: 16px 18px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
   background: var(--surface-soft);
   text-align: left;
@@ -314,7 +315,7 @@
 .breakdownBar {
   height: 6px;
   margin-top: 10px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   background: var(--border);
   overflow: hidden;
 }
@@ -363,7 +364,7 @@
 
 .filterBtn {
   padding: 5px 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--muted);
@@ -399,7 +400,7 @@
 
 .reviewItem {
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--surface);
   animation: fadeSlideIn .4s ease-out both;
@@ -453,7 +454,7 @@
   align-items: center;
   gap: 4px;
   padding: 3px 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   font-size: 11px;
   font-weight: 800;
   white-space: nowrap;
@@ -498,7 +499,7 @@
   font-size: 13px;
   line-height: 1.5;
   padding: 8px 12px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
 }
 
 .answerRowStudent {
@@ -569,7 +570,7 @@
   margin: 8px 0 28px;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: var(--surface-soft);
 }
 
@@ -594,6 +595,10 @@
 
   .body {
     padding: 26px 22px 30px;
+  }
+
+  .card {
+    border-radius: var(--radius-lg);
   }
 
   .scoreHero {
@@ -627,6 +632,16 @@
 
   .reviewHeader {
     padding: 16px;
+  }
+
+  .reviewFilter {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filterBtn {
+    min-height: 38px;
   }
 
   .reviewList {

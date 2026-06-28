@@ -62,7 +62,7 @@ export default function SubjectsPage() {
       const supabase = createClient();
       await supabase.auth.signOut();
       logout();
-      router.push('/');
+      router.push('/', { transitionTypes: ['nav-back'] });
     } catch {
       setLoggingOut(false);
     }
@@ -160,7 +160,7 @@ export default function SubjectsPage() {
         <button
           className={`btn outline small ${styles.profileButton}`}
           type="button"
-          onClick={() => router.push('/profile')}
+          onClick={() => router.push('/profile', { transitionTypes: ['nav-forward'] })}
         >
           <div className={styles.avatar}>{candidateInfo.name.charAt(0)}</div>
           <span>Profile</span>
@@ -169,7 +169,7 @@ export default function SubjectsPage() {
           <button
             className={`btn outline small ${styles.profileButton}`}
             type="button"
-            onClick={() => router.push('/admin')}
+            onClick={() => router.push('/admin', { transitionTypes: ['nav-forward'] })}
           >
             <ShieldCheck size={15} />
             <span>Admin</span>
@@ -289,7 +289,9 @@ export default function SubjectsPage() {
                     type="button"
                     disabled={subject.openRoomCount === 0}
                     onClick={() =>
-                      router.push(`/subjects/${subject.code.toLowerCase()}`)
+                      router.push(`/subjects/${subject.code.toLowerCase()}`, {
+                        transitionTypes: ['nav-forward'],
+                      })
                     }
                   >
                     Vào thi
@@ -327,7 +329,9 @@ export default function SubjectsPage() {
                     className={styles.buyBtn}
                     type="button"
                     onClick={() =>
-                      router.push(`/subjects/${room.subjectCode.toLowerCase()}`)
+                      router.push(`/subjects/${room.subjectCode.toLowerCase()}`, {
+                        transitionTypes: ['nav-forward'],
+                      })
                     }
                   >
                     <KeyRound size={16} />
@@ -343,7 +347,7 @@ export default function SubjectsPage() {
           <button
             className="btn secondary"
             type="button"
-            onClick={() => router.push('/')}
+            onClick={() => router.push('/', { transitionTypes: ['nav-back'] })}
           >
             Quay lại
           </button>

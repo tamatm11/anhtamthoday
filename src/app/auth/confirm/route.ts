@@ -4,7 +4,7 @@ import { hasSupabaseEnv } from '@/lib/supabase/env';
 import { createClient } from '@/lib/supabase/server';
 
 function getSafeNextPath(value: string | null) {
-  if (!value || !value.startsWith('/')) {
+  if (!value || !value.startsWith('/') || value.startsWith('//')) {
     return '/';
   }
 

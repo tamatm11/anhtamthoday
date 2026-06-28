@@ -31,6 +31,22 @@ export function translateAuthError(message: string): string {
     return 'Email hoặc mật khẩu không đúng.';
   }
 
+  if (
+    lower.includes('token has expired') ||
+    lower.includes('otp_expired') ||
+    lower.includes('expired or is invalid')
+  ) {
+    return 'Mã OTP đã hết hạn hoặc không đúng. Vui lòng bấm "Gửi lại mã OTP" để nhận mã mới.';
+  }
+
+  if (lower.includes('invalid otp') || lower.includes('token is invalid') || lower.includes('invalid token')) {
+    return 'Mã OTP không đúng. Vui lòng kiểm tra lại mã trong email.';
+  }
+
+  if (lower.includes('same') && lower.includes('password')) {
+    return 'Mật khẩu mới không được trùng với mật khẩu cũ.';
+  }
+
   if (lower.includes('too many requests') || lower.includes('rate limit')) {
     return 'Quá nhiều yêu cầu. Vui lòng thử lại sau ít phút.';
   }

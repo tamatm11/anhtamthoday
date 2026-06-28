@@ -82,6 +82,7 @@ export default function ExamPage() {
   const [tabSwitchCount, setTabSwitchCount] = useState(0);
   const [showTabWarning, setShowTabWarning] = useState(false);
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const autoSubmittedRef = useRef(false);
 
   useEffect(() => {
     if (!hasHydrated) return;
@@ -216,6 +217,48 @@ export default function ExamPage() {
     [questions, marked],
   );
 
+  const scrollToQuestion = useCallback((questionNumber: number) => {
+    const el = document.getElementById(`question-${questionNumber}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
+
+  const showSaveIndicator = useCallback((status: 'saving' | 'saved' | 'error') => {
+    setSaveStatus(status);
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    if (status === 'saved') {
+      saveTimerRef.current = setTimeout(() => setSaveStatus('idle'), 2000);
+    }
+  }, []);
+
+  const persistChoice = useCallback(async (
+    question: ExamSessionQuestion,
+    optionId: string,
+    label: string,
+  ) => {
+    setChoiceAnswers((current) => ({ ...current, [question.id]: optionId }));
+    setCurrentQuestion(question.number);
+    setSaveError('');
+    showSaveIndicator('saving');
+
+    try {
+      await saveSessionAnswer(supabase, {
+        sessionQuestionId: question.id,
+        selectedOptionId: optionId,
+        answerJson: {
+          type: 'multiple_choice',
+          option_id: optionId,
+          label,
+        },
+      });
+      showSaveIndicator('saved');
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : 'Không thể lưu đáp án.';
+      setSaveError(message);
+      showSaveIndicator('error');
+    }
+  }, [setCurrentQuestion, showSaveIndicator, supabase]);
+
   const handleSubmit = useCallback(async (force = false) => {
     if (!force) {
       setShowReviewPanel(true);
@@ -243,11 +286,17 @@ export default function ExamPage() {
   }, [handleSubmit]);
 
   useEffect(() => {
-    if (timeLeft === 0 && !isLoading && examData) {
-      void handleSubmit(true);
+    if (timeLeft !== 0 || isLoading || !examData || autoSubmittedRef.current) {
+      return;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft, isLoading, examData, currentSessionId, router, supabase]);
+
+    autoSubmittedRef.current = true;
+    const timeout = window.setTimeout(() => {
+      void handleSubmit(true);
+    }, 0);
+
+    return () => window.clearTimeout(timeout);
+  }, [examData, handleSubmit, isLoading, timeLeft]);
 
   // Anti-cheat: detect tab switching
   useEffect(() => {
@@ -307,13 +356,16 @@ export default function ExamPage() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentQuestion, questions, totalQuestions, showReviewPanel]);
-
-  const scrollToQuestion = (questionNumber: number) => {
-    const el = document.getElementById(`question-${questionNumber}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  }, [
+    currentQuestion,
+    persistChoice,
+    questions,
+    scrollToQuestion,
+    setCurrentQuestion,
+    showReviewPanel,
+    toggleMark,
+    totalQuestions,
+  ]);
 
   const handleNext = () => {
     if (currentQuestion < totalQuestions) {
@@ -326,43 +378,6 @@ export default function ExamPage() {
     if (currentQuestion > 1) {
       setCurrentQuestion(currentQuestion - 1);
       scrollToQuestion(currentQuestion - 1);
-    }
-  };
-
-  const showSaveIndicator = useCallback((status: 'saving' | 'saved' | 'error') => {
-    setSaveStatus(status);
-    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
-    if (status === 'saved') {
-      saveTimerRef.current = setTimeout(() => setSaveStatus('idle'), 2000);
-    }
-  }, []);
-
-  const persistChoice = async (
-    question: ExamSessionQuestion,
-    optionId: string,
-    label: string,
-  ) => {
-    setChoiceAnswers((current) => ({ ...current, [question.id]: optionId }));
-    setCurrentQuestion(question.number);
-    setSaveError('');
-    showSaveIndicator('saving');
-
-    try {
-      await saveSessionAnswer(supabase, {
-        sessionQuestionId: question.id,
-        selectedOptionId: optionId,
-        answerJson: {
-          type: 'multiple_choice',
-          option_id: optionId,
-          label,
-        },
-      });
-      showSaveIndicator('saved');
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : 'Không thể lưu đáp án.';
-      setSaveError(message);
-      showSaveIndicator('error');
     }
   };
 

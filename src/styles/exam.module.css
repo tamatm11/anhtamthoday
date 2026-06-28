@@ -1,7 +1,7 @@
 .screen {
   --exam-header-height: 64px;
   --exam-toolbar-height: 44px;
-  --exam-nav-height: 54px;
+  --exam-nav-height: calc(54px + env(safe-area-inset-bottom, 0px));
   height: 100dvh;
   overflow: hidden;
   background:
@@ -61,13 +61,13 @@
 }
 
 .timer {
-  min-height: 38px;
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
   gap: 7px;
   padding: 0 12px;
   border: 1px solid rgba(255, 255, 255, .28);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: rgba(255, 255, 255, .12);
   font-size: 18px;
   font-weight: 900;
@@ -107,7 +107,7 @@
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   background: rgba(239, 68, 68, .95);
   color: #FFFFFF;
   font-size: 14px;
@@ -142,7 +142,7 @@
   width: min(520px, 92vw);
   max-height: 85dvh;
   overflow-y: auto;
-  border-radius: 20px;
+  border-radius: var(--radius-xl);
   background: var(--surface);
   box-shadow: 0 24px 56px rgba(0, 0, 0, .28);
   animation: panelSlide .25s ease;
@@ -173,7 +173,7 @@
   display: grid;
   place-items: center;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: var(--surface-soft);
   color: var(--muted);
   transition: background .14s ease;
@@ -197,7 +197,7 @@
   gap: 4px;
   padding: 14px 8px;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   background: var(--surface-soft);
 }
 
@@ -241,9 +241,10 @@
 
 .reviewQuestionBtn {
   min-width: 70px;
+  min-height: 38px;
   padding: 6px 12px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--surface-soft);
   color: var(--muted);
   font-size: 13px;
@@ -303,9 +304,9 @@
 }
 
 .submitBtn {
-  min-height: 36px;
+  min-height: 38px;
   padding: 0 16px;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: #FFFFFF;
   color: var(--header);
   font-size: 13px;
@@ -320,10 +321,10 @@
 }
 
 .headerIconBtn {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border: 1px solid rgba(255, 255, 255, .34);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: rgba(255, 255, 255, .1);
   color: #FFFFFF;
   display: grid;
@@ -374,7 +375,7 @@
   height: 30px;
   padding: 0 8px;
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   background: var(--input);
   color: var(--text);
 }
@@ -436,7 +437,7 @@
 .errorText {
   padding: 10px 12px;
   border-left: 3px solid var(--danger);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--danger) 10%, transparent);
   color: var(--danger);
   font-size: 13px;
@@ -517,12 +518,12 @@
   position: absolute;
   top: 14px;
   right: 12px;
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   display: grid;
   place-items: center;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: var(--surface-soft);
   color: var(--muted);
 }
@@ -545,7 +546,7 @@
   align-items: flex-start;
   gap: 10px;
   padding: 8px 10px 8px 6px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: background .14s ease, color .14s ease;
 }
@@ -588,7 +589,7 @@
   gap: 12px;
   padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--surface-soft) 84%, var(--surface));
 }
 
@@ -610,7 +611,7 @@
   min-height: 42px;
   padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: var(--input);
   color: var(--text);
   font: inherit;
@@ -632,7 +633,7 @@
   gap: 8px;
   padding: 8px;
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   box-shadow: 0 10px 22px rgba(136, 54, 82, .16);
   backdrop-filter: blur(4px);
@@ -648,7 +649,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 9px 16px;
+  padding: 9px 16px calc(9px + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--border);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   box-shadow: 0 -10px 24px color-mix(in srgb, var(--primary) 10%, transparent);
@@ -666,9 +667,9 @@
 }
 
 .qNumber {
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
   display: grid;
   place-items: center;
   padding: 0;
@@ -728,7 +729,7 @@
   .screen {
     --exam-header-height: 116px;
     --exam-toolbar-height: 92px;
-    --exam-nav-height: 82px;
+    --exam-nav-height: calc(82px + env(safe-area-inset-bottom, 0px));
   }
 
   .header {
@@ -786,7 +787,7 @@
   .screen {
     --exam-header-height: 112px;
     --exam-toolbar-height: 84px;
-    --exam-nav-height: 84px;
+    --exam-nav-height: calc(84px + env(safe-area-inset-bottom, 0px));
   }
 
   .header {
@@ -808,9 +809,10 @@
 
   .headerRight {
     display: grid;
-    grid-template-columns: max-content max-content 34px 34px;
+    grid-template-columns: minmax(0, max-content) max-content 38px 38px;
     gap: 7px;
     overflow: visible;
+    max-width: 100%;
   }
 
   .connection {
@@ -818,13 +820,13 @@
   }
 
   .timer {
-    min-height: 34px;
+    min-height: 38px;
     padding-inline: 10px;
     font-size: 16px;
   }
 
   .submitBtn {
-    min-height: 34px;
+    min-height: 38px;
     padding-inline: 12px;
   }
 
@@ -848,7 +850,7 @@
   }
 
   .questionBlock {
-    padding: 15px 46px 16px 14px;
+    padding: 15px 48px 16px 14px;
   }
 
   .trueFalseItem {
@@ -867,7 +869,7 @@
 
   .questionNav {
     gap: 6px;
-    padding: 7px 10px;
+    padding: 7px 10px calc(7px + env(safe-area-inset-bottom, 0px));
   }
 
   .qNumber {

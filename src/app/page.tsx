@@ -11,12 +11,21 @@ import { hasSupabaseEnv } from '@/lib/supabase/env';
 import { loadCandidateProfile } from '@/lib/supabase/user-profile';
 import { translateAuthError } from '@/lib/supabase/auth-errors';
 
+function getPostLoginPath() {
+  const redirect = new URLSearchParams(window.location.search).get('redirect');
+
+  return redirect?.startsWith('/') && !redirect.startsWith('//')
+    ? redirect
+    : '/subjects';
+}
+
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const router = useRouter();
   const login = useExamStore((state) => state.login);
 
@@ -39,7 +48,7 @@ export default function LoginPage() {
         district: profile.district,
         phone: profile.phone,
       });
-      router.push('/subjects');
+      router.push(getPostLoginPath(), { transitionTypes: ['nav-forward'] });
     });
 
     return () => {
@@ -83,9 +92,45 @@ export default function LoginPage() {
         });
       }
 
-      router.push('/subjects');
+      router.push(getPostLoginPath(), { transitionTypes: ['nav-forward'] });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setError('');
+
+    if (!hasSupabaseEnv()) {
+      setError('Chưa cấu hình Supabase. Hãy thêm .env.local trước khi đăng nhập.');
+      return;
+    }
+
+    setGoogleLoading(true);
+
+    try {
+      const callbackUrl = new URL('/auth/confirm', window.location.origin);
+      callbackUrl.searchParams.set('next', getPostLoginPath());
+
+      const supabase = createClient();
+      const { error: authError } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: callbackUrl.toString(),
+        },
+      });
+
+      if (authError) {
+        setError(translateAuthError(authError.message));
+        setGoogleLoading(false);
+      }
+    } catch (loginError) {
+      setError(
+        loginError instanceof Error
+          ? translateAuthError(loginError.message)
+          : 'Không thể đăng nhập bằng Google. Vui lòng thử lại.',
+      );
+      setGoogleLoading(false);
     }
   };
 
@@ -109,7 +154,7 @@ export default function LoginPage() {
       <div className={styles.card}>
         <h1 className={styles.title}>Đăng nhập</h1>
         <p className={styles.subtitle}>
-          Bạn chưa có tài khoản? <Link href="/register" className={styles.linkRed}>Đăng ký ngay</Link>
+          Bạn chưa có tài khoản? <Link href="/register" transitionTypes={['nav-forward']} className={styles.linkRed}>Đăng ký ngay</Link>
         </p>
 
         <form onSubmit={handleLogin}>
@@ -155,43 +200,42 @@ export default function LoginPage() {
 
           {error && <p className={styles.errorText}>{error}</p>}
 
-          <button type="submit" className={styles.submitBtn} disabled={loading}>
-            Đăng nhập
+          <button
+            type="submit"
+            className={styles.submitBtn}
+            disabled={loading || googleLoading}
+          >
+            {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
           </button>
         </form>
 
+        <div className={styles.authDivider} aria-hidden="true">
+          <span>hoặc</span>
+        </div>
+
+        <button
+          type="button"
+          className={styles.googleBtn}
+          onClick={handleGoogleLogin}
+          disabled={loading || googleLoading}
+          aria-busy={googleLoading}
+        >
+          <svg className={styles.googleIcon} viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.4-.19-2.07H12v3.92h5.38a4.6 4.6 0 0 1-2 3.02v2.54h3.24c1.9-1.75 2.98-4.33 2.98-7.41Z" />
+            <path fill="#34A853" d="M12 22c2.7 0 4.97-.9 6.62-2.36l-3.24-2.54c-.9.6-2.05.96-3.38.96-2.6 0-4.81-1.76-5.6-4.13H3.05v2.62A10 10 0 0 0 12 22Z" />
+            <path fill="#FBBC05" d="M6.4 13.93A6.02 6.02 0 0 1 6.08 12c0-.67.12-1.32.32-1.93V7.45H3.05A10 10 0 0 0 2 12c0 1.61.39 3.14 1.05 4.55l3.35-2.62Z" />
+            <path fill="#EA4335" d="M12 5.94c1.47 0 2.79.5 3.83 1.5l2.87-2.87A9.64 9.64 0 0 0 12 2a10 10 0 0 0-8.95 5.45l3.35 2.62c.79-2.37 3-4.13 5.6-4.13Z" />
+          </svg>
+          <span>{googleLoading ? 'Đang chuyển tới Google...' : 'Tiếp tục với Google'}</span>
+        </button>
+
         <div className={styles.footerLinks}>
-          <button
-            type="button"
+          <Link
+            href={email ? `/reset-password?email=${encodeURIComponent(email)}` : '/reset-password'}
             className={styles.forgotLink}
-            onClick={async () => {
-              if (!email) {
-                setError('Vui lòng nhập email trước khi bấm quên mật khẩu.');
-                return;
-              }
-              if (!hasSupabaseEnv()) {
-                setError('Chưa cấu hình Supabase.');
-                return;
-              }
-              setLoading(true);
-              try {
-                const supabase = createClient();
-                const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-                  redirectTo: `${window.location.origin}/auth/confirm`,
-                });
-                if (resetError) {
-                  setError(translateAuthError(resetError.message));
-                } else {
-                  setError('');
-                  alert('Đã gửi email đặt lại mật khẩu. Vui lòng kiểm tra hộp thư.');
-                }
-              } finally {
-                setLoading(false);
-              }
-            }}
           >
             Quên mật khẩu?
-          </button>
+          </Link>
         </div>
       </div>
     </div>

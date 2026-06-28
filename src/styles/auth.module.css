@@ -6,7 +6,7 @@
   justify-content: center;
   gap: clamp(32px, 5vw, 72px);
   overflow-x: hidden;
-  padding: 118px var(--page-gutter) 52px;
+  padding: calc(118px + env(safe-area-inset-top, 0px)) var(--page-gutter) calc(52px + env(safe-area-inset-bottom, 0px));
   position: relative;
   isolation: isolate;
   background:
@@ -29,7 +29,7 @@
   inset: 22px 22px;
   pointer-events: none;
   border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
-  border-radius: 24px;
+  border-radius: var(--radius-xl);
   opacity: .72;
 }
 
@@ -71,7 +71,7 @@
   width: fit-content;
   padding: 6px 9px;
   border: 1px solid color-mix(in srgb, var(--primary) 30%, var(--border));
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--surface) 72%, transparent);
   color: var(--primary);
   font-size: 12px;
@@ -101,7 +101,7 @@
 
 .orbStage::before {
   inset: 7% 18% 11% 3%;
-  border-radius: 28px;
+  border-radius: var(--radius-xl);
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface-soft) 88%, transparent)),
     repeating-linear-gradient(0deg, transparent 0 24px, color-mix(in srgb, var(--border) 52%, transparent) 24px 25px);
@@ -116,7 +116,7 @@
   width: 42%;
   height: 28%;
   border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   background:
     linear-gradient(90deg, color-mix(in srgb, var(--accent) 16%, transparent) 0 32%, transparent 32%),
     color-mix(in srgb, var(--surface) 86%, transparent);
@@ -130,7 +130,7 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  border-radius: 28px;
+  border-radius: var(--radius-xl);
   border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
   background:
     linear-gradient(150deg, color-mix(in srgb, var(--surface) 94%, transparent), color-mix(in srgb, var(--primary-soft) 78%, transparent)),
@@ -155,14 +155,15 @@
 
 .energyOrb::after {
   content: "";
-  width: min(56%, 220px);
-  aspect-ratio: 1;
-  border-radius: 50%;
+  width: min(58%, 230px);
+  aspect-ratio: 1.34;
+  border-radius: var(--radius-lg);
   border: 1px solid color-mix(in srgb, var(--primary) 34%, var(--border));
   background:
-    conic-gradient(from 0deg, color-mix(in srgb, var(--primary) 18%, transparent), transparent 18%, color-mix(in srgb, var(--accent) 20%, transparent) 42%, transparent 68%, color-mix(in srgb, var(--primary) 18%, transparent)),
-    radial-gradient(circle, transparent 0 47%, color-mix(in srgb, var(--surface) 88%, transparent) 48% 62%, transparent 63%);
-  box-shadow: inset 0 0 0 16px color-mix(in srgb, var(--surface) 72%, transparent);
+    linear-gradient(90deg, color-mix(in srgb, var(--primary) 15%, transparent) 0 18%, transparent 18% 100%),
+    repeating-linear-gradient(0deg, transparent 0 19px, color-mix(in srgb, var(--border) 70%, transparent) 19px 20px),
+    color-mix(in srgb, var(--surface) 88%, transparent);
+  box-shadow: inset 0 0 0 12px color-mix(in srgb, var(--surface) 68%, transparent);
   opacity: .9;
 }
 
@@ -178,7 +179,7 @@
 .orbGrid {
   inset: 22px;
   border: 1px dashed color-mix(in srgb, var(--accent) 28%, var(--border));
-  border-radius: 22px;
+  border-radius: var(--radius-lg);
 }
 
 .orbCore {
@@ -186,7 +187,7 @@
   bottom: 18%;
   width: 40%;
   height: 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--primary) 34%, transparent);
   box-shadow:
     0 22px 0 color-mix(in srgb, var(--accent) 22%, transparent),
@@ -198,7 +199,7 @@
   top: 22%;
   width: 34%;
   height: 8px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--accent) 36%, transparent);
   box-shadow:
     0 18px 0 color-mix(in srgb, var(--primary) 22%, transparent),
@@ -234,12 +235,13 @@
   justify-self: end;
   padding: clamp(28px, 4vw, 42px);
   border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--surface) 88%, transparent));
   box-shadow: var(--shadow);
   backdrop-filter: blur(22px);
   animation: cardRise .42s ease both;
+  transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
 }
 
 .card::before {
@@ -247,8 +249,16 @@
   position: absolute;
   inset: 10px;
   z-index: -1;
-  border-radius: 14px;
+  border-radius: calc(var(--radius-xl) - 10px);
   border: 1px solid color-mix(in srgb, var(--border) 58%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
 }
 
 .title {
@@ -275,7 +285,7 @@
   margin: -10px 0 24px;
   padding: 14px 15px;
   border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--primary-soft) 74%, var(--surface));
 }
 
@@ -376,7 +386,7 @@
   height: 36px;
   display: grid;
   place-items: center;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   background: transparent;
   color: var(--primary);
   cursor: pointer;
@@ -394,7 +404,7 @@
   min-height: 56px;
   margin-top: 8px;
   border: 0;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: var(--brand-gradient);
   color: #ffffff;
   box-shadow: 0 18px 36px color-mix(in srgb, var(--primary) 28%, transparent);
@@ -421,6 +431,73 @@
   transform: none;
 }
 
+.authDivider {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.authDivider::before,
+.authDivider::after {
+  content: "";
+  height: 1px;
+  background: var(--border);
+}
+
+.googleBtn {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  color: var(--text);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 850;
+  transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.googleBtn:hover {
+  border-color: color-mix(in srgb, var(--primary) 36%, var(--border));
+  background: var(--surface);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+
+.googleBtn:active {
+  transform: translateY(1px);
+}
+
+.googleBtn:focus-visible {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+.googleBtn:disabled {
+  opacity: .66;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.googleIcon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
 .footerLinks {
   margin-top: 22px;
   display: flex;
@@ -436,7 +513,7 @@
   margin: 10px 0 0;
   padding: 10px 11px;
   border-left: 3px solid var(--danger);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--danger) 10%, transparent);
   color: var(--danger);
   font-size: 13px;
@@ -486,12 +563,12 @@
   .container {
     grid-template-columns: 1fr;
     justify-items: center;
-    padding: 132px 20px 36px;
+    padding: calc(132px + env(safe-area-inset-top, 0px)) 20px calc(36px + env(safe-area-inset-bottom, 0px));
   }
 
   .container::before {
     inset: 12px;
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
   }
 
   .orbStage {
@@ -509,6 +586,7 @@
   .card {
     justify-self: center;
     padding: 30px 22px;
+    transform: none;
   }
 
   .title,
@@ -519,7 +597,7 @@
 
 @media (max-width: 520px) {
   .container {
-    padding: 124px 14px 24px;
+    padding: calc(124px + env(safe-area-inset-top, 0px)) 14px calc(24px + env(safe-area-inset-bottom, 0px));
   }
 
   .container::before {
@@ -545,6 +623,7 @@
   .card {
     width: 100%;
     padding: 26px 20px;
+    border-radius: var(--radius-lg);
   }
 
   .title {
@@ -556,7 +635,8 @@
   }
 
   .input,
-  .submitBtn {
+  .submitBtn,
+  .googleBtn {
     min-height: 52px;
     height: 52px;
   }

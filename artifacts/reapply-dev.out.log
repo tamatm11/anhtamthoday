@@ -1,0 +1,34 @@
+
+> web-thi-thpt-next@0.1.0 dev
+> next dev --port 3000
+
+▲ Next.js 16.2.7 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.19:3000
+- Environments: .env.local
+✓ Ready in 1205ms
+- Experiments (use with caution):
+  ✓ viewTransition
+
+○ Compiling / ...
+ GET / 200 in 6.7s (next.js: 5.5s, proxy.ts: 504ms, application-code: 766ms)
+ GET / 200 in 197ms (next.js: 28ms, proxy.ts: 16ms, application-code: 153ms)
+ GET / 200 in 183ms (next.js: 18ms, proxy.ts: 16ms, application-code: 149ms)
+ GET / 200 in 171ms (next.js: 13ms, proxy.ts: 18ms, application-code: 139ms)
+ GET / 200 in 75ms (next.js: 7ms, proxy.ts: 7ms, application-code: 62ms)
+ GET / 200 in 105ms (next.js: 8ms, proxy.ts: 11ms, application-code: 86ms)
+ GET / 200 in 113ms (next.js: 11ms, proxy.ts: 12ms, application-code: 90ms)
+ GET / 200 in 133ms (next.js: 9ms, proxy.ts: 14ms, application-code: 110ms)
+ GET /reset-password 200 in 1059ms (next.js: 927ms, proxy.ts: 17ms, application-code: 116ms)
+✓ Compiled in 127ms
+ GET /reset-password 200 in 879ms (next.js: 286ms, proxy.ts: 349ms, application-code: 244ms)
+ GET /reset-password 200 in 122ms (next.js: 15ms, proxy.ts: 20ms, application-code: 87ms)
+✓ Compiled in 108ms
+ GET /reset-password 200 in 1260ms (next.js: 365ms, proxy.ts: 699ms, application-code: 195ms)
+ GET / 200 in 682ms (next.js: 208ms, proxy.ts: 7ms, application-code: 468ms)
+ GET / 200 in 1610ms (next.js: 25ms, proxy.ts: 1427ms, application-code: 158ms)
+ GET / 200 in 242ms (next.js: 15ms, proxy.ts: 10ms, application-code: 217ms)
+ GET / 200 in 197ms (next.js: 13ms, proxy.ts: 9ms, application-code: 175ms)
+ GET / 200 in 170ms (next.js: 10ms, proxy.ts: 8ms, application-code: 152ms)
+ GET / 200 in 237ms (next.js: 13ms, proxy.ts: 12ms, application-code: 212ms)
+ GET / 200 in 849ms (next.js: 16ms, proxy.ts: 19ms, application-code: 814ms)

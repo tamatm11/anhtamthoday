@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
   BookOpenCheck,
@@ -568,12 +569,12 @@ export default function AdminPage() {
           <span>Admin THPT</span>
         </div>
         <nav className={styles.nav}>
-          <a href="/admin/authoring"><FilePenLine size={18} /> Soạn đề</a>
+          <Link href="/admin/authoring" transitionTypes={['nav-forward']}><FilePenLine size={18} /> Soạn đề</Link>
           <a href="#subjects"><BookOpenCheck size={18} /> Môn học</a>
           <a href="#keys"><KeyRound size={18} /> Quản lý key</a>
           <a href="#students"><Users size={18} /> Học viên</a>
         </nav>
-        <button className={styles.backButton} type="button" onClick={() => router.push('/subjects')}>
+        <button className={styles.backButton} type="button" onClick={() => router.push('/subjects', { transitionTypes: ['nav-back'] })}>
           Về giao diện thi
         </button>
       </aside>
@@ -630,7 +631,7 @@ export default function AdminPage() {
               <button
                 className="btn"
                 type="button"
-                onClick={() => router.push('/admin/authoring')}
+                onClick={() => router.push('/admin/authoring', { transitionTypes: ['nav-forward'] })}
                 disabled={!hasConfiguredSupabase || subjects.length === 0}
               >
                 <FilePenLine size={16} />

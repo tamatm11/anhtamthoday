@@ -1,6 +1,6 @@
 .container {
   min-height: 100dvh;
-  padding: 34px 20px 44px;
+  padding: calc(34px + env(safe-area-inset-top, 0px)) 20px calc(44px + env(safe-area-inset-bottom, 0px));
   position: relative;
   overflow-x: hidden;
   background:
@@ -40,7 +40,7 @@
   width: 76px;
   height: 4px;
   margin-top: 12px;
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   background: linear-gradient(90deg, var(--primary), color-mix(in srgb, var(--accent) 76%, #ffffff));
 }
 
@@ -56,10 +56,11 @@
   min-width: 0;
   padding: 26px;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(16px);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
 .sectionTitle {
@@ -94,7 +95,7 @@
   height: 44px;
   padding: 0 12px;
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   background: var(--input);
   color: var(--text);
   font-size: 15px;
@@ -121,7 +122,7 @@
 .feedback {
   margin: 0 0 12px;
   padding: 11px 12px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-size: 13px;
   font-weight: 800;
   line-height: 1.45;
@@ -164,7 +165,7 @@
   margin-bottom: 12px;
   padding: 13px 15px;
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--surface-soft) 84%, var(--surface));
 }
 
@@ -199,7 +200,7 @@
   border-spacing: 0;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .table th,
@@ -223,7 +224,7 @@
 .emptyState {
   padding: 24px;
   border: 1px dashed var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: color-mix(in srgb, var(--surface-soft) 84%, var(--surface));
   color: var(--muted);
   text-align: center;
@@ -256,11 +257,12 @@
 
 @media (max-width: 560px) {
   .container {
-    padding: 24px 14px 32px;
+    padding: calc(24px + env(safe-area-inset-top, 0px)) 14px calc(32px + env(safe-area-inset-bottom, 0px));
   }
 
   .card {
     padding: 20px;
+    border-radius: var(--radius-lg);
   }
 
   .header :global(.btn) {

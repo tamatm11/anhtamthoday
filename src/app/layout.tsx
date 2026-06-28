@@ -4,7 +4,7 @@ import { Be_Vietnam_Pro, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import 'katex/dist/katex.min.css';
 import { useExamStore } from '@/store/useExamStore';
-import { useSyncExternalStore } from 'react';
+import { useSyncExternalStore, ViewTransition } from 'react';
 import ToastProvider from '@/components/ui/Toast';
 
 const beVietnam = Be_Vietnam_Pro({
@@ -49,7 +49,21 @@ export default function RootLayout({
       >
         <a className="skip-link" href="#app">Bỏ qua đến nội dung chính</a>
         <main id="app">
-          {children}
+          <ViewTransition
+            enter={{
+              default: 'route-enter',
+              'nav-forward': 'route-forward-enter',
+              'nav-back': 'route-back-enter',
+            }}
+            exit={{
+              default: 'route-exit',
+              'nav-forward': 'route-forward-exit',
+              'nav-back': 'route-back-exit',
+            }}
+            default="route-update"
+          >
+            {children}
+          </ViewTransition>
         </main>
         <ToastProvider />
       </body>

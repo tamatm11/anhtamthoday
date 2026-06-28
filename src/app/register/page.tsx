@@ -80,12 +80,12 @@ export default function RegisterPage() {
           district: profile.district,
           phone: profile.phone,
         });
-        router.push('/subjects');
+        router.push('/subjects', { transitionTypes: ['nav-forward'] });
         return;
       }
 
       setMessage('Đăng ký thành công! Hãy kiểm tra email để xác nhận tài khoản.');
-      window.setTimeout(() => router.push('/'), 1500);
+      window.setTimeout(() => router.push('/', { transitionTypes: ['nav-back'] }), 1500);
     } catch (registerError) {
       const nextError =
         registerError instanceof Error
@@ -117,7 +117,7 @@ export default function RegisterPage() {
       <div className={styles.card}>
         <h1 className={styles.title}>Đăng ký</h1>
         <p className={styles.subtitle}>
-          Bạn đã có tài khoản? <Link href="/" className={styles.linkRed}>Đăng nhập ngay</Link>
+          Bạn đã có tài khoản? <Link href="/" transitionTypes={['nav-back']} className={styles.linkRed}>Đăng nhập ngay</Link>
         </p>
 
         <form onSubmit={handleRegister}>

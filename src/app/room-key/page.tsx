@@ -214,7 +214,7 @@ export default function RoomKeyPage() {
         </form>
 
         <div className={`${styles.footerLinks} ${styles.centered}`}>
-          <Link href="/subjects" className={styles.forgotLink}>
+          <Link href="/subjects" transitionTypes={['nav-back']} className={styles.forgotLink}>
             &larr; Quay lại chọn môn và phòng thi
           </Link>
         </div>

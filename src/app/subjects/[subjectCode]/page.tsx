@@ -141,7 +141,7 @@ export default function SubjectExamSetsPage() {
         <button
           className={`btn secondary small ${styles.backButton}`}
           type="button"
-          onClick={() => router.push('/subjects')}
+          onClick={() => router.push('/subjects', { transitionTypes: ['nav-back'] })}
         >
           <ArrowLeft size={15} />
           Quay lại môn thi
@@ -196,7 +196,7 @@ export default function SubjectExamSetsPage() {
                 type="button"
                 onClick={() => {
                   selectExamSet(room.subjectCode, room.id);
-                  router.push('/room-key');
+                  router.push('/room-key', { transitionTypes: ['nav-forward'] });
                 }}
               >
                 Chọn phòng này
